@@ -1,0 +1,87 @@
+.logInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 375px;
+  width: 450px;
+  border-radius: 15px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  border: 1px solid #aeaeae;
+  border-radius: 5px;
+  height: 30px;
+  margin: 5px;
+}
+
+.logInButton {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 50px;
+  width: 72px;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 0 25px;
+  background-color: rgba(0, 0, 0.7);
+  color: white;
+  border: none;
+  white-space: nowrap;
+}
+
+.iconText {
+  font-size: 12px;
+}
+
+::placeholder {
+  padding: 5px;
+}
+
+.copyright {
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.header {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0.7);
+  font-size: 18px;
+  margin: 7px;
+}
+
+.lock {
+  height: 100px;
+  width: 200px;
+}
+
+.signup {
+  color: blue;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.submit {
+  width: 200px;
+  height: 40px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  color: white;
+  white-space: nowrap;
+  margin: 15px;
+  font-size: 14px;
+}

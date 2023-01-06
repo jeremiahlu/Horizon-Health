@@ -1,0 +1,10 @@
+.container {
+  margin-left: 100px;
+  color: white;
+  list-style: none;
+}
+
+.profilePicture {
+  height: 100px;
+  width: 100px;
+}

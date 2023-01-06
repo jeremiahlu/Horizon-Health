@@ -4,11 +4,32 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', 
+        first_name='Demo',
+        last_name='User',
+        email='demo@aa.io',
+        address='363 Country Club Ave, Ridgecrest, CA 93555',
+        password='password',
+        gender='Male',
+        profile_picture='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Tyson_2019_by_Glenn_Francis.jpg/1200px-Mike_Tyson_2019_by_Glenn_Francis.jpg')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', 
+        first_name='Marnie',
+        last_name='Reagan',
+        email='marnie@aa.io',
+        address='7509 East Beach Lane Upper Marlboro, MD 20772',
+        password='password',
+        gender='Female',
+        profile_picture='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv7Vz_UavQ_-vlKel-h3ZKtlQ8YL-XuO6KvQ&usqp=CAU')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', 
+        first_name='Bobbie',
+        last_name='Mark',
+        email='bobbie@aa.io', 
+        address='31 Ridge Lane Union City, NJ 07087',
+        password='password',
+        gender='Non-Binary',
+        profile_picture='https://images.squarespace-cdn.com/content/v1/51773f51e4b054c7ac3739b7/1503028288672-7P8K6PA1AYX9NX1ELXS0/Ian%2BSomerhalder-264_Web_Web_2.jpg?format=1500w')
 
     db.session.add(demo)
     db.session.add(marnie)

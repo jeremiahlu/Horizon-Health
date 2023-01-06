@@ -1,0 +1,40 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reviewsContainer {
+  /* border: 1px solid red; */
+  width: 50%;
+  overflow: scroll;
+}
+
+.reviewId {
+  border: 1px solid rgba(225, 225, 225, 0.8);
+  margin: 3px;
+}
+
+.review {
+  margin: 3px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  color: #ccc;
+  font-size: 20px;
+}
+
+input[type="radio"]:checked + .star {
+  color: #ffcc00;
+}
+input[type="radio"]:checked ~ .star {
+  color: #ffcc00;
+}
+
+.stars {
+  color: #ffcc00;
+}

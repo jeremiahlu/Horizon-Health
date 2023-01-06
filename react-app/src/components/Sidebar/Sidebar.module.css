@@ -1,0 +1,105 @@
+.active {
+  display: flex;
+  z-index: 100;
+}
+
+.sidebarHamburger {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+}
+
+.button {
+  display: flex;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon {
+  color: white;
+}
+
+.iconText {
+  margin-left: 20px;
+  white-space: nowrap;
+  color: white;
+  font-size: 12px;
+}
+
+.logOutText {
+  white-space: nowrap;
+  color: white;
+  font-size: 12px;
+}
+
+.sidebarMain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  background-color: rgba(0, 0, 0, 1);
+  z-index: 99;
+}
+
+.button {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  height: 50px;
+  width: 72px;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 0 25px;
+}
+
+.sidebarMain button > i {
+  width: 24px;
+  height: 24px;
+}
+
+.sidebarMain:hover {
+  width: 150px;
+  overflow: visible;
+}
+
+.modal {
+  display: flex;
+  border: 1px solid white;
+}
+
+.logOutDiv:hover {
+  overflow: visible;
+}
+
+.logOut {
+  background-color: white;
+}
+
+.redCircle {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  font-size: 10px;
+  position: relative;
+  top: 0;
+  right: 0;
+  text-align: center;
+  text-decoration: none;
+  font-style: none;
+  color: white;
+}

@@ -1,0 +1,125 @@
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  width: 450px;
+  border-radius: 15px;
+}
+
+.header {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0.7);
+  font-size: 18px;
+  margin: 7px;
+}
+
+.main {
+  display: flex;
+  /* padding: 20px; */
+}
+
+.imageForm {
+  width: 200px;
+  margin: 15px 15px 15px 0;
+}
+
+.mainForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.chooseFile {
+  /* border: 1px solid yellow; */
+  width: 100%;
+}
+
+.lock {
+  height: 100px;
+  width: 200px;
+}
+
+.image {
+  height: 150px;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.input {
+  border: 1px solid #aeaeae;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.submit {
+  width: 375px;
+  height: 40px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  color: white;
+  white-space: nowrap;
+  margin: 15px;
+  font-size: 14px;
+}
+
+.addImageText {
+  padding: 5px;
+  margin: 5px;
+}
+
+.chooseFile {
+  background-color: transparent;
+  border: none;
+}
+
+.signUpButton {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  height: 50px;
+  width: 72px;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 0 25px;
+  background-color: rgba(0, 0, 0.7);
+  color: white;
+  border: none;
+  white-space: nowrap;
+}
+
+.iconText {
+  font-size: 12px;
+}
+
+.inputPassword {
+  width: 375px;
+  height: 30px;
+  margin: 5px;
+  border: 1px solid #aeaeae;
+  border-radius: 5px;
+}
+
+::placeholder {
+  padding: 5px;
+}
+
+.login {
+  color: blue;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 100px;
+}
+
+.copyright {
+  font-size: 12px;
+  margin-top: 30px;
+}

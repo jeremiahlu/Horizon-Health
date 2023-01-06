@@ -1,0 +1,93 @@
+.dashboardContainer {
+  margin: 0 52px 0 104px;
+}
+
+.sidebarLogo {
+  position: absolute;
+  height: 100px;
+  width: 150px;
+  opacity: 0.3;
+  margin-left: 80px;
+}
+
+.cityscape {
+  position: relative;
+  opacity: 0.7;
+  width: 100%;
+  max-height: 600px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.aboutUsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.aboutUs {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 50px 20px 30px;
+}
+
+.headerText {
+  color: rgba(239, 190, 68, 0.8);
+  font-style: italic;
+  margin: 50px;
+}
+
+.text {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 50px;
+  line-height: 200%;
+}
+
+.centralPark {
+  height: 300px;
+  width: 50%;
+  margin: 50px 0 50px 0;
+}
+
+.footer {
+  border-top: 1px solid #999;
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 60px 0 60px;
+}
+
+.footerLogo {
+  height: 50px;
+  width: 110px;
+}
+
+.brandDiv {
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0 0 10px 50px;
+  margin: 30px;
+}
+
+.company,
+.account {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 15px 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.logIn,
+.signUp,
+.footerAboutUs,
+.brandName {
+  text-align: center;
+  margin: 5px;
+  font-size: 12px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+}

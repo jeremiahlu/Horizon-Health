@@ -1,0 +1,38 @@
+{
+  "name": "practice-for-week-19-python-project-skeleton-1",
+  "version": "1.0.0",
+  "description": "This is the starter for the Flask React project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appacademy/practice-for-week-19-python-project-skeleton.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/appacademy/practice-for-week-19-python-project-skeleton/issues"
+  },
+  "homepage": "https://github.com/appacademy/practice-for-week-19-python-project-skeleton#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.2",
+    "@mui/styled-engine-sc": "^5.11.0",
+    "@types/material-ui": "^0.21.12",
+    "js-cookie": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^5.3.6"
+  }
+}
