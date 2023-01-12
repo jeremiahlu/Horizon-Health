@@ -7,7 +7,7 @@ import Reviews from "../Reviews/index";
 import ReviewForm from "../Reviews/ReviewForm";
 import EditReviewForm from "../Reviews/EditReviewForm";
 
-function ItemDetails({ cart, setCart }) {
+function ItemDetails({ cart }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const item = useSelector((state) => state.items[id]);
@@ -31,7 +31,7 @@ function ItemDetails({ cart, setCart }) {
         };
         newCart.push(cartItems);
       }
-      setCart(newCart);
+      // setCart(newCart);
     }
   };
 
@@ -45,40 +45,32 @@ function ItemDetails({ cart, setCart }) {
 
   return (
     <>
-      item && (
-      <div className={styles.productDetail}>
-        <div className={styles.productContainer}>
-          <div className={styles.photoMain}>
-            <i className={`${styles.icon}fa-regular fa-heart`}></i>
-            <img className={styles.itemImage} src={item?.image} />
+      item? && (
+      <div className={styles.itemDetailContainer}>
+        <div className={styles.productDetail}>
+          <div className={styles.productContainer}>
+            <div className={styles.photoMain}>
+              {/* <i className={`${styles.icon}fa-regular fa-heart`}></i> */}
+              <img className={styles.itemImage} src={item?.image} />
+            </div>
+          </div>
+
+          <div className={styles.itemDetailDiv}>
+            <div className={styles.itemName}>{item?.name}</div>
+            <div className={styles.itemPrice}>${item?.price}</div>
+            <button className={styles.addToCart} onClick={() => cartAdd(item)}>
+              <span>ADD TO CART</span>
+              <i className={`${styles.check}fa-sharp fa-solid fa-check`}></i>
+            </button>
+            <div className={styles.itemDescription}>{item?.description}</div>
+          </div>
+          <div className={styles.reviews}>
+            <ReviewForm item={item} />
+            <Reviews item={item} />
           </div>
         </div>
-
-        <div className={styles.itemDetailDiv}>
-          <div className={styles.itemName}>{item?.name}</div>
-          <div className={styles.itemPrice}>${item?.price}</div>
-          <button className={styles.addToCart} onClick={() => cartAdd(item)}>
-            ADD TO CART
-          </button>
-          <div className={styles.itemDescription}>{item?.description}</div>
-        </div>
-
-        <div className={styles.reviews}>
-          <ReviewForm item={item} />
-          <Reviews item={item} />
-          {/* {reviews.forEach((review) =>
-            review.user_id === sessionUser.id ? (
-              <button>
-                {" "}
-                <EditReviewForm />{" "}
-              </button>
-            ) : (
-              <></>
-            )
-          )} */}
-        </div>
+        )
       </div>
-      )
     </>
   );
 }

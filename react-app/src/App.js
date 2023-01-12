@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LogInFormModal";
 import SignUpForm from "./components/auth/SignUpFormModal";
 // import NavBar from './components/NavBar';
@@ -20,7 +20,8 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
+  const cart = useSelector((state) => Object.values(state.cart));
 
   useEffect(() => {
     (async () => {
@@ -36,7 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
-      <Sidebar cart={cart} setCart={setCart} />
+      <Sidebar cart={cart} />
       <Switch>
         {/* <Route path="/login" exact={true}>
           <LoginForm />
@@ -58,13 +59,13 @@ function App() {
           <Dashboard />
         </Route>
         <Route path="/items" exact={true}>
-          <Item cart={cart} setCart={setCart} />
+          <Item cart={cart} />
         </Route>
         <Route path="/items/:id" exact={true}>
-          <ItemDetails cart={cart} setCart={setCart} />
+          <ItemDetails cart={cart} />
         </Route>
-        <Route path="/cart" exact={true}>
-          <Cart cart={cart} setCart={setCart} />
+        <Route path="/cart/:id/items" exact={true}>
+          <Cart cart={cart} />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -22,7 +22,7 @@ def get_reviews(item_id):
     reviews = Review.query.filter(Review.item_id == item_id)
     return jsonify({'reviews': [review.to_dict() for review in reviews]})
 
-@item_routes.route('/<int:item_id>/reviews', methods = ['POST'])
+@item_routes.route('/<int:item_id>/reviews/', methods = ['POST'])
 @login_required
 def post_new_review(item_id):
     form = ReviewForm()

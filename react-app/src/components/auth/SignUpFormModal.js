@@ -105,7 +105,7 @@ const SignUpForm = ({ LogInFormModal }) => {
             className={styles.lock}
             src="https://cdn.pixabay.com/photo/2017/03/19/03/47/material-icon-2155441_960_720.png"
           />
-          <span>Sign up</span>
+          <span className={styles.signup}>Sign up</span>
         </div>
         <div>
           {errors.map((error, ind) => (
@@ -117,8 +117,10 @@ const SignUpForm = ({ LogInFormModal }) => {
           <form className={styles.imageForm}>
             <img
               className={styles.image}
-              src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
-              alt="song image"
+              src={
+                "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
+              }
+              alt="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg"
             />
 
             <div className={styles.addImage}>
@@ -140,7 +142,7 @@ const SignUpForm = ({ LogInFormModal }) => {
           </form>
 
           <div className={styles.mainForm}>
-            <div>
+            <div className={styles.inputDiv}>
               <input
                 className={styles.input}
                 type="text"
@@ -150,7 +152,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 placeholder="Username"
               ></input>
             </div>
-            <div>
+            <div className={styles.inputDiv}>
               <input
                 className={styles.input}
                 type="text"
@@ -160,7 +162,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 placeholder="First Name"
               ></input>
             </div>
-            <div>
+            <div className={styles.inputDiv}>
               <input
                 className={styles.input}
                 type="text"
@@ -170,7 +172,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 placeholder="Last Name"
               ></input>
             </div>
-            <div>
+            <div className={styles.inputDiv}>
               <input
                 className={styles.input}
                 type="text"
@@ -180,7 +182,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 placeholder="Email Address"
               ></input>
             </div>
-            <div>
+            <div className={styles.inputDiv}>
               <input
                 className={styles.input}
                 type="text"
@@ -193,7 +195,7 @@ const SignUpForm = ({ LogInFormModal }) => {
           </div>
         </div>
         <div className={styles.password}>
-          <div>
+          <div className={styles.inputDiv}>
             <input
               className={styles.inputPassword}
               type="password"
@@ -203,7 +205,7 @@ const SignUpForm = ({ LogInFormModal }) => {
               placeholder="Password"
             ></input>
           </div>
-          <div>
+          <div className={styles.inputDiv}>
             <input
               className={styles.inputPassword}
               type="password"

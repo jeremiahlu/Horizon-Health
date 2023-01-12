@@ -56,15 +56,17 @@ export const getAllReviewThunk = (id) => async (dispatch) => {
 export const addReviewThunk = (review) => async (dispatch) => {
   const { itemId } = review;
   // console.log(id, 'ID')
-  // console.log(itemId, 'ID')
-  const res = await csrfFetch(`/api/items/${Number(itemId)}/reviews`, {
+  // console.log(itemId, "ID");
+  const res = await csrfFetch(`/api/items/${parseInt(itemId)}/reviews/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(review),
   });
   if (res.ok) {
     const newReview = await res.json();
+    // console.log(newReview, "HRER");
     dispatch(addReview(newReview));
+    return res;
   }
 };
 

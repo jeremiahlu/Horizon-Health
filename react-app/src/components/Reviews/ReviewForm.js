@@ -14,38 +14,40 @@ const ReviewForm = ({ item }) => {
   const history = useHistory();
   const { id } = useParams();
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  const [stars, setStars] = useState(0);
   const [errors, setErrors] = useState([]);
   const itemsObj = useSelector((state) => state.items);
   const items = Object.values(itemsObj);
-  // console.log(id, 'item')
+  const user = useSelector((state) => state.session.user);
+  // console.log(id, "item");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     let payload = {
+      // user_id: user.id,
       itemId: id,
       review,
       stars,
     };
 
-    try {
-      await dispatch(addReviewThunk(payload));
-      dispatch(getAllReviewThunk(item));
-      setStars("");
-      setReview("");
-    } catch (res) {
-      const data = await res.json();
-      const err = [data.message];
-      if (data && data.message) setErrors(err);
-    }
+    await dispatch(addReviewThunk(payload));
+    // dispatch(getAllReviewThunk(item));
+    setStars(0);
+    setReview("");
+    // try {
+    // } catch (res) {
+    //   const data = await res.json();
+    //   const err = [data.message];
+    //   if (data && data.message) setErrors(err);
+    // }
   };
 
   const radios = document.querySelectorAll('input[type="radio"]');
 
   radios.forEach((radio) => {
-    radio.addEventListener("change", (event) => {
-      setStars(event.target.value);
+    radio.addEventListener("change", (e) => {
+      setStars(e.target.value) || setStars(0);
     });
   });
 
@@ -68,7 +70,7 @@ const ReviewForm = ({ item }) => {
         required
       />
 
-      <form>
+      <div>
         <label>
           <input type="radio" name="rating" value="1" />
           <span className={styles.star}>★</span>
@@ -89,7 +91,7 @@ const ReviewForm = ({ item }) => {
           <input type="radio" name="rating" value="5" />
           <span className={styles.star}>★</span>
         </label>
-      </form>
+      </div>
 
       <input type="submit" />
     </form>

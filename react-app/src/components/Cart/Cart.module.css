@@ -1,23 +1,52 @@
 .container {
-  margin-left: 100px;
+  margin: 100px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(225, 225, 225, 0.2);
+  border-radius: 5px;
+  padding: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+  color: #aeaeae;
+  font-size: 28px;
+  margin: 15px;
 }
 
 .cartHeader,
 .total,
-.cartItem {
+.subtotal,
+.cartItem,
+.shipping,
+.tax {
   color: white;
 }
 
 .image {
-  height: 50px;
-  width: 50px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  height: 150px;
+  width: 150px;
+  padding: 15px;
+}
+
+.cartList {
+  position: relative;
 }
 
 .cartItem {
   display: flex;
   justify-content: space-between;
-  border: 1px solid #aeaeae;
+  border-top: 1px solid #aeaeae;
+  border-bottom: 1px solid #aeaeae;
   margin: 5px;
+  height: 200px;
+  /* border: 1px solid red; */
+  /* width: 1000px; */
 }
 
 /* .remove {
@@ -33,9 +62,12 @@
 
 .itemDetails {
   display: flex;
+  justify-content: space-between;
+  width: 600px;
+  padding: 20px;
 }
 
-.namePrice,
+.nameQuant,
 .adjust {
   display: flex;
   flex-direction: column;
@@ -44,9 +76,79 @@
   position: relative;
   overflow: none;
   white-space: nowrap;
+  width: auto;
+}
+
+.adjust {
+  border-radius: 15px;
+  /* border: 1px solid red; */
 }
 
 .continueShopping {
   color: rgba(39, 39, 233, 0.8);
   text-decoration: none;
+}
+
+.name {
+  font-size: 20px;
+  width: 450px;
+  /* border: 1px solid red; */
+  overflow-wrap: break-all;
+  white-space: normal;
+}
+
+.stock {
+  color: rgb(19, 164, 19);
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.quantity {
+  height: 20px;
+  border-radius: 5px;
+}
+
+.adjust button {
+  height: 26px;
+  border-radius: 5px;
+}
+
+.checkoutDiv {
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 1px solid #aeaeaee6;
+  border-radius: 5px;
+  height: 275px;
+  min-width: 215px;
+  max-width: 300px;
+  margin: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.checkout {
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  width: 100%;
+  background-color: rgba(239, 190, 68, 0.8);
+}
+
+.clear {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 200px;
+  margin: 15px;
+}
+
+.continueShopping {
+  color: rgba(91, 91, 235, 0.99);
 }

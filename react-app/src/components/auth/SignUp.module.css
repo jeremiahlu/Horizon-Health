@@ -40,6 +40,10 @@
   width: 100%;
 }
 
+.fileInput {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .lock {
   height: 100px;
   width: 200px;
@@ -49,6 +53,27 @@
   height: 150px;
   width: 200px;
   margin-right: 20px;
+}
+
+.inputDiv {
+  position: relative;
+}
+
+.inputDiv input {
+  transition: 0.5s;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(50, 62, 85, 0.3);
+}
+
+.inputDiv input:focus {
+  /* color: #75e44f; */
+  transform: translateX(10px) translateY(-7px);
+  border: 1px solid #75e44f;
+}
+
+.inputDiv:nth-child(2) input:focus {
+  color: rgb(50, 62, 85);
+  border-radius: 2px;
 }
 
 .input {
@@ -71,6 +96,7 @@
 .addImageText {
   padding: 5px;
   margin: 5px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .chooseFile {
@@ -99,6 +125,10 @@
   font-size: 12px;
 }
 
+.signup {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .inputPassword {
   width: 375px;
   height: 30px;
@@ -109,6 +139,7 @@
 
 ::placeholder {
   padding: 5px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .login {
@@ -122,4 +153,5 @@
 .copyright {
   font-size: 12px;
   margin-top: 30px;
+  color: rgba(255, 255, 255, 0.8);
 }

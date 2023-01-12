@@ -7,12 +7,27 @@
 .reviewsContainer {
   /* border: 1px solid red; */
   width: 50%;
-  overflow: scroll;
+  margin-top: 150px;
+  height: auto;
+  overflow: hidden;
+}
+
+.reviewDiv {
+  border: 1px solid rgba(225, 225, 225, 0.8);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 15px;
 }
 
 .reviewId {
-  border: 1px solid rgba(225, 225, 225, 0.8);
   margin: 3px;
+  padding: 10px;
+}
+
+.reviewer {
+  font-style: italic;
+  padding: 10px;
+  font-size: 12px;
 }
 
 .review {
@@ -37,4 +52,11 @@ input[type="radio"]:checked ~ .star {
 
 .stars {
   color: #ffcc00;
+}
+
+.edit {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 40px;
 }

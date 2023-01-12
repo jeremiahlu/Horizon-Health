@@ -20,6 +20,12 @@ const LoginForm = ({ SignUpFormModal }) => {
     }
   };
 
+  const handleGuestLogin = (e) => {
+    e.preventDefault();
+
+    return setEmail("demo@aa.io"), setPassword("password");
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -69,6 +75,13 @@ const LoginForm = ({ SignUpFormModal }) => {
         </div>
         <button className={styles.submit} type="submit">
           LOG IN
+        </button>
+        <button
+          onClick={handleGuestLogin}
+          className={styles.guest}
+          type="submit"
+        >
+          GUEST LOG IN
         </button>
         {/* <NavLink className={styles.signup} to={SignUpFormModal}>
           Don't have an account yet? Sign up

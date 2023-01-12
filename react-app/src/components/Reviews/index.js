@@ -34,25 +34,33 @@ function Reviews({ item }) {
         {reviews?.map((review) => {
           {
             return review?.item_id === item?.id ? (
-              <div className={styles.reviewId} key={review?.id}>
-                <div className={styles.review} key={review?.id}>
-                  {review?.review}
-                </div>
-                {/* <div className={styles.reviewDate}>{review?.createdAt.slice(0, 10)}</div> */}
-                <div id="starContainer">
-                  <i id="star" className={`${styles.stars} fa-solid fa-star`}>
-                    {" "}
-                  </i>
+              <div className={styles.reviewDiv}>
+                <div className={styles.reviewId} key={review?.id}>
+                  {/* {console.log(review.id, "HREASDWW")} */}
+                  {/* <div className={styles.reviewDate}>
+                    {review?.created_at.slice(4, 16)}
+                  </div> */}
+                  <div id="starContainer">
+                    <i
+                      id="star"
+                      className={`${styles.stars} fa-solid fa-star`}
+                    ></i>
 
-                  {review?.stars}
-                </div>
-                <div className={styles.reviewer}>
-                  {/* {console.log(review,'REVIEW')} */}
-                  {/* {review?.userId?.firstName + " "}
-                  {review?.userId?.lastName} */}
-                </div>
-                {/* {console.log(reviews, "REDHSAIOW")}
+                    {review?.stars}
+                    <div className={styles.review}>{review?.review}</div>
+                  </div>
+                  <div className={styles.reviewer}>
+                    <span>Review by </span>
+                    {review?.user?.first_name + " "}
+                    {review?.user?.last_name}
+                    <span> on </span>
+                    <div className={styles.reviewDate}>
+                      {review?.created_at.slice(4, 16)}
+                    </div>
+                  </div>
+                  {/* {console.log(reviews, "REDHSAIOW")}
                 {console.log(sessionUser.id, "dsawdas")} */}
+                </div>
 
                 {review?.user_id === sessionUser?.id && (
                   <div className={styles.edit}>

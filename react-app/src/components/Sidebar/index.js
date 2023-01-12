@@ -9,27 +9,61 @@ import styles from "./Sidebar.module.css";
 import SignUpFormModal from "../auth/SignUpIndex";
 import LoginFormModal from "../auth/LogInIndex";
 import LoginForm from "../auth/LogInFormModal";
+import cartReducer, { fetchCart, addCartItem } from "../../store/cart";
 
-const Sidebar = ({ cart, setCart }) => {
+const Sidebar = ({ cart }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const sidebarToggle = () => {
     document.body.classList.toggle("open");
   };
-  const newCart = [...cart];
-  let quantity = newCart.map((item) => item.quantity);
-  let totalQuantity = quantity.reduce((a, b) => a + b, 0);
+  // const newCart = [...cart];
+  // let quantity = newCart.map((item) => item.quantity);
+  // let totalQuantity = quantity.reduce((a, b) => a + b, 0);
   // console.log(cartQuantity, "CART");
+
+  const cartItemIds = cart.map((item) => item.item.id);
+  const cartItemQuantityObj = cartItemIds.reduce((a, b) => {
+    a[b] = (a[b] || 0) + 1;
+    return a;
+  }, {});
+  const cartItemQuantityArr = Object.values(cartItemQuantityObj);
+  const cartItemQuantity = cartItemQuantityArr.reduce((a, b) => a + b, 0);
 
   const logOut = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     history.push("/");
   };
+  let quantity = cart.map((item) => item.quantity);
+  // console.log(quantity, "HASDA");
+  let totalQuantity = quantity.reduce((a, b) => a + b, 0);
 
-  const loggedSession = useSelector((state) => state.session.user);
+  // const loggedSession = useSelector((state) => state.session.user);
+  const items = useSelector((state) => state.items);
 
-  return loggedSession ? (
+  const user = useSelector((state) => state.session.user);
+
+  useEffect(() => {
+    const getCart = async () => {
+      await dispatch(fetchCart(user?.id));
+    };
+    getCart();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (items) {
+      for (let item in items) {
+        let item_id = items[item].id;
+        const addItem = async () => {
+          await dispatch(addCartItem({ item_id: item_id, cart_id: user?.id }));
+        };
+        addItem();
+      }
+    }
+  }, [dispatch]);
+
+  return user ? (
     <div className={styles.sidebarMain}>
       <div className={styles.topNav}>
         <button className={styles.button} onClick={sidebarToggle()}>
@@ -92,7 +126,11 @@ const Sidebar = ({ cart, setCart }) => {
         </button>
 
         <button className={styles.button}>
-          <NavLink to="/cart" exact={true} className={styles.active}>
+          <NavLink
+            to={`/cart/${user.id}/items`}
+            exact={true}
+            className={styles.active}
+          >
             <i className={`${styles.icon} fa-sharp fa-solid fa-cart-shopping`}>
               {" "}
               <div className={`${styles.redCircle}`}>{totalQuantity}</div>

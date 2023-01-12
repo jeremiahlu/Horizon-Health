@@ -26,6 +26,7 @@ class Review(db.Model):
     return {
         'id': self.id,
         'user_id': self.user_id,
+        'user': self.user.to_dict(),
         'item_id': self.item_id,
         'review': self.review,
         'stars': self.stars,

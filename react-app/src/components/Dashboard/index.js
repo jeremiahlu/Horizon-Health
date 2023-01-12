@@ -25,11 +25,7 @@ const Dashboard = () => {
   // }, [dispatch]);
   return (
     <div className={styles.dashboardContainer}>
-      <img
-        src="../images/HH-logo.png"
-        default=""
-        className={styles.sidebarLogo}
-      />
+      <img src="./HH-logo.png" default="" className={styles.sidebarLogo} />
       <img src="./nyc.png" default="" className={styles.cityscape} />
 
       <div className={styles.aboutUsContainer}>
@@ -47,6 +43,14 @@ const Dashboard = () => {
           default=""
           className={styles.centralPark}
         />
+      </div>
+
+      <div className={styles.parallax}>
+        <div className={styles.slider}>
+          <ul className={styles.nav}></ul>
+          <div data-target="left" className={styles.left}></div>
+          <div data-target="right" className={styles.right}></div>
+        </div>
       </div>
 
       <footer className={styles.footer}>

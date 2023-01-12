@@ -1,5 +1,6 @@
 .dashboardContainer {
   margin: 0 52px 0 104px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .sidebarLogo {
@@ -90,4 +91,16 @@
   font-size: 12px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
+}
+
+.slider {
+  position: relative;
+  height: 300px;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  cursor: all-scroll;
+}
+
+.slider.animation {
+  transition: transform 750ms ease-in-out;
 }

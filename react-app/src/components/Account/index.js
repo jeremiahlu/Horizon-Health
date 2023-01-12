@@ -7,11 +7,12 @@ import styles from "./Account.module.css";
 
 const AccountSettings = () => {
   const loggedSession = useSelector((state) => state.session.user);
-  console.log(loggedSession, "USER");
+  // console.log(loggedSession, "USER");
 
   return (
     <div className={styles.container}>
-      <div className="dash-navbar">
+      <div className={styles.dashNavbar}>
+        <div className={styles.editProfile}> Edit Profile </div>
         {/* <div className="dash-logo-div">
           <Link className="dash-link" to="/dashboard">
             <img
@@ -36,42 +37,52 @@ const AccountSettings = () => {
         {/* </div> */}
       </div>
 
-      <div className="account-settings-title">Your account</div>
-      <div className="account-settings-main">
-        <div className="as-image-div">
+      <div className={styles.accountSettingsMain}>
+        <div className={styles.imageDiv}>
           <img
             className={styles.profilePicture}
             src={loggedSession.profile_picture}
           ></img>
 
-          <div className="as-add-image">
-            <span className="as-add-image-text">
+          <div className={styles.addImage}>
+            {loggedSession.username}
+            <span className={styles.imageText}>
               Change your profile picture
+              <button className={styles.chooseFile}>
+                <input className="as-file-input" type="file" multiple />
+              </button>
             </span>
-            <button className="as-choose-file">
-              <input className="as-file-input" type="file" multiple />
-            </button>
           </div>
         </div>
 
-        <div className="as-user-info-div">
-          <div className="as-user-info-list">
-            <li className="as-user-info-label">Your username</li>
-            <div className="as-user-info">{loggedSession.username}</div>
+        <div className={styles.userInfoList}>
+          <div className={styles.userInfo}>
+            <li className={styles.label}> Username</li>
+            <input value={loggedSession.username} className={styles.info} />
+          </div>
 
-            <li className="as-user-info-label">Your name</li>
-            <div className="as-user-info">
-              {loggedSession.first_name + " " + loggedSession.last_name}
-            </div>
+          <div className={styles.userInfo}>
+            <li className={styles.label}> Name</li>
 
-            <li className="as-user-info-label">Your email address</li>
-            <div className="as-user-info">{loggedSession.email}</div>
+            <input
+              value={loggedSession.first_name + " " + loggedSession.last_name}
+              className={styles.info}
+            />
+          </div>
 
-            <li className="as-user-info-label">Gender</li>
-            <div className="as-user-info">{loggedSession.gender}</div>
+          <div className={styles.userInfo}>
+            <li className={styles.label}> Email</li>
+            <input value={loggedSession.email} className={styles.info} />
+          </div>
 
-            <li className="as-user-info-label">Your address</li>
-            <div className="as-user-info">{loggedSession.address}</div>
+          <div className={styles.userInfo}>
+            <li className={styles.label}>Gender</li>
+            <input value={loggedSession.gender} className={styles.info} />
+          </div>
+
+          <div className={styles.userInfo}>
+            <li className={styles.label}>Address</li>
+            <input value={loggedSession.address} className={styles.info} />
           </div>
         </div>
       </div>

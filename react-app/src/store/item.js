@@ -20,22 +20,21 @@ export const getItemsThunk = () => async (dispatch) => {
 
   if (res.ok) {
     const data = {};
-    items.forEach((item) =>  data[item.id] = item) 
+    items.forEach((item) => (data[item.id] = item));
     dispatch(getAllItems(data));
   }
   return res;
 };
 
 export const getItemById = (id) => async (dispatch) => {
-
   const res = await csrfFetch(`/api/items/${Number(id.id)}`);
 
-  const { item } = await res.json();
+  const data = await res.json();
 
   if (res.ok) {
-    dispatch(getItem(item));
+    dispatch(getItem(data));
+    return res;
   }
-  return res;
 };
 
 const inititalState = {};
@@ -45,6 +44,12 @@ const itemReducer = (state = inititalState, action) => {
     case GET_ITEMS:
       newState = { ...state, ...action.items };
       return newState;
+
+    case GET_ITEM_BY_ID:
+      return {
+        ...state,
+        [action.item.id]: { ...state[action.item.id], ...action.item },
+      };
 
     default:
       return state;
