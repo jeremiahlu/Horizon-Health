@@ -58,31 +58,42 @@ const AccountSettings = () => {
         <div className={styles.userInfoList}>
           <div className={styles.userInfo}>
             <li className={styles.label}> Username</li>
-            <input value={loggedSession.username} className={styles.info} />
+            <input
+              defaultValue={loggedSession.username}
+              className={styles.info}
+            />
           </div>
 
           <div className={styles.userInfo}>
             <li className={styles.label}> Name</li>
 
             <input
-              value={loggedSession.first_name + " " + loggedSession.last_name}
+              defaultValue={
+                loggedSession.first_name + " " + loggedSession.last_name
+              }
               className={styles.info}
             />
           </div>
 
           <div className={styles.userInfo}>
             <li className={styles.label}> Email</li>
-            <input value={loggedSession.email} className={styles.info} />
+            <input defaultValue={loggedSession.email} className={styles.info} />
           </div>
 
           <div className={styles.userInfo}>
             <li className={styles.label}>Gender</li>
-            <input value={loggedSession.gender} className={styles.info} />
+            <input
+              defaultValue={loggedSession.gender}
+              className={styles.info}
+            />
           </div>
 
           <div className={styles.userInfo}>
             <li className={styles.label}>Address</li>
-            <input value={loggedSession.address} className={styles.info} />
+            <input
+              defaultValue={loggedSession.address}
+              className={styles.info}
+            />
           </div>
         </div>
       </div>

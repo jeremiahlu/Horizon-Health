@@ -8,12 +8,41 @@
   border-radius: 5px;
   padding: 25px;
   font-family: Arial, Helvetica, sans-serif;
+  width: 883px;
 }
 
 .title {
   color: #aeaeae;
   font-size: 28px;
   margin: 15px;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.emptyTitle {
+  color: #aeaeae;
+  font-size: 28px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  color: rgba(225, 225, 225, 0.8);
+}
+
+.emptyCart {
+  margin: 10px;
+  height: 400px;
+  width: 400px;
+}
+
+.continueShopping {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 
 .cartHeader,

@@ -44,7 +44,7 @@ export const addCartItem =
     });
     if (res.ok) {
       const newCartItem = await res.json();
-      // console.log(newCartItem, "RHEARASrWRWQ");
+      console.log(newCartItem, "RHEARASrWRWQ");
       dispatch(cartItem(newCartItem));
     }
   };
@@ -66,15 +66,16 @@ const cartReducer = (state = inititalState, action) => {
   let newState = { ...state };
   switch (action.type) {
     case GET_CART:
-      newState = { ...action.cart };
-      return newState;
-    // console.log(action.cart, "AHUDSADWQDSAD");
-    // return { ...state, ...action.cart };
+      // newState = { ...action.cart };
+      // return newState;
+      // console.log(action.cart, "AHUDSADWQDSAD");
+      return { ...state, ...action.cart };
 
     case ADD_CART_ITEM:
       // console.log(action.item, "HRERE");
-      newState = { ...state, [action.item.cart_id]: action.item };
-      return newState;
+      // newState = { ...state, [action.item.cart_id]: action.item };
+      // return newState;
+      return { ...state, [action.item.cart_id]: action.item };
 
     case DELETE_CART_ITEM:
       delete newState[action.item.id];

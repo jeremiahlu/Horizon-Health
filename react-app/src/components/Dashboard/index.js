@@ -25,7 +25,11 @@ const Dashboard = () => {
   // }, [dispatch]);
   return (
     <div className={styles.dashboardContainer}>
-      <img src="./HH-logo.png" default="" className={styles.sidebarLogo} />
+      <img
+        src="https://i.pinimg.com/564x/8d/29/ef/8d29ef579d2a0b86886f53673a5324da.jpg"
+        default=""
+        className={styles.sidebarLogo}
+      />
       <img src="./nyc.png" default="" className={styles.cityscape} />
 
       <div className={styles.aboutUsContainer}>
@@ -56,7 +60,7 @@ const Dashboard = () => {
       <footer className={styles.footer}>
         <div className={styles.brandDiv}>
           <img
-            src="../images/HH-logo.png"
+            src="https://i.pinimg.com/564x/8d/29/ef/8d29ef579d2a0b86886f53673a5324da.jpg"
             default=""
             className={styles.footerLogo}
           />

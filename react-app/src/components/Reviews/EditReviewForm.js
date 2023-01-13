@@ -77,7 +77,7 @@ function EditReviewForm({ review, onClose }) {
         </label>
       </form>
 
-      <input type="submit" />
+      <input className={styles.submitEditedReview} type="submit" />
     </form>
   );
 }

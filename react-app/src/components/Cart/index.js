@@ -14,6 +14,10 @@ const Cart = ({ cart }) => {
   // const [items, setItems] = useState([]);
   // const [total, setTotal] = useState(0);
   const items = useSelector((state) => state.items);
+  const itemQuantity = useSelector((state) => Object.values(state.cart));
+  console.log(itemQuantity, "ITEMQUANTITY");
+  const itemObj = itemQuantity.map((item) => item.quantity);
+  // console.log(itemObj, "itemObj");
 
   const user = useSelector((state) => state.session.user);
 
@@ -199,9 +203,20 @@ const Cart = ({ cart }) => {
     <>
       <div className={styles.container}>
         <div className={styles.cartList}>
-          <h1 className={styles.title}>Shopping Cart</h1>
+          <h1 className={styles.title} id="title">
+            Shopping Cart
+          </h1>
           {myCart.length === 0 && (
-            <div className={styles.empty}>Cart is empty</div>
+            <>
+              {/* <h1 className={styles.emptyTitle}>Shopping Cart</h1> */}
+              <img
+                className={styles.emptyCart}
+                src="https://www.djsuperstore.com/pub/static/frontend/MageBig/martfury_layout05/en_GB/images/empty-cart.svg"
+              />
+              <div className={styles.empty}>
+                Looks like your cart is a little empty
+              </div>
+            </>
           )}
           {myCart?.map((item, index) => {
             // let newCart = [...cart];

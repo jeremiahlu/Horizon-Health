@@ -32,7 +32,7 @@ function Reviews({ item }) {
 
       <div className={styles.div}>
         {reviews?.length === 0 ? (
-          <div>
+          <div className={styles.noReviews}>
             There are no reviews at the moment, be the first to write one!
           </div>
         ) : (
