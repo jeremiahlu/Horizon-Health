@@ -12,12 +12,12 @@ import cartReducer, {
 const Cart = ({ cart }) => {
   const dispatch = useDispatch();
   // const [items, setItems] = useState([]);
-  // const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const items = useSelector((state) => state.items);
   const itemQuantity = useSelector((state) => Object.values(state.cart));
-  console.log(itemQuantity, "ITEMQUANTITY");
+  // console.log(itemQuantity, "ITEMQUANTITY");
   const itemObj = itemQuantity.map((item) => item.quantity);
-  // console.log(itemObj, "itemObj");
+  console.log(itemObj, "itemObj");
 
   const user = useSelector((state) => state.session.user);
 
@@ -54,6 +54,7 @@ const Cart = ({ cart }) => {
       // }
       await dispatch(addCartItem(payload));
     }
+    // setTotal(1);
   };
   // console.log(cart, "CARTHREA");
   const removeFromCart = async (item) => {
@@ -61,6 +62,7 @@ const Cart = ({ cart }) => {
     let newCart = [...cart];
     let cartItems = newCart.find((product) => item?.name == product.name);
     if (cartItems && cartItems.quantity > 0) cartItems.quantity -= 1;
+    setTotal(1);
     await dispatch(
       removeCartItem({ item_id: item.item_id, cart_id: user?.id })
     );
@@ -190,7 +192,7 @@ const Cart = ({ cart }) => {
   //       delItem();
   //     }
   //   }
-  // }, []);
+  // }, [dispatch]);
 
   useEffect(() => {
     const getItems = async () => {
@@ -223,7 +225,7 @@ const Cart = ({ cart }) => {
             // let cartItems = newCart.find(
             //   (product) => item?.name == product.name
             // );
-            // console.log(cartItems, "CAHIWOQDA");
+            // console.log(item, "CAHIWOQDA");
 
             return (
               <div className={styles.cartItem} key={index}>

@@ -72,13 +72,15 @@ const cartReducer = (state = inititalState, action) => {
       return { ...state, ...action.cart };
 
     case ADD_CART_ITEM:
-      // console.log(action.item, "HRERE");
+      // console.log(action.item.id, "action");
+      // console.log(newState[action.item.id], "dsa");
+      // console.log(newState, "newSTate");
       // newState = { ...state, [action.item.cart_id]: action.item };
       // return newState;
-      return { ...state, [action.item.cart_id]: action.item };
+      return { ...state, [action.item.id]: action.item };
 
     case DELETE_CART_ITEM:
-      delete newState[action.item.id];
+      delete newState[action.item];
       return newState;
 
     default:
