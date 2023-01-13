@@ -5,7 +5,8 @@
   grid-auto-rows: minmax(100px, auto);
   grid-gap: auto;
   row-gap: 30px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
   margin: 100px;
   padding: 100px;
   font-family: Arial, Helvetica, sans-serif;
@@ -13,7 +14,7 @@
 
 .itemDetailContainer {
   font-family: Arial, Helvetica, sans-serif;
-  height: 80%;
+  height: 100%;
   width: 100%;
   padding: 100px;
   display: flex;
@@ -103,6 +104,8 @@
   /* color: rgba(0, 0, 0, 1); */
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 2px 1px 2px black;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
 }
 
 /* .itemImage {
@@ -239,12 +242,18 @@
   display: flex;
   height: auto;
   position: relative;
-  padding-top: 100px;
+  padding: 100px;
   flex-direction: column;
   justify-content: space-between;
+  /* background-image: url("./nyc.png");
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.shell {
   background-image: url("./nyc.png");
   background-size: cover;
-  /* align-items: center; */
+  background-repeat: no-repeat;
 }
 
 /* .productContainer {
@@ -369,14 +378,14 @@
   /* flex-direction: column; */
   /* position: relative;
   bottom: 0; */
-  margin: 600px 800px;
+  margin: 600px 100px;
   align-items: center;
   position: relative;
   bottom: 0;
   justify-content: space-evenly;
   display: flex;
   height: 100%;
-  width: 68%;
+  width: 71%;
   border-radius: 15px;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 2px 1px 2px black;
@@ -395,6 +404,9 @@
   display: flex;
   justify-content: center;
   font-weight: bold;
+  /* background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 15px; */
 }
 
 .itemPrice {
@@ -407,4 +419,7 @@
   font-size: 12px;
   text-align: left;
   width: 100%;
+  /* background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 15px; */
 }
