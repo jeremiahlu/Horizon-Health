@@ -53,6 +53,7 @@
   font-size: 12px;
   margin-top: 20px;
   color: rgba(255, 255, 255, 0.8);
+  text-shadow: 2px 1px 2px black;
 }
 
 .header {
@@ -65,6 +66,7 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 18px;
   margin: 7px;
+  text-shadow: 2px 1px 2px black;
 }
 
 .lock {
@@ -77,6 +79,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  text-shadow: 2px 1px 2px black;
 }
 
 .submit {
