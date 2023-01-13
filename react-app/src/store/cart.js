@@ -44,7 +44,7 @@ export const addCartItem =
     });
     if (res.ok) {
       const newCartItem = await res.json();
-      console.log(newCartItem, "RHEARASrWRWQ");
+      // console.log(newCartItem, "RHEARASrWRWQ");
       dispatch(cartItem(newCartItem));
     }
   };

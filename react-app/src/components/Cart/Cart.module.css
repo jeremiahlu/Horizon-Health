@@ -54,13 +54,50 @@
   color: white;
 }
 
+.card {
+  /* height: 15rem;
+  width: 15rem; */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  /* border-radius: 20px; */
+}
+
+.card img {
+  height: 90%;
+  width: 90%;
+}
+
 .image {
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   padding: 15px;
+  border-radius: 20px;
+}
+
+.card:hover .hoverDescription {
+  opacity: 1;
+  height: 95%;
+  color: rgba(225, 225, 225, 0.8);
+}
+
+.hoverDescription {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  height: 0%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
 }
 
 .cartList {

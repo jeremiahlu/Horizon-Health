@@ -17,7 +17,7 @@ const Cart = ({ cart }) => {
   const itemQuantity = useSelector((state) => Object.values(state.cart));
   // console.log(itemQuantity, "ITEMQUANTITY");
   const itemObj = itemQuantity.map((item) => item.quantity);
-  console.log(itemObj, "itemObj");
+  // console.log(itemObj, "itemObj");
 
   const user = useSelector((state) => state.session.user);
 
@@ -221,7 +221,7 @@ const Cart = ({ cart }) => {
             </>
           )}
           {myCart?.map((item, index) => {
-            // let newCart = [...cart];
+            // let newCart = [...art];
             // let cartItems = newCart.find(
             //   (product) => item?.name == product.name
             // );
@@ -229,7 +229,14 @@ const Cart = ({ cart }) => {
 
             return (
               <div className={styles.cartItem} key={index}>
-                <img className={styles.image} src={item?.item.image} />
+                <div className={styles.card}>
+                  <NavLink to={`/items/${item.item_id}`}>
+                    <img className={styles.image} src={item?.item.image} />
+                    <span className={styles.hoverDescription}>
+                      {item?.item.name}
+                    </span>
+                  </NavLink>
+                </div>
                 <div className={styles.itemDetails}>
                   <div className={styles.nameQuant}>
                     <div className={styles.name}>{item?.item.name}</div>
