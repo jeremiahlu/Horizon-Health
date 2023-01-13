@@ -66,10 +66,10 @@ const cartReducer = (state = inititalState, action) => {
   let newState = { ...state };
   switch (action.type) {
     case GET_CART:
-      // newState = { ...state, ...action.cart };
-      // return newState;
-      // console.log(action.cart, "AHUDSADWQDSAD");
-      return { ...state, ...action.cart };
+      newState = { ...action.cart };
+      return newState;
+    // console.log(action.cart, "AHUDSADWQDSAD");
+    // return { ...state, ...action.cart };
 
     case ADD_CART_ITEM:
       // console.log(action.item, "HRERE");

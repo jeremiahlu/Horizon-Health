@@ -110,3 +110,27 @@
   font-style: none;
   color: white;
 }
+
+.fa-cart {
+  transform-origin: top;
+  animation: anim 1s forwards;
+}
+/* 
+.fa-cart::before {
+  content: ;
+} */
+
+@keyframes anim {
+  10% {
+    rotate: 15deg;
+  }
+  20% {
+    rotate: -15deg;
+  }
+  30% {
+    rotate: 15deg;
+  }
+  50% {
+    rotate: 0deg;
+  }
+}
