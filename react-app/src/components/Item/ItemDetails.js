@@ -46,30 +46,35 @@ function ItemDetails({ cart }) {
   return (
     <>
       item? && (
-      <div className={styles.itemDetailContainer}>
-        <div className={styles.productDetail}>
-          <div className={styles.productContainer}>
-            <div className={styles.photoMain}>
-              {/* <i className={`${styles.icon}fa-regular fa-heart`}></i> */}
-              <img className={styles.itemImage} src={item?.image} />
+      <div className={styles.shell}>
+        <div className={styles.itemDetailContainer}>
+          <div className={styles.productDetail}>
+            <div className={styles.productContainer}>
+              <div className={styles.photoMain}>
+                {/* <i className={`${styles.icon}fa-regular fa-heart`}></i> */}
+                <img className={styles.itemImage} src={item?.image} />
+              </div>
+            </div>
+
+            <div className={styles.itemDetailDiv}>
+              <div className={styles.itemName}>{item?.name}</div>
+              <div className={styles.itemPrice}>${item?.price}</div>
+              <button
+                className={styles.addToCart}
+                onClick={() => cartAdd(item)}
+              >
+                <span>ADD TO CART</span>
+                <i className={`${styles.check}fa-sharp fa-solid fa-check`}></i>
+              </button>
+              <div className={styles.itemDescription}>{item?.description}</div>
+            </div>
+            <div className={styles.reviews}>
+              <ReviewForm item={item} />
+              <Reviews item={item} />
             </div>
           </div>
-
-          <div className={styles.itemDetailDiv}>
-            <div className={styles.itemName}>{item?.name}</div>
-            <div className={styles.itemPrice}>${item?.price}</div>
-            <button className={styles.addToCart} onClick={() => cartAdd(item)}>
-              <span>ADD TO CART</span>
-              <i className={`${styles.check}fa-sharp fa-solid fa-check`}></i>
-            </button>
-            <div className={styles.itemDescription}>{item?.description}</div>
-          </div>
-          <div className={styles.reviews}>
-            <ReviewForm item={item} />
-            <Reviews item={item} />
-          </div>
+          )
         </div>
-        )
       </div>
     </>
   );

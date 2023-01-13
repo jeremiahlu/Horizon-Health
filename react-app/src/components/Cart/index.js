@@ -27,13 +27,13 @@ const Cart = ({ cart }) => {
     let payload = {
       cart_id: user?.id,
       item_id: item?.item_id,
-      quantity: 1,
+      // quantity: 1,
     };
 
-    let newCart = [...cart];
-    const itemNames = newCart.map((item) => item.item_id);
-    let cartItems = itemNames.find((product) => item.id == product);
-    let cartItemName = newCart.find((item) => item.item_id === cartItems);
+    // let newCart = [...cart];
+    // const itemNames = newCart.map((item) => item.item_id);
+    // let cartItems = itemNames.find((product) => item.id == product);
+    // let cartItemName = newCart.find((item) => item.item_id === cartItems);
 
     {
       // if (cartItemName) {
@@ -157,36 +157,36 @@ const Cart = ({ cart }) => {
       await dispatch(fetchCart(user?.id));
     };
     getCart();
-  }, [dispatch]);
-
-  // console.log(items, "ITEMS");
-
-  useEffect(() => {
-    if (items) {
-      for (let item in items) {
-        let item_id = items[item].id;
-        const addItem = async () => {
-          await dispatch(addCartItem({ item_id: item_id, cart_id: user?.id }));
-        };
-        addItem();
-      }
-    }
   }, [dispatch, items]);
 
-  useEffect(() => {
-    // console.log(items, "HREADS");
-    if (items) {
-      for (let item in items) {
-        let item_id = items[item].id;
-        const delItem = async () => {
-          await dispatch(
-            removeCartItem({ item_id: item_id, cart_id: user?.id })
-          );
-        };
-        delItem();
-      }
-    }
-  }, [dispatch, items]);
+  // console.log(myCart, "myCart");
+
+  // useEffect(() => {
+  //   if (items) {
+  //     for (let item in items) {
+  //       let item_id = items[item].id;
+  //       const addItem = async () => {
+  //         await dispatch(addCartItem({ item_id: item_id, cart_id: user?.id }));
+  //       };
+  //       addItem();
+  //     }
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   // console.log(items, "HREADS");
+  //   if (items) {
+  //     for (let item in items) {
+  //       let item_id = items[item].id;
+  //       const delItem = async () => {
+  //         await dispatch(
+  //           removeCartItem({ item_id: item_id, cart_id: user?.id })
+  //         );
+  //       };
+  //       delItem();
+  //     }
+  //   }
+  // }, []);
 
   useEffect(() => {
     const getItems = async () => {
@@ -196,84 +196,89 @@ const Cart = ({ cart }) => {
   }, [dispatch]);
 
   return (
-    <div className={styles.container}>
-      {myCart.length === 0 && <div className={styles.empty}>Cart is empty</div>}
+    <>
+      <div className={styles.container}>
+        <div className={styles.cartList}>
+          <h1 className={styles.title}>Shopping Cart</h1>
+          {myCart.length === 0 && (
+            <div className={styles.empty}>Cart is empty</div>
+          )}
+          {myCart?.map((item, index) => {
+            // let newCart = [...cart];
+            // let cartItems = newCart.find(
+            //   (product) => item?.name == product.name
+            // );
+            // console.log(cartItems, "CAHIWOQDA");
 
-      <div className={styles.cartList}>
-        <h1 className={styles.title}>Shopping Cart</h1>
-        {cart?.map((item, index) => {
-          let newCart = [...cart];
-          let cartItems = newCart.find((product) => item?.name == product.name);
-          // console.log(cartItems, "CAHIWOQDA");
-
-          return (
-            <div className={styles.cartItem} key={index}>
-              <img className={styles.image} src={item?.item.image} />
-              <div className={styles.itemDetails}>
-                <div className={styles.nameQuant}>
-                  <div className={styles.name}>{item?.item.name}</div>
-                  <span className={styles.stock}> In Stock </span>
-                  <div className={styles.adjust}>
-                    <div>
-                      <button
-                        className={styles.remove}
-                        onClick={(e) => removeFromCart(item, e)}
-                      >
-                        {/* <button className={styles.remove}> */}
-                        <i
-                          className={`${styles.up} fa-solid fa-chevron-down`}
-                        ></i>
-                      </button>
-                      {/* {console.log(cartItems.quantity, "CARTITEMS132412")} */}
-                      <input
-                        className={styles.quantity}
-                        value={item?.quantity}
-                        onChange={(e) =>
-                          cartQuantity(items, parseInt(e.target.value))
-                        }
-                      />
-                      <button onClick={(e) => addToCart(item, e)}>
-                        <i
-                          className={`${styles.up} fa-solid fa-chevron-up`}
-                        ></i>
-                      </button>
+            return (
+              <div className={styles.cartItem} key={index}>
+                <img className={styles.image} src={item?.item.image} />
+                <div className={styles.itemDetails}>
+                  <div className={styles.nameQuant}>
+                    <div className={styles.name}>{item?.item.name}</div>
+                    <span className={styles.stock}> In Stock </span>
+                    <div className={styles.adjust}>
+                      <div>
+                        <button
+                          className={styles.remove}
+                          onClick={(e) => removeFromCart(item, e)}
+                        >
+                          {/* <button className={styles.remove}> */}
+                          <i
+                            className={`${styles.up} fa-solid fa-chevron-down`}
+                          ></i>
+                        </button>
+                        {/* {console.log(cartItems.quantity, "CARTITEMS132412")} */}
+                        <input
+                          className={styles.quantity}
+                          value={item?.quantity}
+                          onChange={(e) =>
+                            cartQuantity(items, parseInt(e.target.value))
+                          }
+                        />
+                        <button onClick={(e) => addToCart(item, e)}>
+                          <i
+                            className={`${styles.up} fa-solid fa-chevron-up`}
+                          ></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className={styles.price}>${item?.item.price}</div>
+                  <div className={styles.price}>${item?.item.price}</div>
 
-                {/* <button
+                  {/* <button
                   className={styles.remove}
                   onClick={() => removeFromCart(item)}
                 >
                   Remove Item
                 </button> */}
+                </div>
               </div>
-            </div>
-          );
-        })}
-        {/* {cart.length > 0 && (
+            );
+          })}
+          {/* {cart.length > 0 && (
           <button className={styles.clear} onClick={clearCart}>
             Clear cart
           </button>
         )} */}
-        <NavLink className={styles.continueShopping} to="/items">
-          Continue shopping
-        </NavLink>
-      </div>
-
-      <div className={styles.checkoutDiv}>
-        <h1 className={styles.cartHeader}>Cart ({totalQuantity})</h1>
-        <div className={styles.subtotal}>
-          Subtotal ({totalQuantity} items): ${cartPrice}
+          <NavLink className={styles.continueShopping} to="/items">
+            Continue shopping
+          </NavLink>
         </div>
-        <div className={styles.shipping}>Est. Shipping: ${shipping}</div>
-        <div className={styles.tax}>Tax: ${tax}</div>
-        <div className={styles.total}>Total Price: ${totalPrice}</div>
-        <button className={styles.checkout}>Proceed to checkout</button>
+
+        <div className={styles.checkoutDiv}>
+          <h1 className={styles.cartHeader}>Cart ({totalQuantity})</h1>
+          <div className={styles.subtotal}>
+            Subtotal ({totalQuantity} items): ${cartPrice}
+          </div>
+          <div className={styles.shipping}>Est. Shipping: ${shipping}</div>
+          <div className={styles.tax}>Tax: ${tax}</div>
+          <div className={styles.total}>Total Price: ${totalPrice}</div>
+          <button className={styles.checkout}>Proceed to checkout</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

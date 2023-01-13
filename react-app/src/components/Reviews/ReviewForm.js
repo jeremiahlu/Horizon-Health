@@ -14,7 +14,7 @@ const ReviewForm = ({ item }) => {
   const history = useHistory();
   const { id } = useParams();
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState(0);
+  const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const itemsObj = useSelector((state) => state.items);
   const items = Object.values(itemsObj);
@@ -33,7 +33,7 @@ const ReviewForm = ({ item }) => {
 
     await dispatch(addReviewThunk(payload));
     // dispatch(getAllReviewThunk(item));
-    setStars(0);
+    setStars("");
     setReview("");
     // try {
     // } catch (res) {
@@ -47,7 +47,7 @@ const ReviewForm = ({ item }) => {
 
   radios.forEach((radio) => {
     radio.addEventListener("change", (e) => {
-      setStars(e.target.value) || setStars(0);
+      setStars(e.target.value);
     });
   });
 
@@ -65,9 +65,11 @@ const ReviewForm = ({ item }) => {
       )}
 
       <textarea
+        className={styles.textarea}
         value={review}
         onChange={(e) => setReview(e.target.value)}
         required
+        placeholder="Write a review"
       />
 
       <div>
@@ -93,7 +95,7 @@ const ReviewForm = ({ item }) => {
         </label>
       </div>
 
-      <input type="submit" />
+      <input className={styles.submitReview} type="submit" />
     </form>
   );
 };
