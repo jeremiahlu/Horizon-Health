@@ -6,6 +6,9 @@ class Item(db.Model):
 
     __tablename__='items'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+    
     id = db.Column(db.Integer, primary_key = True)
     quantity = db.Column(db.Integer, nullable = False, default = 1)
     name = db.Column(db.String(50), nullable = False)

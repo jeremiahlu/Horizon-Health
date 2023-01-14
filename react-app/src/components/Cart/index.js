@@ -290,7 +290,7 @@ const Cart = ({ cart }) => {
           </button>
         )} */}
           <NavLink className={styles.continueShopping} to="/items">
-            Continue shopping
+            <button className={styles.continueButton}>Continue shopping</button>
           </NavLink>
         </div>
 
@@ -302,9 +302,10 @@ const Cart = ({ cart }) => {
           <div className={styles.shipping}>Est. Shipping: ${shipping}</div>
           <div className={styles.tax}>Tax: ${tax}</div>
           <div className={styles.total}>Total Price: ${totalPrice}</div>
-          <button className={styles.checkout}>
-            <NavLink to="/checkout">Proceed to checkout</NavLink>
-          </button>
+
+          <NavLink className={styles.checkout} to="/checkout">
+            Proceed to checkout
+          </NavLink>
         </div>
       </div>
     </>

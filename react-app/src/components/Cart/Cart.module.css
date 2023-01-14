@@ -201,11 +201,25 @@
 }
 
 .checkout {
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   height: 30px;
   width: 100%;
+  font-size: 14px;
   background-color: rgba(239, 190, 68, 0.8);
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.checkout:hover {
+  background-color: transparent;
+  border: 1px solid #aeaeae;
+  height: 30px;
+  color: rgba(225, 225, 225, 0.8);
 }
 
 .clear {
@@ -218,4 +232,20 @@
 
 .continueShopping {
   color: rgba(91, 91, 235, 0.99);
+}
+
+.continueButton {
+  height: 40px;
+  width: 200px;
+  border: none;
+  /* border-radius: 5pxx */
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(239, 190, 68, 0.8);
+  cursor: pointer;
+}
+
+.continueButton:hover {
+  color: rgba(225, 225, 225, 0.8);
+  background-color: transparent;
+  border: 1px solid #aeaeae;
 }
