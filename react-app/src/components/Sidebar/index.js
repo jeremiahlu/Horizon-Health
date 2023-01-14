@@ -22,7 +22,7 @@ const Sidebar = ({ cart }) => {
   // let totalQuantity = quantity.reduce((a, b) => a + b, 0);
   // console.log(cartQuantity, "CART");
 
-  const cartItemIds = cart.map((item) => item.item.id);
+  const cartItemIds = cart.map((item) => item?.item?.id);
   const cartItemQuantityObj = cartItemIds.reduce((a, b) => {
     a[b] = (a[b] || 0) + 1;
     return a;

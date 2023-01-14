@@ -59,8 +59,8 @@ def remove_cart_item(cart_id, item_id):
   item = CartItem.query.filter(CartItem.cart_id == cart_id, CartItem.item_id == item_id).first()
   # cart_item = CartItem.query.filter(CartItem.cart_id == cart.id, CartItem.item_id == item.id).first()
 
-  # print (cart, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
-  # print (item, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
+  print (item.quantity, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
+  print (item.to_dict(), '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
   # print (cart_item, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
 
   item.quantity -= 1
@@ -68,6 +68,7 @@ def remove_cart_item(cart_id, item_id):
   if (item.quantity == 0):
     db.session.delete(item)
     db.session.commit()
-    return f'Successfully deleted {item}'
+    # return jsonify({item})
+    return jsonify({'message': 'Successfully deleted', 'cart': item.to_dict()}), 200
   db.session.commit()
   return item.to_dict()

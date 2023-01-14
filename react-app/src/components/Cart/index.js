@@ -67,6 +67,7 @@ const Cart = ({ cart }) => {
     await dispatch(
       removeCartItem({ item_id: item.item_id, cart_id: user?.id })
     );
+    dispatch(fetchCart(user?.id));
   };
 
   // const cartItemIds = cart.map((item) => item.item.id);
@@ -138,7 +139,7 @@ const Cart = ({ cart }) => {
   // };
 
   let cartPrice = cart
-    .reduce((a, b) => a + b.quantity * b.item.price, 0)
+    .reduce((a, b) => a + b.quantity * b.item?.price, 0)
     .toFixed(2);
   // console.log(cart, "CARTPRICE");
   let tax = parseInt(cartPrice * 0.06).toFixed(2);
@@ -158,13 +159,14 @@ const Cart = ({ cart }) => {
       .toFixed(2);
   };
 
-  const cartMap = cart.map((item) => item.item_id);
+  const cartMap = cart.map((item) => item?.item_id);
   // console.log(cartMap, "REIARHOASA@$!#!@");
 
   useEffect(() => {
     const getCart = async () => {
       await dispatch(fetchCart(user?.id));
     };
+
     getCart();
   }, [dispatch, items]);
 
@@ -233,16 +235,16 @@ const Cart = ({ cart }) => {
             return (
               <div className={styles.cartItem} key={index}>
                 <div className={styles.card}>
-                  <NavLink to={`/items/${item.item_id}`}>
-                    <img className={styles.image} src={item?.item.image} />
+                  <NavLink to={`/items/${item?.item_id}`}>
+                    <img className={styles.image} src={item?.item?.image} />
                     <span className={styles.hoverDescription}>
-                      {item?.item.name}
+                      {item?.item?.name}
                     </span>
                   </NavLink>
                 </div>
                 <div className={styles.itemDetails}>
                   <div className={styles.nameQuant}>
-                    <div className={styles.name}>{item?.item.name}</div>
+                    <div className={styles.name}>{item?.item?.name}</div>
                     <span className={styles.stock}> In Stock </span>
                     <div className={styles.adjust}>
                       <div>
@@ -272,7 +274,7 @@ const Cart = ({ cart }) => {
                     </div>
                   </div>
 
-                  <div className={styles.price}>${item?.item.price}</div>
+                  <div className={styles.price}>${item?.item?.price}</div>
 
                   {/* <button
                   className={styles.remove}

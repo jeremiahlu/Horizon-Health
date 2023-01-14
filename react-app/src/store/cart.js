@@ -72,7 +72,7 @@ const cartReducer = (state = inititalState, action) => {
       // newState = { ...action.cart };
       // return newState;
       // console.log(action.cart, "AHUDSADWQDSAD");
-      return { ...state, ...action.cart };
+      return { ...action.cart };
 
     case ADD_CART_ITEM:
       // console.log(action.item, "action");
@@ -88,8 +88,8 @@ const cartReducer = (state = inititalState, action) => {
       // console.log(newState[action.item.id], "item");
       // console.log(newState, "newSTate");
 
-      delete newState[action.item];
-      return newState;
+      // delete newState[action.item.id];
+      return { ...state, ...action.item };
 
     default:
       return state;
