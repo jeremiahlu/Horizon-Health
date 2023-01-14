@@ -25,6 +25,7 @@ const Cart = ({ cart }) => {
   // console.log(itemState, "fhdsoa");
 
   const myCart = useSelector((state) => Object.values(state.cart));
+  // console.log(myCart, "MYCART");
 
   const addToCart = async (item, e) => {
     e.preventDefault();
@@ -136,7 +137,9 @@ const Cart = ({ cart }) => {
   //   }
   // };
 
-  let cartPrice = cart.reduce((a, b) => a + b.quantity * b.item.price, 0);
+  let cartPrice = cart
+    .reduce((a, b) => a + b.quantity * b.item.price, 0)
+    .toFixed(2);
   // console.log(cart, "CARTPRICE");
   let tax = parseInt(cartPrice * 0.06).toFixed(2);
   let shipping = parseInt(cartPrice * 0.03).toFixed(2);
@@ -299,7 +302,9 @@ const Cart = ({ cart }) => {
           <div className={styles.shipping}>Est. Shipping: ${shipping}</div>
           <div className={styles.tax}>Tax: ${tax}</div>
           <div className={styles.total}>Total Price: ${totalPrice}</div>
-          <button className={styles.checkout}>Proceed to checkout</button>
+          <button className={styles.checkout}>
+            <NavLink to="/checkout">Proceed to checkout</NavLink>
+          </button>
         </div>
       </div>
     </>

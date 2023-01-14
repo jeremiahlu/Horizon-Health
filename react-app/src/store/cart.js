@@ -56,9 +56,12 @@ export const removeCartItem =
       method: "DELETE",
     });
     if (res.ok) {
-      dispatch(delCartItem({ item_id, cart_id }));
-      return res;
+      const itemToDelete = await res.json();
+      // console.log(itemToDelete, "ADHSAODSHERE");
+      // dispatch(delCartItem({ item_id, cart_id }));
+      dispatch(delCartItem(itemToDelete));
     }
+    return res;
   };
 
 const inititalState = {};
@@ -72,14 +75,19 @@ const cartReducer = (state = inititalState, action) => {
       return { ...state, ...action.cart };
 
     case ADD_CART_ITEM:
-      // console.log(action.item.id, "action");
-      // console.log(newState[action.item.id], "dsa");
+      // console.log(action.item, "action");
+      // console.log(newState[action.item.id], "item");
       // console.log(newState, "newSTate");
+      // console.log({ ...state }, "state");
       // newState = { ...state, [action.item.cart_id]: action.item };
       // return newState;
       return { ...state, [action.item.id]: action.item };
 
     case DELETE_CART_ITEM:
+      // console.log(action.item, "action");
+      // console.log(newState[action.item.id], "item");
+      // console.log(newState, "newSTate");
+
       delete newState[action.item];
       return newState;
 

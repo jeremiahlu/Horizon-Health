@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Cart, CartItem, db
+from app.models import Cart, Item, CartItem, db
 from app.forms import CartItemForm
 from datetime import datetime 
 
@@ -53,12 +53,21 @@ def add_cart_item(cart_id, item_id):
 def remove_cart_item(cart_id, item_id):
   # cart = Cart.query.get(cart_id)
   # item = CartItem.query.filter(CartItem.item_id == item_id).first()
+  # cart = Cart.query.filter(Cart.id == cart_id).first()
+  # item = Item.query.filter(Item.id == item_id).first()
+
   item = CartItem.query.filter(CartItem.cart_id == cart_id, CartItem.item_id == item_id).first()
-  # print (item.quantity, '41321')
+  # cart_item = CartItem.query.filter(CartItem.cart_id == cart.id, CartItem.item_id == item.id).first()
+
+  # print (cart, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
+  # print (item, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
+  # print (cart_item, '41321%#$#$#!$@$@!@$@!$@!$@!$@!!@')
+
   item.quantity -= 1
+  # if (item):
   if (item.quantity == 0):
     db.session.delete(item)
     db.session.commit()
-    return f'{item} has been removed from your cart'
+    return f'Successfully deleted {item}'
   db.session.commit()
   return item.to_dict()

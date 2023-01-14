@@ -6,6 +6,11 @@ import styles from "./Items.module.css";
 import Reviews from "../Reviews/index";
 import ReviewForm from "../Reviews/ReviewForm";
 import EditReviewForm from "../Reviews/EditReviewForm";
+import cartReducer, {
+  fetchCart,
+  addCartItem,
+  removeCartItem,
+} from "../../store/cart";
 
 function ItemDetails({ cart }) {
   const dispatch = useDispatch();
@@ -14,25 +19,18 @@ function ItemDetails({ cart }) {
   const reviewState = useSelector((state) => state.reviews);
   const reviews = Object.values(reviewState);
   // console.log(reviews, 'reviews')
-  const sessionUser = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user);
   // console.log(cart, "cart");
 
-  const cartAdd = (item) => {
-    let newCart = [...cart];
-    // console.log("here");
-    let cartItems = newCart.find((product) => item?.name === product?.name);
-    {
-      if (cartItems) {
-        cartItems.quantity += 1;
-      } else {
-        cartItems = {
-          ...item,
-          quantity: 1,
-        };
-        newCart.push(cartItems);
-      }
-      // setCart(newCart);
-    }
+  const cartAdd = async (item, e) => {
+    e.preventDefault();
+
+    let payload = {
+      cart_id: user?.id,
+      item_id: item?.id,
+      // quantity: 1,
+    };
+    await dispatch(addCartItem(payload));
   };
 
   useEffect(() => {
@@ -61,7 +59,7 @@ function ItemDetails({ cart }) {
               <div className={styles.itemPrice}>${item?.price}</div>
               <button
                 className={styles.addToCart}
-                onClick={() => cartAdd(item)}
+                onClick={(e) => cartAdd(item, e)}
               >
                 <span>ADD TO CART</span>
                 <i className={`${styles.check}fa-sharp fa-solid fa-check`}></i>
