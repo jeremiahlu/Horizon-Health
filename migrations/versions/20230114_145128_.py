@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: 2af04b6508cf
+Revision ID: 26924cd55dce
 Revises: 
-Create Date: 2023-01-12 22:24:11.509873
+Create Date: 2023-01-14 14:51:28.029889
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = '2af04b6508cf'
+revision = '26924cd55dce'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,7 +23,7 @@ def upgrade():
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=100), nullable=True),
-    sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('price', sa.Integer(), nullable=False),
     sa.Column('image', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')
@@ -85,13 +81,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE carts SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE messages SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE cart_item SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

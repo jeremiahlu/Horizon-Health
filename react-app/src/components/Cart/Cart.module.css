@@ -206,7 +206,7 @@
   justify-content: center;
   align-items: center;
   border: none;
-  height: 30px;
+  height: 40px;
   width: 100%;
   font-size: 14px;
   background-color: rgba(239, 190, 68, 0.8);
@@ -218,7 +218,7 @@
 .checkout:hover {
   background-color: transparent;
   border: 1px solid #aeaeae;
-  height: 30px;
+  /* height: 30px; */
   color: rgba(225, 225, 225, 0.8);
 }
 

@@ -13,7 +13,7 @@ class Item(db.Model):
     quantity = db.Column(db.Integer, nullable = False, default = 1)
     name = db.Column(db.String(50), nullable = False)
     description = db.Column(db.String(100))
-    price = db.Column(db.Float, nullable = False)
+    price = db.Column(db.Integer, nullable = False)
     image = db.Column(db.String)
     created_at =  db.Column(db.DateTime(timezone=True),
                           server_default=func.now())
