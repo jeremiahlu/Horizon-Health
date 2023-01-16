@@ -11,8 +11,8 @@ class Item(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)
     quantity = db.Column(db.Integer, nullable = False, default = 1)
-    name = db.Column(db.String(255), nullable = False)
-    description = db.Column(db.String(256))
+    name = db.Column(db.Text(), nullable = False)
+    description = db.Column(db.Text())
     price = db.Column(db.Integer, nullable = False)
     image = db.Column(db.String)
     created_at =  db.Column(db.DateTime(timezone=True),
