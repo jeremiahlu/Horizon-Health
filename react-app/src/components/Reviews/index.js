@@ -40,11 +40,12 @@ function Reviews({ item }) {
             {
               return review?.item_id === item?.id ? (
                 <div className={styles.reviewDiv}>
-                  <div className={styles.reviewId} key={review?.id}>
+                  <div className={styles.reviewId} key={review?.item_id}>
                     {/* {console.log(review.id, "HREASDWW")} */}
                     {/* <div className={styles.reviewDate}>
                     {review?.created_at.slice(4, 16)}
                   </div> */}
+
                     <div id="starContainer">
                       <i
                         id="star"
