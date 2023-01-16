@@ -12,7 +12,7 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     quantity = db.Column(db.Integer, nullable = False, default = 1)
     name = db.Column(db.String(50), nullable = False)
-    description = db.Column(db.String(100))
+    description = db.Column(db.String(256))
     price = db.Column(db.Integer, nullable = False)
     image = db.Column(db.String)
     created_at =  db.Column(db.DateTime(timezone=True),

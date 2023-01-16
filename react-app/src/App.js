@@ -17,6 +17,7 @@ import ItemDetails from "./components/Item/ItemDetails";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Complete from "./components/Checkout/CheckoutComplete";
+import About from "./components/AboutUs/About";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path="/items" exact={true}>
           <Item cart={cart} />
+        </Route>
+        <Route path="/about-us" exact={true}>
+          <About />
         </Route>
         <Route path="/checkout" exact={true}>
           <Checkout cart={cart} />

@@ -1,6 +1,6 @@
 // import Sidebar from '../../components/Sidebar';
 import styles from "./Dashboard.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsThunk } from "../../store/item";
@@ -68,10 +68,22 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.company}>
-          Our Company
-          <NavLink to="/about-us" className={styles.footerAboutUs}>
-            <span>About Us</span>
-          </NavLink>
+          {/* Our Company */}
+          {/* <span className={styles.aboutUs}>About Us</span> */}
+          About Us
+          <div className={styles.links}>
+            <Link className={styles.links} to="https://github.com/jeremiahlu">
+              Github
+            </Link>
+            <Link
+              className={styles.links}
+              to="https://www.linkedin.com/in/jeremiah-lu/"
+            >
+              Linked
+            </Link>
+          </div>
+          {/* <NavLink to="/about-us" className={styles.footerAboutUs}>
+          </NavLink> */}
         </div>
 
         <div className={styles.account}>

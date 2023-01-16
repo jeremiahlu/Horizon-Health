@@ -107,3 +107,24 @@
 .slider.animation {
   transition: transform 750ms ease-in-out;
 }
+
+.aboutUs {
+  margin-bottom: 10px;
+}
+
+.company {
+  gap: 10px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: none;
+  font-size: 12px;
+  gap: 10px;
+}
