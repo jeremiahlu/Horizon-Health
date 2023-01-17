@@ -54,22 +54,23 @@ const ReviewForm = ({ item }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h1>Write a review</h1>
-      {errors && (
-        <ul>
-          {errors.map((error, idx) => (
-            <li className={styles.error} key={idx}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* {errors && (
+        <ul> */}
+      <div>
+        {errors.map((error, idx) => (
+          <li className={styles.error} key={idx}>
+            {error}
+          </li>
+        ))}
+      </div>
+      {/* </ul> */}
+      {/* )} */}
 
-      <textarea
+      <input
         className={styles.textarea}
         value={review}
         onChange={(e) => setReview(e.target.value)}
         required
-        placeholder="Write a review"
         pattern="^(?!\s*$).+"
         minLength={1}
         maxLength={50}

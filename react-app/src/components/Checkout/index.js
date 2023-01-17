@@ -3,7 +3,12 @@ import { useEffect, useState, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsThunk } from "../../store/item";
-import { fetchCart, addCartItem, removeCartItem } from "../../store/cart";
+import {
+  fetchCart,
+  addCartItem,
+  removeCartItem,
+  cartClear,
+} from "../../store/cart";
 
 const Checkout = ({ cart }) => {
   const dispatch = useDispatch();
@@ -85,7 +90,22 @@ const Checkout = ({ cart }) => {
         <div className={styles.total}>Total (USD): ${totalPrice}</div>
 
         <NavLink className={styles.complete} to="/checkout/complete">
-          <button className={styles.completeButton}>Complete checkout</button>
+          {/* <button
+            onClick={async (e) => {
+              e.preventDefault();
+              await dispatch(cartClear({ cart_id: cart.id }));
+            }}
+            className={styles.completeButton}
+          > */}
+          <button
+            onClick={async (e) => {
+              e.preventDefault();
+              await dispatch(cartClear());
+            }}
+            className={styles.completeButton}
+          >
+            Complete checkout
+          </button>
         </NavLink>
       </div>
     </div>

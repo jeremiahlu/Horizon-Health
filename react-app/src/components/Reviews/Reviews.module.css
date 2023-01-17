@@ -92,6 +92,7 @@ input[type="radio"]:checked ~ .star {
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
+  height: 30px;
 }
 /* 
 .title {

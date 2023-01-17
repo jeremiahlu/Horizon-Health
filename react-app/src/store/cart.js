@@ -4,6 +4,7 @@ const GET_CART = "cart/GET_CART";
 const ADD_CART_ITEM = "cart/ADD_CART_ITEM";
 const DELETE_CART_ITEM = "cart/DELETE_CART_ITEM";
 const CREATE_CART = "cart/CREATE_CART";
+const CLEAR_CART = "cart/CLEAR_CART";
 const DELETE_CART = "cart/DELETE_CART";
 const MY_CART = "cart/MY_CART";
 
@@ -27,13 +28,13 @@ const delCartItem = (item) => ({
   item,
 });
 
-const makeCart = (cart) => ({
-  type: CREATE_CART,
-  cart,
-});
+// const makeCart = (cart) => ({
+//   type: CREATE_CART,
+//   cart,
+// });
 
 const delCart = (cart) => ({
-  type: CREATE_CART,
+  type: CLEAR_CART,
   cart,
 });
 
@@ -90,26 +91,29 @@ export const myCartThunk = (id) => async (dispatch) => {
   }
 };
 
-export const createCart = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/cart/`, {
-    method: "POST",
-  });
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(makeCart(data));
-  }
-};
+// export const createCart = () => async (dispatch) => {
+//   const res = await csrfFetch(`/api/cart/`, {
+//     method: "POST",
+//   });
+//   if (res.ok) {
+//     const data = await res.json();
+//     dispatch(makeCart(data));
+//   }
+// };
 
-export const cartClear =
-  ({ cart_id }) =>
-  async (dispatch) => {
-    const res = await csrfFetch(`/api/cart/`, {
-      method: "DELETE",
-    });
-    if (res.ok) {
-      dispatch(delCart(cart_id));
-    }
-  };
+// export const cartClear =
+//   ({ cart_id }) =>
+//   async (dispatch) => {
+//     const res = await csrfFetch(`/api/cart/`, {
+//       method: "DELETE",
+//     });
+//     if (res.ok) {
+//       dispatch(delCart(cart_id));
+//     }
+//   };
+export const cartClear = () => async (dispatch) => {
+  dispatch(delCart());
+};
 
 const inititalState = {};
 const cartReducer = (state = inititalState, action) => {
@@ -141,11 +145,14 @@ const cartReducer = (state = inititalState, action) => {
       // delete newState[action.item.id];
       return { ...state, ...action.item };
 
-    case CREATE_CART:
-      return action.payload;
+    // case CREATE_CART:
+    //   return action.payload;
 
     case DELETE_CART:
-      return null;
+      newState = {};
+      return newState;
+    // case DELETE_CART:
+    //   return null;
 
     default:
       return state;

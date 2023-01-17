@@ -77,9 +77,9 @@ const Item = ({ cart }) => {
     await dispatch(myCartThunk());
   };
 
-  const cartCreate = async () => {
-    await dispatch(createCart(user?.id));
-  };
+  // const cartCreate = async () => {
+  //   await dispatch(createCart(user?.id));
+  // };
 
   const cartAdd = async (item) => {
     // console.log(item, "ITEMID");

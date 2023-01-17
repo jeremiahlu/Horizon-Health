@@ -58,12 +58,14 @@ function EditReviewForm({ review, onClose }) {
         </ul>
       )}
       <div>
-        <textarea
+        <input
           type="text"
           value={reviews}
           onChange={(e) => setReview(e.target.value)}
           required
           pattern="^(?!\s*$).+"
+          minLength={1}
+          maxLength={50}
         />
       </div>
       <form>

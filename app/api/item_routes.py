@@ -50,4 +50,5 @@ def post_new_review(item_id):
       db.session.commit()
       review = new_review.to_dict()
       return review
+    # return "Bad Data"
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

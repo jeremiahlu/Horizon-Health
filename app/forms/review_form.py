@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import (TextAreaField, IntegerField, SubmitField, DateTimeField)
+from wtforms import (TextAreaField, StringField, IntegerField, SubmitField, DateTimeField)
 from wtforms.validators import DataRequired, Length
 
 class ReviewForm(FlaskForm):
