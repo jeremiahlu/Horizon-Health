@@ -24,13 +24,14 @@ function EditReviewForm({ review, onClose }) {
   const [reviews, setReview] = useState(review?.review);
   const [stars, setStars] = useState(review?.stars);
 
+  // console.log(typeof review.stars, "HIOAASDAS");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     let payload = {
       id: review?.id,
-      review: reviews || e.target.value,
-      stars: stars || e.target.value,
+      review: reviews,
+      stars: stars,
     };
 
     await dispatch(editReviewThunk(payload));
@@ -50,7 +51,7 @@ function EditReviewForm({ review, onClose }) {
 
   radios.forEach((radio) => {
     radio.addEventListener("change", (event) => {
-      setStars(event.target.value);
+      setStars(Number(event.target.value));
     });
   });
 

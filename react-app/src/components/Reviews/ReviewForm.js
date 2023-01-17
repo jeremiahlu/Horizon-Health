@@ -35,14 +35,15 @@ const ReviewForm = ({ item }) => {
       // user_id: user.id,
       itemId: id,
       review,
-      stars,
+      stars: stars,
     };
 
+    document.querySelector('input[type="radio"]').checked = false;
     await dispatch(addReviewThunk(payload));
     // dispatch(getAllReviewThunk(item));
-    setStars("1");
+    history.push(`/items/${item.id}`);
+    setStars("");
     setReview("");
-    document.querySelector('input[type="radio"]').checked = false;
 
     // try {
     // } catch (res) {
