@@ -60,10 +60,10 @@ const Cart = ({ cart }) => {
   // console.log(cart, "CARTHREA");
   const removeFromCart = async (item) => {
     // console.log(item, "ITEM");
-    let newCart = [...cart];
-    let cartItems = newCart.find((product) => item?.name == product.name);
-    if (cartItems && cartItems.quantity > 0) cartItems.quantity -= 1;
-    setTotal(1);
+    // let newCart = [...cart];
+    // let cartItems = newCart.find((product) => item?.name == product.name);
+    // if (cartItems && cartItems.quantity > 0) cartItems.quantity -= 1;
+    // setTotal(1);
     await dispatch(
       removeCartItem({ item_id: item.item_id, cart_id: user?.id })
     );

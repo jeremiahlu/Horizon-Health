@@ -112,7 +112,7 @@ def remove_cart_item(cart_id, item_id):
 
   item.quantity -= 1
   # if (item):
-  if (item.quantity <= 1):
+  if (item.quantity == 0):
     # print (item.quantity, '%#$#$#!$@$@!@$@!$@!$@!$@!!@')
     db.session.delete(item)
     # print (item, 'ITEM!!!!!!%#$#$#!$@$@!@$@!$@!$@!$@!!@')
