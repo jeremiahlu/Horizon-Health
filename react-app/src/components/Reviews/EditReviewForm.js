@@ -29,12 +29,21 @@ function EditReviewForm({ review, onClose }) {
     setErrors([]);
     let payload = {
       id: review?.id,
-      review: reviews,
-      stars,
+      review: reviews || e.target.value,
+      stars: stars || e.target.value,
     };
 
     await dispatch(editReviewThunk(payload));
     onClose();
+    // try {
+    //   await dispatch(editReviewThunk(payload));
+    //   onClose();
+    // } catch (res) {
+    //   setErrors([]);
+    //   const data = await res.json();
+
+    //   if (data && data.errors) setErrors(data.errors);
+    // }
   };
 
   const radios = document.querySelectorAll('input[type="radio"]');

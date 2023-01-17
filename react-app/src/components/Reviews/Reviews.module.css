@@ -53,8 +53,13 @@ input[type="radio"] {
 input[type="radio"]:checked + .star {
   color: #ffcc00;
 }
+
 input[type="radio"]:checked ~ .star {
   color: #ffcc00;
+}
+
+input[type="radio"]:checked:after ~ .star {
+  color: #ccc;
 }
 
 .stars {
@@ -86,6 +91,7 @@ input[type="radio"]:checked ~ .star {
   width: 250px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  /* border: 1px solid red; */
 }
 
 .textarea {

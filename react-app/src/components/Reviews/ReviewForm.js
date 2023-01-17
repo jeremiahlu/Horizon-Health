@@ -20,6 +20,13 @@ const ReviewForm = ({ item }) => {
   const items = Object.values(itemsObj);
   const user = useSelector((state) => state.session.user);
   // console.log(id, "item");
+  const radios = document.querySelectorAll('input[type="radio"]');
+
+  radios.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      setStars(e.target.value);
+    });
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,8 +40,10 @@ const ReviewForm = ({ item }) => {
 
     await dispatch(addReviewThunk(payload));
     // dispatch(getAllReviewThunk(item));
-    setStars("");
+    setStars("1");
     setReview("");
+    document.querySelector('input[type="radio"]').checked = false;
+
     // try {
     // } catch (res) {
     //   const data = await res.json();
@@ -42,14 +51,6 @@ const ReviewForm = ({ item }) => {
     //   if (data && data.message) setErrors(err);
     // }
   };
-
-  const radios = document.querySelectorAll('input[type="radio"]');
-
-  radios.forEach((radio) => {
-    radio.addEventListener("change", (e) => {
-      setStars(e.target.value);
-    });
-  });
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

@@ -47,7 +47,7 @@ const AccountSettings = () => {
           <div className={styles.addImage}>
             {loggedSession.username}
             <span className={styles.imageText}>
-              Change your profile picture
+              {/* Change your profile picture */}
               <button className={styles.chooseFile}>
                 <input className="as-file-input" type="file" multiple />
               </button>
