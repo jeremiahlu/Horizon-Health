@@ -21,8 +21,10 @@ function EditReviewForm({ review, onClose }) {
   // const reviewById = useSelector((state) => state.reviews[id]);
   // console.log(review, "hreasda");
 
-  const [reviews, setReview] = useState(review?.review);
-  const [stars, setStars] = useState(review?.stars);
+  // const [reviews, setReview] = useState(review?.review);
+  // const [stars, setStars] = useState(review?.stars);
+  const [reviews, setReview] = useState("");
+  const [stars, setStars] = useState("");
 
   // console.log(typeof review.stars, "HIOAASDAS");
   const handleSubmit = async (e) => {
@@ -30,8 +32,8 @@ function EditReviewForm({ review, onClose }) {
     setErrors([]);
     let payload = {
       id: review?.id,
-      review: reviews,
-      stars: stars,
+      review: reviews || review,
+      stars: stars || stars,
     };
 
     await dispatch(editReviewThunk(payload));
