@@ -128,3 +128,32 @@
   font-size: 12px;
   gap: 10px;
 }
+
+.logInButton,
+.signUpButton {
+  border: none;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  margin-top: 7px;
+}
+
+.accountButton {
+  text-decoration: none;
+  font-style: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 7px;
+  width: 100px;
+}
+
+.accountTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

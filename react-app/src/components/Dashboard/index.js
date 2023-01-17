@@ -5,11 +5,19 @@ import { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsThunk } from "../../store/item";
 import * as sessionActions from "../../store/session";
+import SignUpFormModal from "../auth/SignUpIndex";
+import LoginFormModal from "../auth/LogInIndex";
+import SignUpForm from "../auth/SignUpFormModal";
+import LoginForm from "../auth/LogInFormModal";
+import { Modal } from "../../context/Modal";
 
 const Dashboard = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showModals, setShowModals] = useState(false);
   const dispatch = useDispatch();
   const allItems = useSelector((state) => state.items);
-
+  const session = useSelector((state) => state.session.user);
+  // console.log(session, "SESSION");
   // const filtered = useMemo(() => {
   //   return allItems?.filter((item) => {
   //     return item.toLowerCase().includes(search.toLowerCase());
@@ -75,14 +83,14 @@ const Dashboard = () => {
             <a
               target="_blank"
               className={styles.links}
-              to="https://github.com/jeremiahlu"
+              href="https://github.com/jeremiahlu"
             >
               Github
             </a>
             <a
               target="_blank"
               className={styles.links}
-              to="https://www.linkedin.com/in/jeremiah-lu/"
+              href="https://www.linkedin.com/in/jeremiah-lu/"
             >
               LinkedIn
             </a>
@@ -92,13 +100,60 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.account}>
-          Account
-          <NavLink to="/log-in" className={styles.logIn}>
-            <span>Log in</span>
-          </NavLink>
-          <NavLink to="/sign-up" className={styles.signUp}>
-            <span>Sign up</span>
-          </NavLink>
+          <span className={styles.accountTitle}>Account</span>
+          {session ? (
+            // <button className={styles.accountButton}>
+            <NavLink
+              to="/account"
+              exact={true}
+              className={styles.accountButton}
+            >
+              Account details
+            </NavLink>
+          ) : (
+            <>
+              <div className={styles.logInDiv}>
+                <button
+                  className={styles.logInButton}
+                  onClick={() => setShowModal(true)}
+                >
+                  <div
+                    className={styles.iconText}
+                    style={{ animationDelay: "0.1s" }}
+                  >
+                    {" "}
+                    Log in{" "}
+                  </div>
+                </button>
+
+                {showModal && (
+                  <Modal onClose={() => setShowModal(false)}>
+                    <LoginForm />
+                  </Modal>
+                )}
+              </div>
+
+              <div className={styles.signUpDiv}>
+                <button
+                  className={styles.signUpButton}
+                  onClick={() => setShowModals(true)}
+                >
+                  <div
+                    className={styles.iconText}
+                    style={{ animationDelay: "0.2s" }}
+                  >
+                    Sign up
+                  </div>
+                </button>
+
+                {showModals && (
+                  <Modal onClose={() => setShowModals(false)}>
+                    <SignUpForm />
+                  </Modal>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </footer>
     </div>

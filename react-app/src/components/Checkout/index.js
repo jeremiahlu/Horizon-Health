@@ -90,20 +90,14 @@ const Checkout = ({ cart }) => {
         <div className={styles.total}>Total (USD): ${totalPrice}</div>
 
         <NavLink className={styles.complete} to="/checkout/complete">
-          {/* <button
-            onClick={async (e) => {
-              e.preventDefault();
-              await dispatch(cartClear({ cart_id: cart.id }));
-            }}
-            className={styles.completeButton}
-          > */}
-          <button
+          <button className={styles.completeButton}>
+            {/* <button
             onClick={async (e) => {
               e.preventDefault();
               await dispatch(cartClear());
             }}
             className={styles.completeButton}
-          >
+          > */}
             Complete checkout
           </button>
         </NavLink>
