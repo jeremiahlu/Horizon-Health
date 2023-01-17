@@ -1,3 +1,50 @@
+
+  
+ <p align="center">
+
+
+<br />
+<div align="center">
+
+
+Horizon Health
+
+An application where users can shop for OTC healthcare items, find local healthcare facilities near them and chat with medical professionals regarding any health concerns.
+    <br />
+    <br />
+    <a href="https://horizon-health.onrender.com/"> Live Link </a>
+    |
+     <a href="https://github.com/jeremiahlu/Horizon-Health/wiki/Features">Features</a>
+    |
+    <a href="https://github.com/jeremiahlu/Horizon-Health/wiki/Database-Schema">Database Schema</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Preview</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ol>
+</details>
+
+## Preview
+
+![Screen Shot 2023-01-17 at 07 14 59 AM](https://user-images.githubusercontent.com/96208179/212896616-d354b678-5460-4d3a-a863-10defe2e03c8.png)
+![Screen Shot 2023-01-17 at 07 15 15 AM](https://user-images.githubusercontent.com/96208179/212896632-821e41b2-7c4b-48fd-b260-76b6fe949390.png)
+
+
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.
