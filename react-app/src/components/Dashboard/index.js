@@ -72,15 +72,20 @@ const Dashboard = () => {
           {/* <span className={styles.aboutUs}>About Us</span> */}
           About Us
           <div className={styles.links}>
-            <Link className={styles.links} to="https://github.com/jeremiahlu">
+            <a
+              target="_blank"
+              className={styles.links}
+              to="https://github.com/jeremiahlu"
+            >
               Github
-            </Link>
-            <Link
+            </a>
+            <a
+              target="_blank"
               className={styles.links}
               to="https://www.linkedin.com/in/jeremiah-lu/"
             >
-              Linked
-            </Link>
+              LinkedIn
+            </a>
           </div>
           {/* <NavLink to="/about-us" className={styles.footerAboutUs}>
           </NavLink> */}
