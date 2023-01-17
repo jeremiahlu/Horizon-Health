@@ -59,6 +59,7 @@ function EditReviewForm({ review, onClose }) {
       )}
       <div>
         <input
+          className={styles.textarea}
           type="text"
           value={reviews}
           onChange={(e) => setReview(e.target.value)}

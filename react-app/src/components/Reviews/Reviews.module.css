@@ -124,3 +124,9 @@ input[type="radio"]:checked ~ .star {
 .errors {
   color: red;
 }
+
+/* .starOne {
+  color: #ffcc00;
+  font-size: 20px;
+  cursor: pointer;
+} */

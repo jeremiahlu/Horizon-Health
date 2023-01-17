@@ -14,7 +14,7 @@ const ReviewForm = ({ item }) => {
   const history = useHistory();
   const { id } = useParams();
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  const [stars, setStars] = useState("1");
   const [errors, setErrors] = useState([]);
   const itemsObj = useSelector((state) => state.items);
   const items = Object.values(itemsObj);
@@ -76,10 +76,11 @@ const ReviewForm = ({ item }) => {
         maxLength={50}
       />
 
+      {}
       <div>
         <label>
           <input type="radio" name="rating" value="1" />
-          <span className={styles.star}>★</span>
+          <span className={`${styles.star} active`}>★</span>
         </label>
         <label>
           <input type="radio" name="rating" value="2" />
