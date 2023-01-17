@@ -78,13 +78,13 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
-        print (user.id, '%$@$!$!@')
+        # print (user.id, '%$@$!$!@')
         cart = Cart(
             user_id = user.id
         )
         db.session.add(cart)
         db.session.commit()
-        print (cart.id, '%$@$!$!@')
+        # print (cart.id, '%$@$!$!@')
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

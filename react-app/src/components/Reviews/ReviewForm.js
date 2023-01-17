@@ -31,16 +31,21 @@ const ReviewForm = ({ item }) => {
       stars,
     };
 
-    await dispatch(addReviewThunk(payload));
+    const res = await dispatch(addReviewThunk(payload));
     // dispatch(getAllReviewThunk(item));
     setStars("");
     setReview("");
-    // try {
-    // } catch (res) {
-    //   const data = await res.json();
-    //   const err = [data.message];
-    //   if (data && data.message) setErrors(err);
+
+    // if (res) {
+    //   setErrors(res);
     // }
+    try {
+      await dispatch(addReviewThunk(payload));
+    } catch (res) {
+      const data = await res.json();
+      const err = [data.message];
+      if (data && data.message) setErrors(err);
+    }
   };
 
   const radios = document.querySelectorAll('input[type="radio"]');
@@ -68,11 +73,11 @@ const ReviewForm = ({ item }) => {
         className={styles.textarea}
         value={review}
         onChange={(e) => setReview(e.target.value)}
-        required
         placeholder="Write a review"
         pattern="^(?!\s*$).+"
-        minLength={1}
-        maxLength={50}
+        min-length={2}
+        max-length={50}
+        required
       />
 
       <div>

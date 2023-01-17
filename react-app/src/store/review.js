@@ -68,6 +68,7 @@ export const addReviewThunk = (review) => async (dispatch) => {
     dispatch(addReview(newReview));
     return res;
   }
+  return res;
 };
 
 export const editReviewThunk = (review) => async (dispatch) => {
@@ -80,6 +81,7 @@ export const editReviewThunk = (review) => async (dispatch) => {
     const editedReview = await res.json();
     dispatch(editReview(editedReview));
   }
+  return res;
 };
 
 export const deleteReviewThunk = (review) => async (dispatch) => {
