@@ -40,17 +40,19 @@ const LoginForm = ({ SignUpFormModal }) => {
 
   return (
     <form className={styles.logInForm} onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
       <div className={styles.header}>
         <img
           className={styles.lock}
           src="https://cdn.pixabay.com/photo/2017/03/19/03/47/material-icon-2155441_960_720.png"
         />
         <span>Log In</span>
+        <div>
+          {errors.map((error, ind) => (
+            <div className={styles.errors} key={ind}>
+              {error}
+            </div>
+          ))}
+        </div>
       </div>
       <div className={styles.main}>
         <div>

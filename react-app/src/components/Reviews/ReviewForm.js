@@ -57,7 +57,7 @@ const ReviewForm = ({ item }) => {
       {errors && (
         <ul>
           {errors.map((error, idx) => (
-            <li className="errors" key={idx}>
+            <li className={styles.error} key={idx}>
               {error}
             </li>
           ))}
@@ -70,6 +70,9 @@ const ReviewForm = ({ item }) => {
         onChange={(e) => setReview(e.target.value)}
         required
         placeholder="Write a review"
+        pattern="^(?!\s*$).+"
+        minLength={1}
+        maxLength={50}
       />
 
       <div>

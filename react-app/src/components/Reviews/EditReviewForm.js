@@ -10,6 +10,7 @@ import styles from "./Reviews.module.css";
 
 function EditReviewForm({ review, onClose }) {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([]);
   // const { id } = useParams();
   const history = useHistory();
 
@@ -25,6 +26,7 @@ function EditReviewForm({ review, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     let payload = {
       id: review?.id,
       review: reviews,
@@ -46,12 +48,22 @@ function EditReviewForm({ review, onClose }) {
   return (
     <form className={styles.editReview} onSubmit={handleSubmit}>
       <h2>Edit Review</h2>
+      {errors && (
+        <ul>
+          {errors.map((error, idx) => (
+            <li className={styles.error} key={idx}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      )}
       <div>
         <textarea
           type="text"
           value={reviews}
           onChange={(e) => setReview(e.target.value)}
           required
+          pattern="^(?!\s*$).+"
         />
       </div>
       <form>

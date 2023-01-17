@@ -59,6 +59,11 @@
   width: 100%;
 }
 
+.product:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .itemLink {
   text-decoration: none;
   list-style: none;

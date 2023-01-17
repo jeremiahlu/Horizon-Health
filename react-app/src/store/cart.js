@@ -1,10 +1,18 @@
 import { csrfFetch } from "./csrf";
 
-const GET_CART = "item/GET_CART";
-const ADD_CART_ITEM = "item/ADD_CART_ITEM";
-const DELETE_CART_ITEM = "item/DELETE_CART_ITEM";
+const GET_CART = "cart/GET_CART";
+const ADD_CART_ITEM = "cart/ADD_CART_ITEM";
+const DELETE_CART_ITEM = "cart/DELETE_CART_ITEM";
+const CREATE_CART = "cart/CREATE_CART";
+const DELETE_CART = "cart/DELETE_CART";
+const MY_CART = "cart/MY_CART";
 
 const getCart = (cart) => ({
+  type: GET_CART,
+  cart,
+});
+
+const fetchMyCart = (cart) => ({
   type: GET_CART,
   cart,
 });
@@ -17,6 +25,16 @@ const cartItem = (item) => ({
 const delCartItem = (item) => ({
   type: DELETE_CART_ITEM,
   item,
+});
+
+const makeCart = (cart) => ({
+  type: CREATE_CART,
+  cart,
+});
+
+const delCart = (cart) => ({
+  type: CREATE_CART,
+  cart,
 });
 
 export const fetchCart = (cartId) => async (dispatch) => {
@@ -64,6 +82,35 @@ export const removeCartItem =
     return res;
   };
 
+export const myCartThunk = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/cart/${id}/`);
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(fetchMyCart(data));
+  }
+};
+
+export const createCart = () => async (dispatch) => {
+  const res = await csrfFetch(`/api/cart/`, {
+    method: "POST",
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(makeCart(data));
+  }
+};
+
+export const cartClear =
+  ({ cart_id }) =>
+  async (dispatch) => {
+    const res = await csrfFetch(`/api/cart/`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      dispatch(delCart(cart_id));
+    }
+  };
+
 const inititalState = {};
 const cartReducer = (state = inititalState, action) => {
   let newState = { ...state };
@@ -72,6 +119,9 @@ const cartReducer = (state = inititalState, action) => {
       // newState = { ...action.cart };
       // return newState;
       // console.log(action.cart, "AHUDSADWQDSAD");
+      return { ...action.cart };
+
+    case MY_CART:
       return { ...action.cart };
 
     case ADD_CART_ITEM:
@@ -90,6 +140,12 @@ const cartReducer = (state = inititalState, action) => {
 
       // delete newState[action.item.id];
       return { ...state, ...action.item };
+
+    case CREATE_CART:
+      return action.payload;
+
+    case DELETE_CART:
+      return null;
 
     default:
       return state;

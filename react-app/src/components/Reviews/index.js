@@ -20,7 +20,7 @@ function Reviews({ item }) {
 
   const reviewsObj = useSelector((state) => state.reviews);
   const reviews = Object.values(reviewsObj);
-  // console.log(reviews, 'reviews')
+  // console.log(reviews, "reviews");
 
   useEffect(() => {
     dispatch(getAllReviewThunk(id));
@@ -40,7 +40,7 @@ function Reviews({ item }) {
             {
               return review?.item_id === item?.id ? (
                 <div className={styles.reviewDiv}>
-                  <div className={styles.reviewId} key={review?.item_id}>
+                  <div className={styles.reviewId} key={review?.id}>
                     {/* {console.log(review.id, "HREASDWW")} */}
                     {/* <div className={styles.reviewDate}>
                     {review?.created_at.slice(4, 16)}

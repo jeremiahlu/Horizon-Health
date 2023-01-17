@@ -94,7 +94,9 @@
   align-items: center;
   border-radius: 5px;
   background-color: rgba(225, 225, 225, 0.7);
+  cursor: pointer;
 }
+
 .complete {
   text-decoration: none;
   display: flex;
@@ -106,4 +108,11 @@
 .completeContainer {
   color: white;
   margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 100px;
+  gap: 10px;
 }
