@@ -22,9 +22,9 @@ function EditReviewForm({ review, onClose }) {
   // console.log(review, "hreasda");
 
   // const [reviews, setReview] = useState(review?.review);
-  // const [stars, setStars] = useState(review?.stars);
+  const [stars, setStars] = useState(review?.stars);
   const [reviews, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  // const [stars, setStars] = useState("");
 
   // console.log(typeof review.stars, "HIOAASDAS");
   const handleSubmit = async (e) => {
@@ -36,17 +36,17 @@ function EditReviewForm({ review, onClose }) {
       stars: stars || stars,
     };
 
-    await dispatch(editReviewThunk(payload));
-    onClose();
-    // try {
-    //   await dispatch(editReviewThunk(payload));
-    //   onClose();
-    // } catch (res) {
-    //   setErrors([]);
-    //   const data = await res.json();
+    // await dispatch(editReviewThunk(payload));
+    // onClose();
+    try {
+      await dispatch(editReviewThunk(payload));
+      onClose();
+    } catch (res) {
+      setErrors([]);
+      const data = await res.json();
 
-    //   if (data && data.errors) setErrors(data.errors);
-    // }
+      if (data && data.errors) setErrors(data.errors);
+    }
   };
 
   const radios = document.querySelectorAll('input[type="radio"]');
