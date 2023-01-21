@@ -41,6 +41,7 @@ An application where users can shop for OTC healthcare items, find local healthc
 
 ![Screen Shot 2023-01-17 at 07 14 59 AM](https://user-images.githubusercontent.com/96208179/212896616-d354b678-5460-4d3a-a863-10defe2e03c8.png)
 ![Screen Shot 2023-01-17 at 07 15 15 AM](https://user-images.githubusercontent.com/96208179/212896632-821e41b2-7c4b-48fd-b260-76b6fe949390.png)
+![Screen Shot 2023-01-21 at 14 30 18 PM](https://user-images.githubusercontent.com/96208179/213883956-d438c071-3d38-4175-a5fc-f4b7faedc28f.png)
 
 ### Built With
 
