@@ -8,12 +8,41 @@
   border-radius: 5px;
   padding: 25px;
   font-family: Arial, Helvetica, sans-serif;
+  width: 883px;
 }
 
 .title {
   color: #aeaeae;
   font-size: 28px;
   margin: 15px;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.emptyTitle {
+  color: #aeaeae;
+  font-size: 28px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  color: rgba(225, 225, 225, 0.8);
+}
+
+.emptyCart {
+  margin: 10px;
+  height: 400px;
+  width: 400px;
+}
+
+.continueShopping {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 
 .cartHeader,
@@ -25,13 +54,51 @@
   color: white;
 }
 
+.card {
+  /* height: 15rem;
+  width: 15rem; */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  /* border-radius: 20px; */
+}
+
+.card img {
+  height: 90%;
+  width: 90%;
+}
+
 .image {
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   padding: 15px;
+  border-radius: 20px;
+}
+
+.card:hover .hoverDescription {
+  opacity: 1;
+  height: 95%;
+  color: rgba(225, 225, 225, 0.8);
+}
+
+.hoverDescription {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  height: 0%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  margin-left: 5px;
 }
 
 .cartList {
@@ -134,11 +201,25 @@
 }
 
 .checkout {
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
-  height: 30px;
+  height: 40px;
   width: 100%;
+  font-size: 14px;
   background-color: rgba(239, 190, 68, 0.8);
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.checkout:hover {
+  background-color: transparent;
+  border: 1px solid #aeaeae;
+  /* height: 30px; */
+  color: rgba(225, 225, 225, 0.8);
 }
 
 .clear {
@@ -151,4 +232,20 @@
 
 .continueShopping {
   color: rgba(91, 91, 235, 0.99);
+}
+
+.continueButton {
+  height: 40px;
+  width: 200px;
+  border: none;
+  /* border-radius: 5pxx */
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(239, 190, 68, 0.8);
+  cursor: pointer;
+}
+
+.continueButton:hover {
+  color: rgba(225, 225, 225, 0.8);
+  background-color: transparent;
+  border: 1px solid #aeaeae;
 }

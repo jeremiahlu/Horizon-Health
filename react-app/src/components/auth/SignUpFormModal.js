@@ -12,6 +12,7 @@ const SignUpForm = ({ LogInFormModal }) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
@@ -51,6 +52,7 @@ const SignUpForm = ({ LogInFormModal }) => {
           lastName,
           email,
           address,
+          gender,
           password,
           profilePicture
         )
@@ -62,35 +64,39 @@ const SignUpForm = ({ LogInFormModal }) => {
   };
 
   const updateUsername = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.trim());
   };
 
   const updateFirstName = (e) => {
-    setFirstName(e.target.value);
+    setFirstName(e.target.value.trim());
   };
 
   const updateLastName = (e) => {
-    setLastName(e.target.value);
+    setLastName(e.target.value.trim());
   };
 
   const updateEmail = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.trim());
   };
 
   const updateAddress = (e) => {
     setAddress(e.target.value);
   };
 
+  const updateGender = (e) => {
+    setGender(e.target.value);
+  };
+
   const updatePassword = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value.trim());
   };
 
   const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+    setRepeatPassword(e.target.value.trim());
   };
 
   const updateProfilePicture = (e) => {
-    setProfilePicture(e.target.value);
+    setProfilePicture(e.target.value.trim());
   };
 
   if (user) {
@@ -109,12 +115,14 @@ const SignUpForm = ({ LogInFormModal }) => {
         </div>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className={styles.error} key={ind}>
+              {error}
+            </div>
           ))}
         </div>
 
         <div className={styles.main}>
-          <form className={styles.imageForm}>
+          <div className={styles.imageForm}>
             <img
               className={styles.image}
               src={
@@ -139,7 +147,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 />
               </button>
             </div>
-          </form>
+          </div>
 
           <div className={styles.mainForm}>
             <div className={styles.inputDiv}>
@@ -150,6 +158,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 onChange={updateUsername}
                 value={username}
                 placeholder="Username"
+                pattern="^(?!\s*$).+"
               ></input>
             </div>
             <div className={styles.inputDiv}>
@@ -160,6 +169,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 onChange={updateFirstName}
                 value={firstName}
                 placeholder="First Name"
+                pattern="^(?!\s*$).+"
               ></input>
             </div>
             <div className={styles.inputDiv}>
@@ -170,6 +180,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 onChange={updateLastName}
                 value={lastName}
                 placeholder="Last Name"
+                pattern="^(?!\s*$).+"
               ></input>
             </div>
             <div className={styles.inputDiv}>
@@ -180,6 +191,7 @@ const SignUpForm = ({ LogInFormModal }) => {
                 onChange={updateEmail}
                 value={email}
                 placeholder="Email Address"
+                pattern="^(?!\s*$).+"
               ></input>
             </div>
             <div className={styles.inputDiv}>
@@ -190,7 +202,25 @@ const SignUpForm = ({ LogInFormModal }) => {
                 onChange={updateAddress}
                 value={address}
                 placeholder="Address"
+                pattern="^(?!\s*$).+"
               ></input>
+            </div>
+            <div className={styles.inputDiv}>
+              <select
+                value={gender}
+                onChange={updateGender}
+                className={styles.inputGender}
+                required
+                placeholder="Gender"
+              >
+                <option value="" disabled>
+                  Select your preferred gender
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
             </div>
           </div>
         </div>
@@ -220,9 +250,7 @@ const SignUpForm = ({ LogInFormModal }) => {
         <button className={styles.submit} type="submit">
           SIGN UP
         </button>
-        {/* <NavLink className={styles.login} to={LogInFormModal}>
-          Already have an account? Sign in
-        </NavLink> */}
+
         <span className={styles.copyright}>
           Copyright © Horizon Health 2022.{" "}
         </span>

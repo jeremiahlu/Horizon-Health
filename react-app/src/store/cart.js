@@ -1,10 +1,19 @@
 import { csrfFetch } from "./csrf";
 
-const GET_CART = "item/GET_CART";
-const ADD_CART_ITEM = "item/ADD_CART_ITEM";
-const DELETE_CART_ITEM = "item/DELETE_CART_ITEM";
+const GET_CART = "cart/GET_CART";
+const ADD_CART_ITEM = "cart/ADD_CART_ITEM";
+const DELETE_CART_ITEM = "cart/DELETE_CART_ITEM";
+const CREATE_CART = "cart/CREATE_CART";
+const CLEAR_CART = "cart/CLEAR_CART";
+const DELETE_CART = "cart/DELETE_CART";
+const MY_CART = "cart/MY_CART";
 
 const getCart = (cart) => ({
+  type: GET_CART,
+  cart,
+});
+
+const fetchMyCart = (cart) => ({
   type: GET_CART,
   cart,
 });
@@ -17,6 +26,16 @@ const cartItem = (item) => ({
 const delCartItem = (item) => ({
   type: DELETE_CART_ITEM,
   item,
+});
+
+// const makeCart = (cart) => ({
+//   type: CREATE_CART,
+//   cart,
+// });
+
+const delCart = (cart) => ({
+  type: CLEAR_CART,
+  cart,
 });
 
 export const fetchCart = (cartId) => async (dispatch) => {
@@ -56,29 +75,84 @@ export const removeCartItem =
       method: "DELETE",
     });
     if (res.ok) {
-      dispatch(delCartItem({ item_id, cart_id }));
-      return res;
+      const itemToDelete = await res.json();
+      // console.log(itemToDelete, "ADHSAODSHERE");
+      // dispatch(delCartItem({ item_id, cart_id }));
+      dispatch(delCartItem(itemToDelete));
     }
+    return res;
   };
+
+export const myCartThunk = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/cart/${id}/`);
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(fetchMyCart(data));
+  }
+};
+
+// export const createCart = () => async (dispatch) => {
+//   const res = await csrfFetch(`/api/cart/`, {
+//     method: "POST",
+//   });
+//   if (res.ok) {
+//     const data = await res.json();
+//     dispatch(makeCart(data));
+//   }
+// };
+
+// export const cartClear =
+//   ({ cart_id }) =>
+//   async (dispatch) => {
+//     const res = await csrfFetch(`/api/cart/`, {
+//       method: "DELETE",
+//     });
+//     if (res.ok) {
+//       dispatch(delCart(cart_id));
+//     }
+//   };
+export const cartClear = () => async (dispatch) => {
+  dispatch(delCart());
+};
 
 const inititalState = {};
 const cartReducer = (state = inititalState, action) => {
   let newState = { ...state };
   switch (action.type) {
     case GET_CART:
-      newState = { ...action.cart };
-      return newState;
-    // console.log(action.cart, "AHUDSADWQDSAD");
-    // return { ...state, ...action.cart };
+      // newState = { ...action.cart };
+      // return newState;
+      // console.log(action.cart, "AHUDSADWQDSAD");
+      return { ...action.cart };
+
+    case MY_CART:
+      return { ...action.cart };
 
     case ADD_CART_ITEM:
-      // console.log(action.item, "HRERE");
-      newState = { ...state, [action.item.cart_id]: action.item };
-      return newState;
+      // console.log(action.item, "action");
+      // console.log(newState[action.item.id], "item");
+      // console.log(newState, "newSTate");
+      // console.log({ ...state }, "state");
+      // newState = { ...state, [action.item.cart_id]: action.item };
+      // return newState;
+      return { ...state, [action.item.id]: action.item };
 
     case DELETE_CART_ITEM:
-      delete newState[action.item.id];
+      // console.log(action.item, "action");
+      // console.log(newState[action.item.id], "item");
+      // console.log(newState, "newSTate");
+
+      // delete newState[action.item.id];
+      return { ...state, ...action.item };
+
+    // case CREATE_CART:
+    //   return action.payload;
+
+    case DELETE_CART:
+      newState = {};
       return newState;
+    // case DELETE_CART:
+    //   return null;
 
     default:
       return state;

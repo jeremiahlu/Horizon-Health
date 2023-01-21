@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     address = db.Column(db.String(255), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
-    gender = db.Column(db.Enum("Male", "Female", "Non-Binary", "Prefer not to say"), nullable = False, default = "Prefer not to say")
+    gender = db.Column(db.Enum("Male", "Female", "Non-Binary", "Prefer not to say", name='gender_types'), nullable = False, default = "Prefer not to say")
     profile_picture = db.Column(db.String, nullable=False)
 
     reviews = db.relationship('Review', primaryjoin = '(User.id == Review.user_id)', back_populates = 'user', cascade = 'all, delete-orphan')

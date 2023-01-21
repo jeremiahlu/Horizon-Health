@@ -12,8 +12,12 @@ import cartReducer, {
 const Cart = ({ cart }) => {
   const dispatch = useDispatch();
   // const [items, setItems] = useState([]);
-  // const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const items = useSelector((state) => state.items);
+  const itemQuantity = useSelector((state) => Object.values(state.cart));
+  // console.log(itemQuantity, "ITEMQUANTITY");
+  const itemObj = itemQuantity.map((item) => item.quantity);
+  // console.log(itemObj, "itemObj");
 
   const user = useSelector((state) => state.session.user);
 
@@ -21,6 +25,7 @@ const Cart = ({ cart }) => {
   // console.log(itemState, "fhdsoa");
 
   const myCart = useSelector((state) => Object.values(state.cart));
+  // console.log(myCart, "MYCART");
 
   const addToCart = async (item, e) => {
     e.preventDefault();
@@ -50,16 +55,19 @@ const Cart = ({ cart }) => {
       // }
       await dispatch(addCartItem(payload));
     }
+    // setTotal(1);
   };
   // console.log(cart, "CARTHREA");
   const removeFromCart = async (item) => {
     // console.log(item, "ITEM");
-    let newCart = [...cart];
-    let cartItems = newCart.find((product) => item?.name == product.name);
-    if (cartItems && cartItems.quantity > 0) cartItems.quantity -= 1;
+    // let newCart = [...cart];
+    // let cartItems = newCart.find((product) => item?.name == product.name);
+    // if (cartItems && cartItems.quantity > 0) cartItems.quantity -= 1;
+    // setTotal(1);
     await dispatch(
       removeCartItem({ item_id: item.item_id, cart_id: user?.id })
     );
+    dispatch(fetchCart(user?.id));
   };
 
   // const cartItemIds = cart.map((item) => item.item.id);
@@ -130,7 +138,9 @@ const Cart = ({ cart }) => {
   //   }
   // };
 
-  let cartPrice = cart.reduce((a, b) => a + b.quantity * b.item.price, 0);
+  let cartPrice = cart
+    .reduce((a, b) => a + b.quantity * b.item?.price, 0)
+    .toFixed(2);
   // console.log(cart, "CARTPRICE");
   let tax = parseInt(cartPrice * 0.06).toFixed(2);
   let shipping = parseInt(cartPrice * 0.03).toFixed(2);
@@ -149,13 +159,14 @@ const Cart = ({ cart }) => {
       .toFixed(2);
   };
 
-  const cartMap = cart.map((item) => item.item_id);
+  const cartMap = cart.map((item) => item?.item_id);
   // console.log(cartMap, "REIARHOASA@$!#!@");
 
   useEffect(() => {
     const getCart = async () => {
       await dispatch(fetchCart(user?.id));
     };
+
     getCart();
   }, [dispatch, items]);
 
@@ -186,7 +197,7 @@ const Cart = ({ cart }) => {
   //       delItem();
   //     }
   //   }
-  // }, []);
+  // }, [dispatch]);
 
   useEffect(() => {
     const getItems = async () => {
@@ -199,23 +210,41 @@ const Cart = ({ cart }) => {
     <>
       <div className={styles.container}>
         <div className={styles.cartList}>
-          <h1 className={styles.title}>Shopping Cart</h1>
+          <h1 className={styles.title} id="title">
+            Shopping Cart
+          </h1>
           {myCart.length === 0 && (
-            <div className={styles.empty}>Cart is empty</div>
+            <>
+              {/* <h1 className={styles.emptyTitle}>Shopping Cart</h1> */}
+              <img
+                className={styles.emptyCart}
+                src="https://www.djsuperstore.com/pub/static/frontend/MageBig/martfury_layout05/en_GB/images/empty-cart.svg"
+              />
+              <div className={styles.empty}>
+                Looks like your cart is a little empty
+              </div>
+            </>
           )}
           {myCart?.map((item, index) => {
-            // let newCart = [...cart];
+            // let newCart = [...art];
             // let cartItems = newCart.find(
             //   (product) => item?.name == product.name
             // );
-            // console.log(cartItems, "CAHIWOQDA");
+            // console.log(item, "CAHIWOQDA");
 
             return (
               <div className={styles.cartItem} key={index}>
-                <img className={styles.image} src={item?.item.image} />
+                <div className={styles.card}>
+                  <NavLink to={`/items/${item?.item_id}`}>
+                    <img className={styles.image} src={item?.item?.image} />
+                    <span className={styles.hoverDescription}>
+                      {item?.item?.name}
+                    </span>
+                  </NavLink>
+                </div>
                 <div className={styles.itemDetails}>
                   <div className={styles.nameQuant}>
-                    <div className={styles.name}>{item?.item.name}</div>
+                    <div className={styles.name}>{item?.item?.name}</div>
                     <span className={styles.stock}> In Stock </span>
                     <div className={styles.adjust}>
                       <div>
@@ -245,7 +274,7 @@ const Cart = ({ cart }) => {
                     </div>
                   </div>
 
-                  <div className={styles.price}>${item?.item.price}</div>
+                  <div className={styles.price}>${item?.item?.price}</div>
 
                   {/* <button
                   className={styles.remove}
@@ -263,7 +292,7 @@ const Cart = ({ cart }) => {
           </button>
         )} */}
           <NavLink className={styles.continueShopping} to="/items">
-            Continue shopping
+            <button className={styles.continueButton}>Continue shopping</button>
           </NavLink>
         </div>
 
@@ -275,7 +304,10 @@ const Cart = ({ cart }) => {
           <div className={styles.shipping}>Est. Shipping: ${shipping}</div>
           <div className={styles.tax}>Tax: ${tax}</div>
           <div className={styles.total}>Total Price: ${totalPrice}</div>
-          <button className={styles.checkout}>Proceed to checkout</button>
+
+          <NavLink className={styles.checkout} to="/checkout">
+            Proceed to checkout
+          </NavLink>
         </div>
       </div>
     </>

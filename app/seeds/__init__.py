@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .items import seed_items, undo_items
 from .messages import seed_messages, undo_messages
 from .reviews import seed_reviews, undo_reviews
+from .carts import seed_carts, undo_carts
 
 
 from app.models.db import db, environment, SCHEMA
@@ -21,6 +22,8 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
          db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+         db.session.execute(
+            f"TRUNCATE table {SCHEMA}.carts RESTART IDENTITY CASCADE;")
          db.session.execute(f"TRUNCATE table {SCHEMA}.items RESTART IDENTITY CASCADE;")
          db.session.execute(f"TRUNCATE table {SCHEMA}.reviews RESTART IDENTITY CASCADE;")
          db.session.execute(
@@ -28,6 +31,7 @@ def seed():
          db.session.commit()
     #     undo_users()
     seed_users()
+    seed_carts()
     seed_items()
     seed_messages()
     seed_reviews()
@@ -38,6 +42,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_carts()
     undo_items()
     undo_messages()
     undo_reviews()

@@ -14,35 +14,12 @@ const ReviewForm = ({ item }) => {
   const history = useHistory();
   const { id } = useParams();
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  const [stars, setStars] = useState("1");
   const [errors, setErrors] = useState([]);
   const itemsObj = useSelector((state) => state.items);
   const items = Object.values(itemsObj);
   const user = useSelector((state) => state.session.user);
   // console.log(id, "item");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErrors([]);
-    let payload = {
-      // user_id: user.id,
-      itemId: id,
-      review,
-      stars,
-    };
-
-    await dispatch(addReviewThunk(payload));
-    // dispatch(getAllReviewThunk(item));
-    setStars("");
-    setReview("");
-    // try {
-    // } catch (res) {
-    //   const data = await res.json();
-    //   const err = [data.message];
-    //   if (data && data.message) setErrors(err);
-    // }
-  };
-
   const radios = document.querySelectorAll('input[type="radio"]');
 
   radios.forEach((radio) => {
@@ -51,31 +28,61 @@ const ReviewForm = ({ item }) => {
     });
   });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors([]);
+    let payload = {
+      // user_id: user.id,
+      itemId: id,
+      review,
+      stars: stars,
+    };
+
+    document.querySelector('input[type="radio"]').checked = false;
+    await dispatch(addReviewThunk(payload));
+    // dispatch(getAllReviewThunk(item));
+    history.push(`/items/${item.id}`);
+    setStars("");
+    setReview("");
+
+    // try {
+    // } catch (res) {
+    //   const data = await res.json();
+    //   const err = [data.message];
+    //   if (data && data.message) setErrors(err);
+    // }
+  };
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h1>Write a review</h1>
-      {errors && (
-        <ul>
-          {errors.map((error, idx) => (
-            <li className="errors" key={idx}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* {errors && (
+        <ul> */}
+      <div>
+        {errors.map((error, idx) => (
+          <li className={styles.error} key={idx}>
+            {error}
+          </li>
+        ))}
+      </div>
+      {/* </ul> */}
+      {/* )} */}
 
-      <textarea
+      <input
         className={styles.textarea}
         value={review}
         onChange={(e) => setReview(e.target.value)}
         required
-        placeholder="Write a review"
+        pattern="^(?!\s*$).+"
+        minLength={1}
+        maxLength={50}
       />
 
+      {}
       <div>
         <label>
           <input type="radio" name="rating" value="1" />
-          <span className={styles.star}>★</span>
+          <span className={`${styles.star} active`}>★</span>
         </label>
         <label>
           <input type="radio" name="rating" value="2" />

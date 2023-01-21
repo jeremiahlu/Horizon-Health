@@ -1,16 +1,19 @@
 """empty message
 
-Revision ID: c580438296df
+Revision ID: 80e78a5f7c4a
 Revises: 
-Create Date: 2023-01-11 15:51:38.512130
+Create Date: 2023-01-17 03:46:40.591447
 
 """
 from alembic import op
 import sqlalchemy as sa
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'c580438296df'
+revision = '80e78a5f7c4a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,9 +24,9 @@ def upgrade():
     op.create_table('items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.Text(length=100), nullable=True),
-    sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('name', sa.Text(), nullable=False),
+    sa.Column('description', sa.Text(), nullable=True),
+    sa.Column('price', sa.Integer(), nullable=False),
     sa.Column('image', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')
@@ -36,7 +39,7 @@ def upgrade():
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('address', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('gender', sa.Enum('Male', 'Female', 'Non-Binary', 'Prefer not to say'), nullable=False),
+    sa.Column('gender', sa.Enum('Male', 'Female', 'Non-Binary', 'Prefer not to say', name='gender_types'), nullable=False),
     sa.Column('profile_picture', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
@@ -81,6 +84,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE carts SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE messages SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE cart_item SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

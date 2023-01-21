@@ -7,7 +7,10 @@
   position: absolute;
   height: 100px;
   width: 150px;
-  opacity: 0.3;
+  background-color: transparent;
+  opacity: 0.2;
+  border-radius: 10px;
+  padding: 10px;
   margin-left: 80px;
 }
 
@@ -103,4 +106,54 @@
 
 .slider.animation {
   transition: transform 750ms ease-in-out;
+}
+
+.aboutUs {
+  margin-bottom: 10px;
+}
+
+.company {
+  gap: 10px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: none;
+  font-size: 12px;
+  gap: 10px;
+}
+
+.logInButton,
+.signUpButton {
+  border: none;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  margin-top: 7px;
+}
+
+.accountButton {
+  text-decoration: none;
+  font-style: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 7px;
+  width: 100px;
+}
+
+.accountTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

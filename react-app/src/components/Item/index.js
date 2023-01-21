@@ -3,7 +3,14 @@ import { useEffect, useState, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsThunk } from "../../store/item";
-import { fetchCart, addCartItem, removeCartItem } from "../../store/cart";
+import {
+  fetchCart,
+  myCartThunk,
+  addCartItem,
+  removeCartItem,
+  createCart,
+  cartClear,
+} from "../../store/cart";
 
 const Item = ({ cart }) => {
   const dispatch = useDispatch();
@@ -12,8 +19,9 @@ const Item = ({ cart }) => {
   const itemValues = Object.values(allItems);
   const user = useSelector((state) => state.session.user);
   const myCart = useSelector((state) => state.cart);
-  // console.log(itemValues, "HERE");
-  // console.log(user, "HERE");
+  const cartExist = useSelector((state) => state.my_cart);
+  // console.log(cartExist, "HERE");
+  // console.log(myCart, "HERE");
 
   // const filtered = useMemo(() => {
   //   return allItems?.filter((item) => {
@@ -65,6 +73,14 @@ const Item = ({ cart }) => {
   //     await dispatch(addCartItem(payload));
   //   }
   // };
+  const cartFetch = async () => {
+    await dispatch(myCartThunk());
+  };
+
+  // const cartCreate = async () => {
+  //   await dispatch(createCart(user?.id));
+  // };
+
   const cartAdd = async (item) => {
     // console.log(item, "ITEMID");
     // e.preventDefault();
@@ -115,6 +131,20 @@ const Item = ({ cart }) => {
     getCart();
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   const fetchMyCart = async () => {
+  //     await dispatch(myCartThunk(user.id));
+  //   };
+  //   fetchMyCart();
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   const newCart = async () => {
+  //     await dispatch(createCart());
+  //   };
+  //   newCart();
+  // }, [dispatch]);
+
   return (
     <div className={styles.itemsContainer}>
       <div className={styles.itemsList}>
@@ -122,9 +152,9 @@ const Item = ({ cart }) => {
           const itemId = itemValues[index].id;
 
           return (
-            <div className={styles.product}>
+            <div key={item.id} className={styles.product}>
               <NavLink
-                key={itemId}
+                key={item.id}
                 className={styles.image}
                 to={`/items/${itemId}`}
               >

@@ -10,6 +10,7 @@ import styles from "./Reviews.module.css";
 
 function EditReviewForm({ review, onClose }) {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([]);
   // const { id } = useParams();
   const history = useHistory();
 
@@ -20,38 +21,64 @@ function EditReviewForm({ review, onClose }) {
   // const reviewById = useSelector((state) => state.reviews[id]);
   // console.log(review, "hreasda");
 
-  const [reviews, setReview] = useState(review?.review);
+  // const [reviews, setReview] = useState(review?.review);
   const [stars, setStars] = useState(review?.stars);
+  const [reviews, setReview] = useState("");
+  // const [stars, setStars] = useState("");
 
+  // console.log(typeof review.stars, "HIOAASDAS");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     let payload = {
       id: review?.id,
-      review: reviews,
-      stars,
+      review: reviews || review,
+      stars: stars || stars,
     };
 
-    await dispatch(editReviewThunk(payload));
-    onClose();
+    // await dispatch(editReviewThunk(payload));
+    // onClose();
+    try {
+      await dispatch(editReviewThunk(payload));
+      onClose();
+    } catch (res) {
+      setErrors([]);
+      const data = await res.json();
+
+      if (data && data.errors) setErrors(data.errors);
+    }
   };
 
   const radios = document.querySelectorAll('input[type="radio"]');
 
   radios.forEach((radio) => {
     radio.addEventListener("change", (event) => {
-      setStars(event.target.value);
+      setStars(Number(event.target.value));
     });
   });
 
   return (
     <form className={styles.editReview} onSubmit={handleSubmit}>
       <h2>Edit Review</h2>
+      {errors && (
+        <ul>
+          {errors.map((error, idx) => (
+            <li className={styles.error} key={idx}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      )}
       <div>
-        <textarea
+        <input
+          className={styles.textarea}
           type="text"
           value={reviews}
           onChange={(e) => setReview(e.target.value)}
           required
+          pattern="^(?!\s*$).+"
+          minLength={1}
+          maxLength={50}
         />
       </div>
       <form>
@@ -77,7 +104,7 @@ function EditReviewForm({ review, onClose }) {
         </label>
       </form>
 
-      <input type="submit" />
+      <input className={styles.submitEditedReview} type="submit" />
     </form>
   );
 }

@@ -20,7 +20,7 @@ function Reviews({ item }) {
 
   const reviewsObj = useSelector((state) => state.reviews);
   const reviews = Object.values(reviewsObj);
-  // console.log(reviews, 'reviews')
+  // console.log(reviews, "reviews");
 
   useEffect(() => {
     dispatch(getAllReviewThunk(id));
@@ -28,57 +28,65 @@ function Reviews({ item }) {
 
   return (
     <div className={styles.reviewsContainer}>
-      <h3>Reviews</h3>
+      <h3 className={styles.title}>Reviews</h3>
+
       <div className={styles.div}>
-        {reviews?.map((review) => {
-          {
-            return review?.item_id === item?.id ? (
-              <div className={styles.reviewDiv}>
-                <div className={styles.reviewId} key={review?.id}>
-                  {/* {console.log(review.id, "HREASDWW")} */}
-                  {/* <div className={styles.reviewDate}>
+        {reviews?.length === 0 ? (
+          <div className={styles.noReviews}>
+            There are no reviews at the moment, be the first to write one!
+          </div>
+        ) : (
+          reviews?.map((review) => {
+            {
+              return review?.item_id === item?.id ? (
+                <div className={styles.reviewDiv}>
+                  <div className={styles.reviewId} key={review?.id}>
+                    {/* {console.log(review.id, "HREASDWW")} */}
+                    {/* <div className={styles.reviewDate}>
                     {review?.created_at.slice(4, 16)}
                   </div> */}
-                  <div id="starContainer">
-                    <i
-                      id="star"
-                      className={`${styles.stars} fa-solid fa-star`}
-                    ></i>
 
-                    {review?.stars}
-                    <div className={styles.review}>{review?.review}</div>
-                  </div>
-                  <div className={styles.reviewer}>
-                    <span>Review by </span>
-                    {review?.user?.first_name + " "}
-                    {review?.user?.last_name}
-                    <span> on </span>
-                    <div className={styles.reviewDate}>
-                      {review?.created_at.slice(4, 16)}
+                    <div id="starContainer">
+                      <i
+                        id="star"
+                        className={`${styles.stars} fa-solid fa-star`}
+                      ></i>
+
+                      {review?.stars}
+                      <div className={styles.review}>{review?.review}</div>
                     </div>
-                  </div>
-                  {/* {console.log(reviews, "REDHSAIOW")}
+                    <div className={styles.reviewer}>
+                      <span>Review by </span>
+                      {review?.user?.first_name + " "}
+                      {review?.user?.last_name}
+                      <span> on </span>
+                      <div className={styles.reviewDate}>
+                        {review?.created_at.slice(4, 16)}
+                      </div>
+                    </div>
+                    {/* {console.log(reviews, "REDHSAIOW")}
                 {console.log(sessionUser.id, "dsawdas")} */}
-                </div>
-
-                {review?.user_id === sessionUser?.id && (
-                  <div className={styles.edit}>
-                    <EditReviewModal review={review} />
-                    <i
-                      className={`${styles.delete} fa-light fa-x`}
-                      onClick={async (e) => {
-                        e.preventDefault();
-                        await dispatch(deleteReviewThunk(review));
-                      }}
-                    ></i>
                   </div>
-                )}
-              </div>
-            ) : (
-              <></>
-            );
-          }
-        })}
+
+                  {review?.user_id === sessionUser?.id && (
+                    <div className={styles.edit}>
+                      <EditReviewModal review={review} />
+                      <i
+                        className={`${styles.delete} fa-light fa-x`}
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          await dispatch(deleteReviewThunk(review));
+                        }}
+                      ></i>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <></>
+              );
+            }
+          })
+        )}
       </div>
     </div>
   );
