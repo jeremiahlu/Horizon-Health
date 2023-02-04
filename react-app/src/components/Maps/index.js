@@ -41,7 +41,7 @@ const Maps = () => {
     // console.log(center, "CENTER");
     const request = {
       location: search_center,
-      radius: 16093.4, // 5 miles in meters
+      radius: 32093.4, // 5 miles in meters
       types: [
         "drugstore",
         "hospital",
@@ -49,6 +49,7 @@ const Maps = () => {
         "physiotherapist",
         "dentist",
         "doctor",
+        "convenience store",
       ],
     };
     // console.log(request, "REQUEST");
