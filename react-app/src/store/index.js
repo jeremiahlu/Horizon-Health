@@ -5,6 +5,7 @@ import reviewReducer from "./review";
 import itemReducer from "./item";
 import cartReducer from "./cart";
 import cartItemReducer from "./cartItem";
+import mapsReducer from "./map";
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   items: itemReducer,
   cart: cartReducer,
   cartItem: cartItemReducer,
+  map: mapsReducer,
 });
 
 let enhancer;

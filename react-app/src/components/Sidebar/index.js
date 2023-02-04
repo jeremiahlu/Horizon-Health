@@ -116,6 +116,18 @@ const Sidebar = ({ cart }) => {
         </button>
 
         <button className={styles.button}>
+          <NavLink to="/maps" exact={true} className={styles.active}>
+            <i
+              className={`${styles.icon} fa-sharp fa-solid fa-map-location-dot`}
+            ></i>
+            <div className={styles.iconText} style={{ animationDelay: "0.3s" }}>
+              {" "}
+              Map{" "}
+            </div>
+          </NavLink>
+        </button>
+
+        <button className={styles.button}>
           <NavLink to="/items" exact={true} className={styles.active}>
             <i className={`${styles.icon} fa-sharp fa-solid fa-store`}></i>
             <div className={styles.iconText} style={{ animationDelay: "0.3s" }}>
