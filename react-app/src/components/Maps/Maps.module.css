@@ -1,0 +1,132 @@
+.container {
+  display: flex;
+  position: absolute;
+  width: 95%;
+  /* margin-left: 100px; */
+  /* border: 1px solid red; */
+  z-index: 100;
+  padding: 10px;
+}
+
+.map {
+  /* margin-left: 200px; */
+  color: white;
+}
+
+.mapDiv {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.mapSearch {
+  width: auto;
+  /* border: 1px solid #999; */
+  /* padding: 5px; */
+  position: relative;
+  color: white;
+  margin-bottom: 20px;
+  z-index: 99;
+  /* border: 1px solid white; */
+  height: 90vh;
+  /* width: 40%; */
+  /* padding: 15px; */
+}
+
+.searchInput {
+  width: 508px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  /* height: 50px; */
+}
+
+.searchData {
+  color: rgba(0, 0, 0, 0.8);
+  position: relative;
+  border: 1px solid #999;
+  z-index: 100;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.data {
+  border-bottom: 1px solid #999;
+}
+
+.marker {
+  position: relative;
+  color: white;
+  margin-left: 100px;
+  z-index: 99;
+  border: 1px solid white;
+  height: 90vh;
+  width: 60%;
+  padding: 15px;
+  overflow: scroll;
+  border-radius: 5px;
+}
+
+.marker::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.places {
+  display: flex;
+  color: white;
+  z-index: 99;
+  border-bottom: 1px solid #999;
+  padding: 10px;
+  /* justify-content: space-between; */
+  /* overflow-y: scroll; */
+}
+
+.icon {
+  height: 125px;
+  width: 125px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.storeDetails {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 80%;
+  line-height: 20px;
+  margin: 10px;
+}
+
+.title {
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.index {
+  padding-right: 8px;
+}
+
+.address {
+  margin: 8px 0;
+}
+
+.open {
+  color: green;
+}
+
+.closed {
+  color: red;
+}
+
+.noSearch {
+  color: white;
+}
