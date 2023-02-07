@@ -3,6 +3,7 @@ import { useEffect, useState, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsThunk } from "../../store/item";
+import Search from "../Search";
 import {
   fetchCart,
   myCartThunk,
@@ -15,6 +16,7 @@ import {
 const Item = ({ cart }) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("");
   const allItems = useSelector((state) => state.items);
   const itemValues = Object.values(allItems);
   const user = useSelector((state) => state.session.user);
@@ -82,8 +84,6 @@ const Item = ({ cart }) => {
   // };
 
   const cartAdd = async (item) => {
-    // console.log(item, "ITEMID");
-    // e.preventDefault();
     let payload = {
       cart_id: user?.id,
       item_id: item?.id,
@@ -94,28 +94,15 @@ const Item = ({ cart }) => {
     const itemNames = newCart.map((item) => item?.item_id);
     let cartItems = itemNames.find((product) => item?.id == product);
     let cartItemName = newCart.find((item) => item?.item_id === cartItems);
-    // console.log(newCart, "cart");
-    // console.log(item, "ITEM");
-    // console.log(itemNames, "itemnames");
-    // console.log(cartItems, "cartitems");
-    // console.log(cartItemName, "cartItemName");
 
-    {
-      // if (cartItemName) {
-      //   cartItemName.quantity += 1;
-      //   console.log("HAT");
-      // } else {
-      //   // console.log("HIT");
-      //   // cartItems = {
-      //   //   ...item,
-      //   //   quantity: 1,
-      //   // };
-      //   cartItemName.quantity = 1;
-      //   newCart.push(cartItemName);
-      // }
-      await dispatch(addCartItem(payload));
-    }
+    await dispatch(addCartItem(payload));
   };
+
+  const filtered = useMemo(() => {
+    return itemValues?.filter((item) => {
+      return item.name.toLowerCase().includes(filter.toLowerCase());
+    });
+  }, [itemValues, filter]);
 
   useEffect(() => {
     const getItems = async () => {
@@ -147,8 +134,23 @@ const Item = ({ cart }) => {
 
   return (
     <div className={styles.itemsContainer}>
+      <div className={styles.searchContainer}>
+        <Search className={styles.search} />
+
+        <div className={styles.filter}>
+          <input
+            className={styles.filterInput}
+            placeholder="Filter by name"
+            type="filter"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+          <i className={`${styles.filterIcon} fa-sharp fa-solid fa-filter`}></i>
+        </div>
+      </div>
+
       <div className={styles.itemsList}>
-        {itemValues?.map((item, index) => {
+        {filtered?.map((item, index) => {
           const itemId = itemValues[index].id;
 
           return (

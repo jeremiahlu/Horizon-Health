@@ -7,7 +7,7 @@
   row-gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-  margin: 100px;
+  margin: 0 100px;
   padding: 100px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -427,4 +427,49 @@
   /* background-color: rgba(0, 0, 0, 0.6);
   padding: 10px;
   border-radius: 15px; */
+}
+
+.search {
+  /* margin-left: 300px; */
+  z-index: 100;
+}
+
+.filter {
+  display: flex;
+  position: relative;
+  right: 0;
+  margin-left: 100px;
+  /* border: 1px solid red; */
+}
+
+.filterInput {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.filterIcon {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.filterInput::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  height: 300px;
+  background-image: url("https://daily.jstor.org/wp-content/uploads/2021/10/new_york_city_underwater_1050x700.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 80%;
+  /* border: 1px solid yellow; */
 }

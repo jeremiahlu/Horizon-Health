@@ -31,6 +31,9 @@ const Checkout = ({ cart }) => {
 
   //   price = quantity.map((value, index) => value * prices[index]);
   // };
+  const clearCart = () => {
+    dispatch(cartClear());
+  };
 
   return (
     <div className={styles.checkoutContainer}>
@@ -90,7 +93,7 @@ const Checkout = ({ cart }) => {
         <div className={styles.total}>Total (USD): ${totalPrice}</div>
 
         <NavLink className={styles.complete} to="/checkout/complete">
-          <button className={styles.completeButton}>
+          <button onClick={clearCart} className={styles.completeButton}>
             {/* <button
             onClick={async (e) => {
               e.preventDefault();

@@ -33,7 +33,7 @@ const delCartItem = (item) => ({
 //   cart,
 // });
 
-const delCart = (cart) => ({
+const delCartItems = (cart) => ({
   type: CLEAR_CART,
   cart,
 });
@@ -112,7 +112,7 @@ export const myCartThunk = (id) => async (dispatch) => {
 //     }
 //   };
 export const cartClear = () => async (dispatch) => {
-  dispatch(delCart());
+  dispatch(delCartItems());
 };
 
 const inititalState = {};
@@ -148,9 +148,8 @@ const cartReducer = (state = inititalState, action) => {
     // case CREATE_CART:
     //   return action.payload;
 
-    case DELETE_CART:
-      newState = {};
-      return newState;
+    case CLEAR_CART:
+      return {};
     // case DELETE_CART:
     //   return null;
 

@@ -157,7 +157,7 @@ const Maps = () => {
             <div className={styles.noText}>
               Unable to find nearby healthcare facilities, please try another
               address. If that doesn't work, consider turning on location
-              services or turning off ad-blockers.
+              services and turning off ad-blockers.
             </div>
           </div>
         )}
@@ -167,7 +167,7 @@ const Maps = () => {
             <div className={styles.mapSearch}>
               <GoogleMap
                 mapContainerStyle={{
-                  width: "508px",
+                  width: "608px",
                   height: "90vh",
                 }}
                 zoom={13}
