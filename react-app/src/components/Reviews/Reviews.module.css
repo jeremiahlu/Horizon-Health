@@ -32,12 +32,14 @@
 
 .reviewer {
   font-style: italic;
-  padding: 10px;
+  padding: 10px 0;
   font-size: 12px;
+  line-height: 15px;
+  display: flex;
 }
 
 .review {
-  margin: 3px;
+  margin: 15px 3px;
 }
 
 input[type="radio"] {
@@ -136,3 +138,9 @@ input[type="radio"]:checked:after ~ .star {
   font-size: 20px;
   cursor: pointer;
 } */
+.profilePicture {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}

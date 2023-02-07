@@ -7,6 +7,7 @@ import {
   deleteReviewThunk,
 } from "../../store/review";
 import styles from "./Reviews.module.css";
+import { FaStar } from "react-icons/fa";
 
 function EditReviewForm({ review, onClose }) {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function EditReviewForm({ review, onClose }) {
   // const [reviews, setReview] = useState(review?.review);
   const [stars, setStars] = useState(review?.stars);
   const [reviews, setReview] = useState("");
+  const [hover, setHover] = useState(null);
   // const [stars, setStars] = useState("");
 
   // console.log(typeof review.stars, "HIOAASDAS");
@@ -81,7 +83,7 @@ function EditReviewForm({ review, onClose }) {
           maxLength={50}
         />
       </div>
-      <form>
+      {/* <form>
         <label>
           <input type="radio" name="rating" value="1" />
           <span className={styles.star}>★</span>
@@ -102,7 +104,29 @@ function EditReviewForm({ review, onClose }) {
           <input type="radio" name="rating" value="5" />
           <span className={styles.star}>★</span>
         </label>
-      </form>
+      </form> */}
+      <div className={styles.starRatings}>
+        {[...Array(5)].map((star, idx) => {
+          return (
+            <label>
+              <input
+                key={idx}
+                type="radio"
+                name="rating"
+                value={idx + 1}
+                onClick={() => setStars(idx + 1)}
+              />
+              {/* <span className={`${styles.star} active`}>★</span> */}
+              <FaStar
+                className={`${styles.star} active`}
+                color={idx + 1 <= (hover || stars) ? "#ffcc00" : "#ccc"}
+                onMouseEnter={() => setHover(idx + 1)}
+                onMouseLeave={() => setHover(null)}
+              />
+            </label>
+          );
+        })}
+      </div>
 
       <input className={styles.submitEditedReview} type="submit" />
     </form>

@@ -48,7 +48,7 @@ const Maps = () => {
     // console.log(request, "REQUEST");
     service?.nearbySearch(request, (results, status) => {
       if (status === "OK") {
-        console.log(results, "RESULTS");
+        // console.log(results, "RESULTS");
         setMarkers(
           results?.map((result) => ({
             result,

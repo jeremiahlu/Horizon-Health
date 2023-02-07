@@ -8,6 +8,7 @@ import {
   deleteReviewThunk,
 } from "../../store/review";
 import styles from "./Reviews.module.css";
+import { FaStar } from "react-icons/fa";
 
 const ReviewForm = ({ item }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const ReviewForm = ({ item }) => {
   const { id } = useParams();
   const [review, setReview] = useState("");
   const [stars, setStars] = useState("1");
+  const [hover, setHover] = useState(null);
   const [errors, setErrors] = useState([]);
   const itemsObj = useSelector((state) => state.items);
   const items = Object.values(itemsObj);
@@ -80,26 +82,42 @@ const ReviewForm = ({ item }) => {
 
       {}
       <div>
-        <label>
-          <input type="radio" name="rating" value="1" />
-          <span className={`${styles.star} active`}>★</span>
-        </label>
-        <label>
-          <input type="radio" name="rating" value="2" />
-          <span className={styles.star}>★</span>
-        </label>
-        <label>
-          <input type="radio" name="rating" value="3" />
-          <span className={styles.star}>★</span>
-        </label>
-        <label>
-          <input type="radio" name="rating" value="4" />
-          <span className={styles.star}>★</span>
-        </label>
-        <label>
-          <input type="radio" name="rating" value="5" />
-          <span className={styles.star}>★</span>
-        </label>
+        {[...Array(5)].map((star, idx) => {
+          return (
+            <label>
+              <input
+                key={idx}
+                type="radio"
+                name="rating"
+                value={idx + 1}
+                onClick={() => setStars(idx + 1)}
+              />
+              {/* <span className={`${styles.star} active`}>★</span> */}
+              <FaStar
+                className={`${styles.star} active`}
+                color={idx + 1 <= (hover || stars) ? "#ffcc00" : "#ccc"}
+                onMouseEnter={() => setHover(idx + 1)}
+                onMouseLeave={() => setHover(null)}
+              />
+            </label>
+            // <label>
+            //   <input type="radio" name="rating" value="2" />
+            //   <span className={styles.star}>★</span>
+            // </label>
+            // <label>
+            //   <input type="radio" name="rating" value="3" />
+            //   <span className={styles.star}>★</span>
+            // </label>
+            // <label>
+            //   <input type="radio" name="rating" value="4" />
+            //   <span className={styles.star}>★</span>
+            // </label>
+            // <label>
+            //   <input type="radio" name="rating" value="5" />
+            //   <span className={styles.star}>★</span>
+            // </label>
+          );
+        })}
       </div>
 
       <input className={styles.submitReview} type="submit" />

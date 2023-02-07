@@ -12,7 +12,16 @@ const AccountSettings = () => {
   return (
     <div className={styles.container}>
       <div className={styles.dashNavbar}>
-        <div className={styles.editProfile}> Edit Profile </div>
+        <div className={styles.navHeader}>
+          <img
+            className={styles.profilePicture}
+            src={loggedSession.profile_picture}
+          ></img>
+          <div className={styles.navUserName}>
+            {loggedSession.first_name + " " + loggedSession.last_name}
+          </div>
+        </div>
+        <div className={styles.editProfile}> Account Details </div>
         {/* <div className="dash-logo-div">
           <Link className="dash-link" to="/dashboard">
             <img
@@ -38,22 +47,23 @@ const AccountSettings = () => {
       </div>
 
       <div className={styles.accountSettingsMain}>
-        <div className={styles.imageDiv}>
+        <div className={styles.accountDetails}>Account Details</div>
+        {/* <div className={styles.imageDiv}>
+          Profile picture
           <img
             className={styles.profilePicture}
             src={loggedSession.profile_picture}
           ></img>
-
           <div className={styles.addImage}>
             {loggedSession.username}
             <span className={styles.imageText}>
-              {/* Change your profile picture */}
-              <button className={styles.chooseFile}>
+            Change your profile picture
+            <button className={styles.chooseFile}>
                 <input className="as-file-input" type="file" multiple />
               </button>
             </span>
           </div>
-        </div>
+        </div> */}
 
         <div className={styles.userInfoList}>
           <div className={styles.userInfo}>
@@ -61,6 +71,8 @@ const AccountSettings = () => {
             <input
               defaultValue={loggedSession.username}
               className={styles.info}
+              type="text"
+              readOnly="readonly"
             />
           </div>
 
@@ -72,12 +84,19 @@ const AccountSettings = () => {
                 loggedSession.first_name + " " + loggedSession.last_name
               }
               className={styles.info}
+              type="text"
+              readOnly="readonly"
             />
           </div>
 
           <div className={styles.userInfo}>
             <li className={styles.label}> Email</li>
-            <input defaultValue={loggedSession.email} className={styles.info} />
+            <input
+              defaultValue={loggedSession.email}
+              className={styles.info}
+              type="text"
+              readOnly="readonly"
+            />
           </div>
 
           <div className={styles.userInfo}>
@@ -85,6 +104,8 @@ const AccountSettings = () => {
             <input
               defaultValue={loggedSession.gender}
               className={styles.info}
+              type="text"
+              readOnly="readonly"
             />
           </div>
 
@@ -93,6 +114,8 @@ const AccountSettings = () => {
             <input
               defaultValue={loggedSession.address}
               className={styles.info}
+              type="text"
+              readOnly="readonly"
             />
           </div>
         </div>

@@ -49,7 +49,7 @@ const Checkout = ({ cart }) => {
           // console.log(item.id);
           return (
             <>
-              <div key={item?.id} className={styles.card}>
+              <div key={index} className={styles.card}>
                 <img className={styles.image} src={item?.item.image} />
 
                 <div className={styles.itemDetails}></div>

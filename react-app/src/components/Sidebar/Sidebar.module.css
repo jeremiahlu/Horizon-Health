@@ -54,7 +54,7 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   background-color: rgba(0, 0, 0, 1);
   z-index: 99;
 }

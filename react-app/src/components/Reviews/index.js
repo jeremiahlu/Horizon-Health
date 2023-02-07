@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllReviewThunk, deleteReviewThunk } from "../../store/review";
 import EditReviewModal from "./EditIndex";
+import { FaStar } from "react-icons/fa";
 import styles from "./Reviews.module.css";
 
 function Reviews({ item }) {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const [stars, setStars] = useState("1");
   const itemsObj = useSelector((state) => state.items);
   const items = Object.values(itemsObj);
   const user = useSelector((state) => state.session);
@@ -41,28 +42,41 @@ function Reviews({ item }) {
               return review?.item_id === item?.id ? (
                 <div className={styles.reviewDiv}>
                   <div className={styles.reviewId} key={review?.id}>
-                    {/* {console.log(review.id, "HREASDWW")} */}
                     {/* <div className={styles.reviewDate}>
                     {review?.created_at.slice(4, 16)}
                   </div> */}
 
+                    <div className={styles.reviewer}>
+                      <img
+                        className={styles.profilePicture}
+                        src={review?.user?.profile_picture}
+                      ></img>
+                      <div className={styles.reviewDetails}>
+                        <span>Review by </span>
+                        {review?.user?.first_name + " "}
+                        {review?.user?.last_name}
+                        <span> on </span>
+                        <div className={styles.reviewDate}>
+                          {review?.created_at.slice(4, 16)}
+                        </div>
+                      </div>
+                    </div>
                     <div id="starContainer">
-                      <i
+                      {[...Array(parseInt(review?.stars))].map((star, idx) => {
+                        return (
+                          <FaStar
+                            className={`${styles.star} active`}
+                            color={"#ffcc00"}
+                          />
+                        );
+                      })}
+                      {/* <i
                         id="star"
                         className={`${styles.stars} fa-solid fa-star`}
                       ></i>
 
-                      {review?.stars}
+                      {review?.stars} */}
                       <div className={styles.review}>{review?.review}</div>
-                    </div>
-                    <div className={styles.reviewer}>
-                      <span>Review by </span>
-                      {review?.user?.first_name + " "}
-                      {review?.user?.last_name}
-                      <span> on </span>
-                      <div className={styles.reviewDate}>
-                        {review?.created_at.slice(4, 16)}
-                      </div>
                     </div>
                     {/* {console.log(reviews, "REDHSAIOW")}
                 {console.log(sessionUser.id, "dsawdas")} */}
