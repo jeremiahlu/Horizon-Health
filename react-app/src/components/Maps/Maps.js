@@ -18,6 +18,7 @@ import {
 function Search({ panTo, getNearbyHealthcareFacilities, setCenter, lat, lng }) {
   // const [center, setCenter] = useState({});
   const [default_center, setDefault] = useState({ lat, lng });
+  // const [searchInput, setSearch] = useState("");
 
   const {
     ready,
@@ -51,6 +52,7 @@ function Search({ panTo, getNearbyHealthcareFacilities, setCenter, lat, lng }) {
       // console.log(typeof lat, typeof lng, "HREER");
       panTo({ lat, lng });
       getNearbyHealthcareFacilities({ lat, lng });
+      setValue("");
     } catch (error) {
       console.log("Error: ", error);
     }

@@ -41,25 +41,18 @@ const Maps = () => {
     // console.log(center, "CENTER");
     const request = {
       location: search_center,
-      radius: 32093.4, // 5 miles in meters
-      types: [
-        "drugstore",
-        "hospital",
-        "pharmacy",
-        "physiotherapist",
-        "dentist",
-        "doctor",
-        "convenience store",
-      ],
+      radius: 50093.4, // 5 miles in meters
+      types: ["doctor"],
+      // keyword: "doctor",
     };
     // console.log(request, "REQUEST");
     service?.nearbySearch(request, (results, status) => {
       if (status === "OK") {
-        // console.log(results[0].opening_hours, "RESULTS");
+        console.log(results, "RESULTS");
         setMarkers(
           results?.map((result) => ({
             result,
-            icon: result?.photos[0]?.getUrl({ maxWidth: 200, maxHeight: 200 }),
+            // icon: result?.photos[0]?.getUrl({ maxWidth: 200, maxHeight: 200 }),
             position: result.geometry.location,
             title: result.name,
             rating: result.rating,
@@ -83,9 +76,9 @@ const Maps = () => {
       // setMarkers({ lat, lng });
       // Search({ lat, lng });
       getNearbyHealthcareFacilities({ lat, lng });
-      console.log(lat, lng, "HERE");
+      // console.log(lat, lng, "HERE");
     });
-  }, []);
+  }, [getNearbyHealthcareFacilities]);
 
   const mapRef = useRef();
   // console.log(mapRef, "MAPREF");
@@ -112,9 +105,10 @@ const Maps = () => {
 
   if (!isLoaded) {
     return (
-      <>
-        <div>This page can't load Google Maps correctly.</div>;
-      </>
+      <div className={styles.errorPage}>
+        <div>This page can't load Google Maps correctly.</div>
+        <div> Please turn location services on to enable this feature</div>;
+      </div>
     );
   }
 
@@ -131,19 +125,23 @@ const Maps = () => {
         </div>
       )}
       <div className={styles.container}>
-        {isLoaded ? (
+        {markers.length > 0 ? (
           <div className={styles.marker}>
             {markers?.map((marker, idx) => {
               return (
                 <div key={idx} className={styles.places}>
-                  <img className={styles.icon} src={marker.icon}></img>
+                  {/* <img className={styles.icon} src={marker.icon}></img> */}
                   <div className={styles.storeDetails}>
                     <div className={styles.title}>
                       <div className={styles.index}>{idx + 1}.</div>
                       {marker.title}
                     </div>
                     <div className={styles.address}>{marker.address}</div>
-                    Rating: {marker.rating} / 5{/* {marker.user_ratings} */}
+                    {marker.rating ? (
+                      <div> Rating: {marker.rating} / 5 </div>
+                    ) : (
+                      <div> No ratings available </div>
+                    )}
                     {marker.open ? (
                       <div className={styles.open}> Open </div>
                     ) : (
@@ -156,8 +154,11 @@ const Maps = () => {
           </div>
         ) : (
           <div className={styles.noSearch}>
-            Unable to find nearby healthcare facilities, please try another
-            address
+            <div className={styles.noText}>
+              Unable to find nearby healthcare facilities, please try another
+              address. If that doesn't work, consider turning on location
+              services or turning off ad-blockers.
+            </div>
           </div>
         )}
 
@@ -176,26 +177,36 @@ const Maps = () => {
                 key={apiKey}
                 onLoad={onMapLoad}
               >
-                {markers.map((marker, idx) => (
-                  // console.log(marker.position, "marker")
-                  <Marker
-                    key={idx}
-                    position={marker.position}
-                    onClick={() => {
-                      setSelected(marker);
-                    }}
-                    // icon={{
-                    //   // label: `${idx + 1}`,
-                    //   origin: new window.google.maps.Point(0, 0),
-                    //   scaledSize: new window.google.maps.Size(20, 20),
-                    // }}
-                    // icon={{
-                    //   origin: new window.google.maps.Point(0, 0),
-                    //   anchor: new window.google.maps.Point(15, 15),
-                    //   scaledSize: new window.google.maps.Size(30, 30),
-                    // }}
-                  />
-                ))}
+                <Marker
+                  position={center}
+                  // icon={{
+                  //   label: "YOU",
+                  // }}
+                />
+                {markers.length ? (
+                  markers.map((marker, idx) => (
+                    // console.log(marker.position, "marker")
+                    <Marker
+                      key={idx}
+                      position={marker.position}
+                      onClick={() => {
+                        setSelected(marker);
+                      }}
+                      // icon={{
+                      //   // label: `${idx + 1}`,
+                      //   origin: new window.google.maps.Point(0, 0),
+                      //   scaledSize: new window.google.maps.Size(20, 20),
+                      // }}
+                      // icon={{
+                      //   origin: new window.google.maps.Point(0, 0),
+                      //   anchor: new window.google.maps.Point(15, 15),
+                      //   scaledSize: new window.google.maps.Size(30, 30),
+                      // }}
+                    />
+                  ))
+                ) : (
+                  <div>No results</div>
+                )}
               </GoogleMap>
             </div>
           )}
