@@ -33,7 +33,7 @@ const delCartItem = (item) => ({
 //   cart,
 // });
 
-const delCartItems = (cart) => ({
+const delCart = (cart) => ({
   type: CLEAR_CART,
   cart,
 });
@@ -101,19 +101,20 @@ export const myCartThunk = (id) => async (dispatch) => {
 //   }
 // };
 
-// export const cartClear =
-//   ({ cart_id }) =>
-//   async (dispatch) => {
-//     const res = await csrfFetch(`/api/cart/`, {
-//       method: "DELETE",
-//     });
-//     if (res.ok) {
-//       dispatch(delCart(cart_id));
-//     }
-//   };
-export const cartClear = () => async (dispatch) => {
-  dispatch(delCartItems());
-};
+export const cartClear =
+  ({ cart_id }) =>
+  async (dispatch) => {
+    const res = await fetch(`/api/cart/${cart_id}/items`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      dispatch(delCart(cart_id));
+    }
+  };
+// export const cartClear = () => async (dispatch) => {
+//   const res = await csrfFetch(`api/cart/`, method: {"DELETE"})
+//   dispatch(delCartItems());
+// };
 
 const inititalState = {};
 const cartReducer = (state = inititalState, action) => {

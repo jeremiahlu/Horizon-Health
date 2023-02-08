@@ -15,8 +15,8 @@
   color: #aeaeae;
   font-size: 28px;
   margin: 15px;
-  /* display: flex;
-  justify-content: center; */
+  display: flex;
+  justify-content: center;
 }
 
 .emptyTitle {

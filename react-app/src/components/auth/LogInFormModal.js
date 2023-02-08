@@ -20,10 +20,12 @@ const LoginForm = ({ SignUpFormModal }) => {
     }
   };
 
-  const handleGuestLogin = (e) => {
+  const handleGuestLogin = async (e) => {
     e.preventDefault();
 
-    return setEmail("demo@aa.io"), setPassword("password");
+    // return setEmail("demo@aa.io"), setPassword("password");
+    const res = await dispatch(login("demo@aa.io", "password"));
+    return res;
   };
 
   const updateEmail = (e) => {

@@ -56,14 +56,27 @@ def get_my_cart(id):
 #       return cart.to_dict()
 #   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@cart_routes.route('/', methods =['DELETE'])
-def clear_cart():
-  user_id = current_user.id
-  cart_exist = Cart.query.filter_by(id = user_id)
+@cart_routes.route('/', methods = ['POST'])
+def new_cart():
+  user_id = current_user.id 
+  cart = Cart(
+    user_id = user_id 
+  )
+  db.session.add(cart)
+  db.session.commit()
+  return cart.to_dict()
 
+@cart_routes.route('/<int:cart_id>/items', methods =['DELETE'])
+def clear_cart(cart_id):
+  user_id = current_user.id
+  cart_exist =  CartItem.query.filter_by(cart_id = user_id).all()
+
+  # for item in range(len(cart_exist)):
+  #   db.session.delete(cart_exist[item])
+  # db.session.commit()
   db.session.delete(cart_exist)
   db.session.commit()
-  return jsonify({'message': 'Successfully deleted', 'cart': cart_exist.to_dict()}), 200
+  return jsonify({'message': 'Successfully deleted' }), 200
 
 @cart_routes.route('/<int:cart_id>/items/<int:item_id>', methods= ["POST"])
 def add_cart_item(cart_id, item_id):

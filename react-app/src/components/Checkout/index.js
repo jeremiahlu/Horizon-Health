@@ -19,6 +19,8 @@ const Checkout = ({ cart }) => {
   let tax = parseInt(cartPrice * 0.06).toFixed(2);
   let shipping = parseInt(cartPrice * 0.03).toFixed(2);
   let totalPrice = parseInt(cartPrice + +tax + +shipping).toFixed(2);
+  // console.log(cart[0].cart_id, "CART");
+  let cartId = cart[0]?.cart_id;
 
   let quantity = cart?.map((item) => item.quantity);
   // console.log(quantity, "HASDA");
@@ -31,8 +33,11 @@ const Checkout = ({ cart }) => {
 
   //   price = quantity.map((value, index) => value * prices[index]);
   // };
-  const clearCart = () => {
-    dispatch(cartClear());
+  const clearCart = async (cartId, e) => {
+    // e.preventDefault();
+    // console.log(typeof cartId, "HERERADSA");
+    await dispatch(cartClear({ cart_id: cartId }));
+    // await dispatch(fetchCart());
   };
 
   return (
@@ -93,7 +98,10 @@ const Checkout = ({ cart }) => {
         <div className={styles.total}>Total (USD): ${totalPrice}</div>
 
         <NavLink className={styles.complete} to="/checkout/complete">
-          <button onClick={clearCart} className={styles.completeButton}>
+          <button
+            onClick={(e) => clearCart(cartId, e)}
+            className={styles.completeButton}
+          >
             {/* <button
             onClick={async (e) => {
               e.preventDefault();

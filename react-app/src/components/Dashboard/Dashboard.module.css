@@ -129,6 +129,10 @@
   gap: 10px;
 }
 
+.links::hover {
+  background-color: #999;
+}
+
 .logInButton,
 .signUpButton {
   border: none;
@@ -157,3 +161,19 @@
   align-items: center;
   text-align: center;
 }
+
+/* .parallax {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  height: 500px;
+  transform: translate3d(0,0,0);
+  will-change: transform;
+  cursor: all-scroll;
+}
+
+.slider.animation */

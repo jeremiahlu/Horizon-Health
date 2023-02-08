@@ -57,13 +57,13 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className={styles.parallax}>
+      {/* <div className={styles.parallax}>
         <div className={styles.slider}>
           <ul className={styles.nav}></ul>
-          <div data-target="left" className={styles.left}></div>
-          <div data-target="right" className={styles.right}></div>
+          <div data-target="left" className={`${styles.left} side-nav`}></div>
+          <div data-target="right" className={`${styles.right} side-nav`}></div>
         </div>
-      </div>
+      </div> */}
 
       <footer className={styles.footer}>
         <div className={styles.brandDiv}>
