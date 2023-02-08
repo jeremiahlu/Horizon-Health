@@ -71,11 +71,11 @@ def clear_cart(cart_id):
   user_id = current_user.id
   cart_exist =  CartItem.query.filter_by(cart_id = user_id).all()
 
-  # for item in range(len(cart_exist)):
-  #   db.session.delete(cart_exist[item])
-  # db.session.commit()
-  db.session.delete(cart_exist)
+  for item in range(len(cart_exist)):
+    db.session.delete(cart_exist[item])
   db.session.commit()
+  # db.session.delete(cart_exist)
+  # db.session.commit()
   return jsonify({'message': 'Successfully deleted' }), 200
 
 @cart_routes.route('/<int:cart_id>/items/<int:item_id>', methods= ["POST"])
