@@ -1,6 +1,6 @@
 import styles from "./Checkout.module.css";
 import { useEffect, useState, useMemo } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { useHistory, NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getItemsThunk } from "../../store/item";
 import {
@@ -11,8 +11,11 @@ import {
 } from "../../store/cart";
 
 const Checkout = ({ cart }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const myCart = useSelector((state) => Object.values(state.cart));
+  const user = useSelector((state) => state.session.user);
+  // console.log(user, "HERE");
   const items = useSelector((state) => state.items);
   let cartPrice = cart?.reduce((a, b) => a + b.quantity * b.item.price, 0);
   // console.log(cart, "CARTPRICE");
@@ -50,7 +53,13 @@ const Checkout = ({ cart }) => {
         />
         <span className={styles.name}> Horizon Health </span>
       </div>
-
+      {/* <button className={styles.backToCart}> */}
+      <NavLink className={styles.backToCart} to={`/cart/${user.id}/items`}>
+        <i className={`${styles.back} fa-solid fa-chevron-left`}></i>
+        <i className={`${styles.back} fa-solid fa-chevron-left`}></i>
+        Return to cart
+      </NavLink>
+      {/* </button> */}
       <div className={styles.orderSummaryDiv}>
         <div className={styles.orderSummary}> Order Summary</div>
         {myCart?.map((item, index) => {

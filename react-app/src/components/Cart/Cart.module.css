@@ -8,7 +8,7 @@
   border-radius: 5px;
   padding: 25px;
   font-family: Arial, Helvetica, sans-serif;
-  width: 883px;
+  width: 70%;
 }
 
 .title {
@@ -52,6 +52,10 @@
 .shipping,
 .tax {
   color: white;
+}
+
+.cartItem {
+  width: 100%;
 }
 
 .card {
@@ -103,6 +107,7 @@
 
 .cartList {
   position: relative;
+  width: 100%;
 }
 
 .cartItem {
@@ -130,7 +135,7 @@
 .itemDetails {
   display: flex;
   justify-content: space-between;
-  width: 600px;
+  width: 100%;
   padding: 20px;
 }
 
@@ -158,10 +163,12 @@
 
 .name {
   font-size: 20px;
-  width: 450px;
+  width: 100%;
   /* border: 1px solid red; */
-  overflow-wrap: break-all;
+  /* overflow-wrap: break-all; */
   white-space: normal;
+  text-overflow: ellipsis;
+  max-height: 60px;
 }
 
 .stock {
@@ -186,7 +193,7 @@
 
 .checkoutDiv {
   position: fixed;
-  top: 0;
+  top: 50px;
   right: 0;
   border: 1px solid #aeaeaee6;
   border-radius: 5px;

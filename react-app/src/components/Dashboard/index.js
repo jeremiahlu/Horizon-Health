@@ -33,12 +33,14 @@ const Dashboard = () => {
   // }, [dispatch]);
   return (
     <div className={styles.dashboardContainer}>
-      <img
-        src="https://i.pinimg.com/564x/8d/29/ef/8d29ef579d2a0b86886f53673a5324da.jpg"
-        default=""
-        className={styles.sidebarLogo}
-      />
-      <img src="./nyc.png" default="" className={styles.cityscape} />
+      <div className={styles.imageContainer}>
+        <img
+          src="https://i.pinimg.com/564x/8d/29/ef/8d29ef579d2a0b86886f53673a5324da.jpg"
+          default=""
+          className={styles.sidebarLogo}
+        />
+        <img src="./nyc.png" default="" className={styles.cityscape} />
+      </div>
 
       <div className={styles.aboutUsContainer}>
         <div className={styles.aboutUs}>
@@ -50,11 +52,13 @@ const Dashboard = () => {
             such as OTC meds and general care products.
           </span>
         </div>
-        <img
-          src="./central-park.png"
-          default=""
-          className={styles.centralPark}
-        />
+        <div className={styles.imgContainer}>
+          <img
+            src="./central-park.png"
+            default=""
+            className={styles.centralPark}
+          />
+        </div>
       </div>
 
       {/* <div className={styles.parallax}>

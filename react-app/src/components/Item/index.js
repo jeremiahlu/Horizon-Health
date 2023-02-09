@@ -165,7 +165,7 @@ const Item = ({ cart }) => {
               </NavLink>
 
               <div className={styles.footer}>
-                <div className={styles.price}>${item.price}</div>
+                <div className={styles.price}>${(item?.price).toFixed(2)}</div>
                 <button className={styles.cart} onClick={() => cartAdd(item)}>
                   <span className={styles.cart}> Add to Cart</span>
                   <i className={`${styles.check}fa-sharp fa-solid fa-check`}>

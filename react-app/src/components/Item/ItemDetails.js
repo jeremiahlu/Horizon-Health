@@ -43,7 +43,7 @@ function ItemDetails({ cart }) {
 
   return (
     <>
-      item? && (
+      item? &&
       <div className={styles.shell}>
         <div className={styles.itemDetailContainer}>
           <div className={styles.productDetail}>
@@ -56,7 +56,9 @@ function ItemDetails({ cart }) {
 
             <div className={styles.itemDetailDiv}>
               <div className={styles.itemName}>{item?.name}</div>
-              <div className={styles.itemPrice}>${item?.price}</div>
+              <div className={styles.itemPrice}>
+                ${(item?.price).toFixed(2)}
+              </div>
               <button
                 className={styles.addToCart}
                 onClick={(e) => cartAdd(item, e)}
@@ -71,7 +73,6 @@ function ItemDetails({ cart }) {
               <Reviews item={item} />
             </div>
           </div>
-          )
         </div>
       </div>
     </>
