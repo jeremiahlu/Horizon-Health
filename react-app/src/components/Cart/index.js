@@ -214,7 +214,7 @@ const Cart = ({ cart }) => {
             Shopping Cart
           </h1>
           {myCart.length === 0 && (
-            <>
+            <div className={styles.emptyDiv}>
               {/* <h1 className={styles.emptyTitle}>Shopping Cart</h1> */}
               <img
                 className={styles.emptyCart}
@@ -223,7 +223,7 @@ const Cart = ({ cart }) => {
               <div className={styles.empty}>
                 Looks like your cart is a little empty
               </div>
-            </>
+            </div>
           )}
           {myCart?.map((item, index) => {
             // let newCart = [...art];

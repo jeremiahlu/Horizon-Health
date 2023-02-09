@@ -39,6 +39,13 @@
   width: 400px;
 }
 
+.emptyDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .continueShopping {
   display: flex;
   justify-content: center;
@@ -205,6 +212,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+@media (max-width: 1530px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .checkoutDiv {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .checkout {

@@ -156,8 +156,16 @@ const Maps = () => {
           <div className={styles.noSearch}>
             <div className={styles.noText}>
               Unable to find nearby healthcare facilities, please try another
-              address. If that doesn't work, consider turning on location
-              services and turning off ad-blockers.
+              address.
+            </div>
+            <img
+              className={styles.world}
+              src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvam9iNjgxLTAwMDktcC1sMWxnZ2hpcS5wbmc.svg?s=bM5sfdfFP5YiswVORuR_V2-16pPxG_cAJNwMoR0jxWk"
+              alt="world"
+            ></img>
+            <div className={styles.noText}>
+              If that doesn't work, consider turning on location services and
+              turning off ad-blockers.
             </div>
           </div>
         )}
