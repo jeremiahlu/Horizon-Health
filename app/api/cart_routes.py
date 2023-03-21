@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Cart, Item, CartItem, db
+from app.models import Cart, Item, CartItem, Order, db
 from app.forms import CartItemForm, CartForm
 from datetime import datetime 
 
@@ -28,13 +28,23 @@ def get_all_cartItems(cart_id):
   
   # print (myCart,'*************************') 
   return jsonify({'cart_items': [cart_item.to_dict() for cart_item in myCart]})
-
+  # cart_items = [cart_item.to_dict() for cart_item in myCart.cart]
+  # cart_info = myCart.to_dict()
+  
+  # response = {'cart_items': cart_items, 'cart_info': cart_info}
+  # return jsonify(response)
 
 @cart_routes.route('/<int:id>')
 def get_my_cart(id):
-  userId = current_user.id
-  myCart = Cart.query.filter_by(id = userId).first()
-  return jsonify({'my_cart': [cart.to_dict() for cart in myCart]})
+    userId = current_user.id
+    myCart = Cart.query.filter_by(id=userId).first()
+    return jsonify({'my_cart': myCart.to_dict()})
+
+# @cart_routes.route('/<int:id>')
+# def get_my_cart(id):
+#   userId = current_user.id
+#   myCart = Cart.query.filter_by(id = userId).first()
+#   return jsonify({'my_cart': [cart.to_dict() for cart in myCart]})
 
 # @cart_routes.route('/', methods =['POST'])
 # def create_cart():
@@ -71,9 +81,25 @@ def clear_cart(cart_id):
   user_id = current_user.id
   cart_exist =  CartItem.query.filter_by(cart_id = user_id).all()
 
+  # print(cart_exist, 'cartEXIST!()$!')
+  # total_price = 0
+  # for item in range(len(cart_exist)):
+  # # for item in cart_exist:
+  #    total_price += item.quantity * item.cart_exist.price
+
+  # order = Order(user_id = user_id, total_price = total_price)
+  # for item in range(len(cart_exist)):
+  # # for item in cart_exist:
+  #    order.cart_exist.append(item)
+  # print(order, 'ORDER*!$!$!@$!$')
+    
+  # db.session.add(order)
+  # db.session.commit()
+
   for item in range(len(cart_exist)):
     db.session.delete(cart_exist[item])
   db.session.commit()
+
   # db.session.delete(cart_exist)
   # db.session.commit()
   return jsonify({'message': 'Successfully deleted' }), 200
@@ -81,32 +107,71 @@ def clear_cart(cart_id):
 @cart_routes.route('/<int:cart_id>/items/<int:item_id>', methods= ["POST"])
 def add_cart_item(cart_id, item_id):
     # carts = Cart.query.get(cart_id)
-
-    carts = CartItem.query.filter(CartItem.cart_id == cart_id).first()
-    item = CartItem.query.filter(CartItem.cart_id == cart_id, CartItem.item_id == item_id).first()
+  carts = CartItem.query.filter(CartItem.cart_id == cart_id).first()
+  item = CartItem.query.filter(CartItem.cart_id == cart_id, CartItem.item_id == item_id).first()
+  userId = current_user.id
+  myCart = CartItem.query.filter_by(cart_id = userId).all()
+  
+  total_price = 0
+  order = Order(user_id = userId, total_price = total_price)
+     
+  # print(myCart, 'MYCART')
+  for cart_item in myCart:
+    
+    total_price += cart_item.quantity * cart_item.cart_items.price
     # print (item, "%#$#!$QW")
 
-    form = CartItemForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
+    # carts = CartItem.query.filter(CartItem.cart_id == cart_id).first()
+    # item = CartItem.query.filter(CartItem.cart_id == cart_id, CartItem.item_id == item_id).first()
+    # print (item, "%#$#!$QW")
 
-    if form.validate_on_submit():
-        if (item): 
-          # cart_id = form.cart_id.data,
-          # item_id = form.item_id.data,
-          item.quantity += 1
-          db.session.commit()
-          return item.to_dict()
-        else: 
-          new_cartItem = CartItem(
-              cart_id = form.cart_id.data,
-              item_id = form.item_id.data,
-              quantity = 1
-          )
-        db.session.add(new_cartItem)
+  db.session.add(order)
+  db.session.commit()
+    
+  form = CartItemForm()
+  form["csrf_token"].data = request.cookies["csrf_token"]
+
+  if form.validate_on_submit():
+      if (item): 
+        # cart_id = form.cart_id.data,
+        # item_id = form.item_id.data,
+        item.quantity += 1
         db.session.commit()
-        # print (new_cartItem.to_dict(), 'ADISAWAD******')
-        return new_cartItem.to_dict()
-    return "Bad Data"
+        return item.to_dict()
+      else: 
+        new_cartItem = CartItem(
+            cart_id = form.cart_id.data,
+            item_id = form.item_id.data,
+            quantity = 1,
+            order_id = order.id
+        )
+      db.session.add(new_cartItem)
+      db.session.commit()
+      # print (new_cartItem.to_dict(), 'ADISAWAD******')
+      return new_cartItem.to_dict()
+  return "Bad Data"
+
+@cart_routes.route('/<int:cart_id>/items/checkout', methods=['POST'])
+def checkout(cart_id): 
+
+  userId = current_user.id
+  myCart = CartItem.query.filter_by(cart_id = userId).all()
+  
+  total_price = 0
+  for cart_item in myCart:
+    
+    total_price += cart_item.quantity * cart_item.cart_items.price
+
+  order = Order(user_id = userId, total_price = total_price)
+  # print(order.__dict__, '*******************%&%&&%&%&%&%&&%&%')  
+  for cart_item in myCart:
+     cart_item.order_id = order.id
+     order.cart_item.append(cart_item)
+  db.session.add(order)
+  db.session.commit()
+
+  return 'Order successfully placed'
+
 
 @cart_routes.route('/<int:cart_id>/items/<int:item_id>/', methods = ['DELETE'])
 def remove_cart_item(cart_id, item_id):

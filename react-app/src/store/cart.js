@@ -7,6 +7,7 @@ const CREATE_CART = "cart/CREATE_CART";
 const CLEAR_CART = "cart/CLEAR_CART";
 const DELETE_CART = "cart/DELETE_CART";
 const MY_CART = "cart/MY_CART";
+const CREATE_ORDER = "cart/CREATE_ORDER";
 
 const getCart = (cart) => ({
   type: GET_CART,
@@ -36,6 +37,11 @@ const delCartItem = (item) => ({
 const delCart = (cart) => ({
   type: CLEAR_CART,
   cart,
+});
+
+const newOrder = (cartId) => ({
+  type: CREATE_ORDER,
+  cartId,
 });
 
 export const fetchCart = (cartId) => async (dispatch) => {
@@ -100,6 +106,21 @@ export const myCartThunk = (id) => async (dispatch) => {
 //     dispatch(makeCart(data));
 //   }
 // };
+export const createOrder =
+  ({ cart_id }) =>
+  async (dispatch) => {
+    const res = await fetch(`/api/cart/${cart_id}/items/checkout`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cart_id }),
+    });
+    if (res.ok) {
+      // console.log("hit");
+      const data = await res.json();
+      const order = { id: data.id, cart_id };
+      dispatch(newOrder(order));
+    }
+  };
 
 export const cartClear =
   ({ cart_id }) =>
@@ -128,6 +149,10 @@ const cartReducer = (state = inititalState, action) => {
 
     case MY_CART:
       return { ...action.cart };
+
+    case CREATE_ORDER:
+      newState = { ...state, [action.cartId.cart_id]: action.cartId };
+      return newState;
 
     case ADD_CART_ITEM:
       // console.log(action.item, "action");

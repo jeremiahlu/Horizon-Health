@@ -19,6 +19,8 @@ import Checkout from "./components/Checkout";
 import Complete from "./components/Checkout/CheckoutComplete";
 import About from "./components/AboutUs/About";
 import Maps from "./components/Maps";
+import Saved from "./components/Saved";
+import Orders from "./components/Orders";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -82,6 +84,12 @@ function App() {
         </Route>
         <Route path="/cart/:id/items" exact={true}>
           <Cart cart={cart} />
+        </Route>
+        <Route path="/user/:id/saved/" exact={true}>
+          <Saved />
+        </Route>
+        <Route path="/user/:id/orders/" exact={true}>
+          <Orders />
         </Route>
       </Switch>
     </BrowserRouter>

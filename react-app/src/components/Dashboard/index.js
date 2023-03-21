@@ -17,20 +17,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const allItems = useSelector((state) => state.items);
   const session = useSelector((state) => state.session.user);
-  // console.log(session, "SESSION");
-  // const filtered = useMemo(() => {
-  //   return allItems?.filter((item) => {
-  //     return item.toLowerCase().includes(search.toLowerCase());
-  //   });
-  // }, [allItems, search]);
 
-  // useEffect(() => {
-  //   console.log(allItems, "HERE");
-  //   const getItems = async () => {
-  //     await dispatch(getItemsThunk());
-  //   };
-  //   getItems();
-  // }, [dispatch]);
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.imageContainer}>
@@ -61,13 +48,55 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* <div className={styles.parallax}>
-        <div className={styles.slider}>
-          <ul className={styles.nav}></ul>
-          <div data-target="left" className={`${styles.left} side-nav`}></div>
-          <div data-target="right" className={`${styles.right} side-nav`}></div>
+      <div className={styles.cardsContainer}>
+        <div className={styles.cards} id={styles["card0"]}>
+          <img
+            className={styles.slideImage}
+            src="https://www.alkaff.com.sg/wp-content/uploads/2022/05/image2.jpg"
+          />
+          <div className={styles.slideTextContainer}>
+            <span className={styles.slideText}>
+              Shop for what you need. Bringing self-care to your doorstep
+              without leaving the house.
+            </span>
+            <NavLink className={styles.navLink} to="/items">
+              Shop Now
+            </NavLink>
+          </div>
         </div>
-      </div> */}
+
+        <div className={styles.cards} id={styles["card1"]}>
+          <img
+            className={styles.slideImage}
+            src="https://cdn.aarp.net/content/dam/aarp/health/conditions_treatments/2019/11/1140-man-consults-doctor.imgcache.rev.web.1740.1000.jpg"
+          />
+          <div className={styles.slideTextContainer}>
+            <span className={styles.slideText}>
+              Find health care providers near you. Locating a doctor shouldn't
+              be hard.
+            </span>
+            <NavLink className={styles.navLink} to="/maps">
+              Get Started
+            </NavLink>
+          </div>
+        </div>
+        <div className={styles.cards} id={styles["card2"]}>
+          <img
+            className={styles.slideImage}
+            src="https://www.national.edu/wp-content/uploads/2021/11/Nov_4_iStock-1127069581-scaled.jpeg"
+          />
+
+          <div className={styles.slideTextContainer}>
+            <span className={styles.slideText}>
+              The first step is always the hardest. We make it easy. Health care
+              at your fingertips.
+            </span>
+            <NavLink className={styles.navLink} to="/">
+              Learn More
+            </NavLink>
+          </div>
+        </div>
+      </div>
 
       <footer className={styles.footer}>
         <div className={styles.brandDiv}>
@@ -80,8 +109,6 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.company}>
-          {/* Our Company */}
-          {/* <span className={styles.aboutUs}>About Us</span> */}
           About Us
           <div className={styles.links}>
             <a
@@ -99,14 +126,11 @@ const Dashboard = () => {
               LinkedIn
             </a>
           </div>
-          {/* <NavLink to="/about-us" className={styles.footerAboutUs}>
-          </NavLink> */}
         </div>
 
         <div className={styles.account}>
           <span className={styles.accountTitle}>Account</span>
           {session ? (
-            // <button className={styles.accountButton}>
             <NavLink
               to="/account"
               exact={true}

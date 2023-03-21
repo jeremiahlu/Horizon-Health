@@ -1,13 +1,24 @@
 import { useParams, Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import Profile from "../Dashboard/ProfileButton";
 import styles from "./Account.module.css";
+import { myOrders } from "../../store/order";
 // import { removeFriendThunk } from "../../store/friend";
 // import ImageModal from "../ImageModal";
 
 const AccountSettings = () => {
+  const dispatch = useDispatch();
   const loggedSession = useSelector((state) => state.session.user);
+  const orders = useSelector((state) => Object.values(state.orders));
+  // console.log(orders, "ORDERS");
   // console.log(loggedSession, "USER");
+  useEffect(() => {
+    const myOrderList = async () => {
+      await dispatch(myOrders(loggedSession.id));
+    };
+    myOrderList();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -22,6 +33,7 @@ const AccountSettings = () => {
           </div>
         </div>
         <div className={styles.editProfile}> Account Details </div>
+        <div className={styles.editProfile}> Orders </div>
         {/* <div className="dash-logo-div">
           <Link className="dash-link" to="/dashboard">
             <img
@@ -119,6 +131,17 @@ const AccountSettings = () => {
             />
           </div>
         </div>
+
+        {/* <div className={styles.ordersList}>
+          {orders.map((order, idx) => {
+            return (
+              <div className={styles.order} key={idx}>
+                {" "}
+                {order.total_price}
+              </div>
+            );
+          })}
+        </div> */}
       </div>
     </div>
   );

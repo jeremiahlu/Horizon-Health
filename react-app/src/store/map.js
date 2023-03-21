@@ -1,6 +1,11 @@
-// import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
-// const initialState = { key: null };
+const MAP_RESULTS = "maps/MAP_RESULTS";
+
+const getMapResults = (results) => ({
+  type: MAP_RESULTS,
+  results,
+});
 
 // const LOAD_API_KEY = "/maps/LOAD_API_KEY";
 
@@ -21,13 +26,14 @@
 //   dispatch(loadApiKey(data.REACT_APP_GOOGLE_MAPS_API));
 // };
 
-// const mapsReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case LOAD_API_KEY:
-//       return { key: action.key };
-//     default:
-//       return state;
-//   }
-// };
+const initialState = {};
+const mapsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    // case LOAD_API_KEY:
+    //   return { key: action.key };
+    default:
+      return state;
+  }
+};
 
-// export default mapsReducer;
+export default mapsReducer;

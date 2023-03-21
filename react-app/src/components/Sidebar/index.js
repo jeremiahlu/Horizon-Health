@@ -77,34 +77,6 @@ const Sidebar = ({ cart }) => {
           </NavLink>
         </button>
 
-        {/* <button className={styles.button}>
-            <NavLink to="/login" exact={true} className={styles.active}>
-              <i
-                className={`${styles.icon} fa-sharp fa-solid fa-right-to-bracket`}
-              ></i>
-              <div
-                className={styles.iconText}
-                style={{ animationDelay: "0.1s" }}
-              >
-                {" "}
-                Log in{" "}
-              </div>
-            </NavLink>
-          </button>
-
-          <button className={styles.button}>
-            <NavLink to="/sign-up" exact={true} className={styles.active}>
-              <i className={`${styles.icon} fa-solid fa-user-plus`}></i>
-              <div
-                className={styles.iconText}
-                style={{ animationDelay: "0.2s" }}
-              >
-                {" "}
-                Sign up{" "}
-              </div>
-            </NavLink>
-          </button> */}
-
         <button className={styles.button}>
           <NavLink to="/account" exact={true} className={styles.active}>
             <i className={`${styles.icon} fa-solid fa-user`}></i>
@@ -163,6 +135,20 @@ const Sidebar = ({ cart }) => {
       </div>
 
       <div className={styles.logOutDiv}>
+        <button className={styles.button}>
+          <NavLink
+            to={`/user/${user.id}/saved/`}
+            exact={true}
+            className={styles.active}
+          >
+            <i className={`${styles.icon} fa-solid fa-bookmark`}></i>
+            <div className={styles.iconText} style={{ animationDelay: "0.3s" }}>
+              {" "}
+              Saved{" "}
+            </div>
+          </NavLink>
+        </button>
+
         <button className={styles.button} onClick={logOut}>
           <i
             className={`${styles.icon} fa-solid fa-person-walking-arrow-right`}

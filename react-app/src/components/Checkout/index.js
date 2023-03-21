@@ -8,6 +8,7 @@ import {
   addCartItem,
   removeCartItem,
   cartClear,
+  createOrder,
 } from "../../store/cart";
 
 const Checkout = ({ cart }) => {
@@ -37,10 +38,8 @@ const Checkout = ({ cart }) => {
   //   price = quantity.map((value, index) => value * prices[index]);
   // };
   const clearCart = async (cartId, e) => {
-    // e.preventDefault();
-    // console.log(typeof cartId, "HERERADSA");
+    // await dispatch(createOrder({ cart_id: cartId }));
     await dispatch(cartClear({ cart_id: cartId }));
-    // await dispatch(fetchCart());
   };
 
   return (
@@ -107,8 +106,15 @@ const Checkout = ({ cart }) => {
         <div className={styles.total}>Total (USD): ${totalPrice}</div>
 
         <NavLink className={styles.complete} to="/checkout/complete">
-          <button
+          {/* <button
             onClick={(e) => clearCart(cartId, e)}
+            className={styles.completeButton}
+          > */}
+          <button
+            onClick={(e) => {
+              // dispatch(createOrder({ cart_id: cartId }));
+              dispatch(cartClear({ cart_id: cartId }));
+            }}
             className={styles.completeButton}
           >
             {/* <button

@@ -6,6 +6,8 @@ import itemReducer from "./item";
 import cartReducer from "./cart";
 import cartItemReducer from "./cartItem";
 import mapsReducer from "./map";
+import savedReduer from "./saved";
+import orderReducer from "./order";
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   cartItem: cartItemReducer,
   map: mapsReducer,
+  saved: savedReduer,
+  orders: orderReducer,
 });
 
 let enhancer;

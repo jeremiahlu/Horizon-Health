@@ -65,7 +65,7 @@ function Search({ panTo, getNearbyHealthcareFacilities, setCenter, lat, lng }) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Enter your address"
+          placeholder="Search by location, find doctors near you"
           className={styles.searchInput}
         />
         <ComboboxPopover>

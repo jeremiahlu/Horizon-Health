@@ -7,6 +7,7 @@ import cartReducer, {
   fetchCart,
   addCartItem,
   removeCartItem,
+  myCartThunk,
 } from "../../store/cart";
 
 const Cart = ({ cart }) => {
@@ -160,13 +161,19 @@ const Cart = ({ cart }) => {
   };
 
   const cartMap = cart.map((item) => item?.item_id);
-  // console.log(cartMap, "REIARHOASA@$!#!@");
+  // console.log(cartMap,
+  // "REIARHOASA@$!#!@");
+  useEffect(() => {
+    const getMyCart = async () => {
+      await myCartThunk(user?.id);
+    };
+    getMyCart();
+  }, []);
 
   useEffect(() => {
     const getCart = async () => {
       await dispatch(fetchCart(user?.id));
     };
-
     getCart();
   }, [dispatch, items]);
 

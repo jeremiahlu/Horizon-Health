@@ -29,6 +29,10 @@ class User(db.Model, UserMixin):
     sender = db.relationship('Message', foreign_keys = 'Message.recipient_id', back_populates = 'recipient', cascade = 'all, delete-orphan')
     recipient = db.relationship('Message', foreign_keys = 'Message.sender_id', back_populates = 'sender', cascade = 'all, delete-orphan')
     cart = db.relationship('Cart', foreign_keys = 'Cart.user_id', back_populates = 'users', cascade = 'all, delete-orphan')
+    
+    saves = db.relationship('Save', foreign_keys = 'Save.user_id', back_populates = 'user')
+    orders = db.relationship('Order', back_populates ='users', lazy=True)
+
 
     @property
     def password(self):

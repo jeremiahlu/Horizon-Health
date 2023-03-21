@@ -18,9 +18,12 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import styles from "./Maps.module.css";
 import Search from "./Maps";
+import Saved from "../Saved";
+import { addSave } from "../../store/saved";
 
 const libraries = ["places"];
 const Maps = () => {
+  const dispatch = useDispatch();
   const google = window.google;
   const user = useSelector((state) => state.session.user);
   const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API;
@@ -32,6 +35,8 @@ const Maps = () => {
   const [selected, setSelected] = useState(null);
   const [center, setCenter] = useState({});
 
+  const [favorites, setFavorites] = useState([]);
+
   const getNearbyHealthcareFacilities = ({ lat, lng }) => {
     // console.log(typeof lat, lat, typeof lng, lng, "HERE");
     const service = new google.maps.places.PlacesService(
@@ -41,7 +46,7 @@ const Maps = () => {
     // console.log(center, "CENTER");
     const request = {
       location: search_center,
-      radius: 50093.4, // 5 miles in meters
+      radius: 50093.4,
       types: ["doctor"],
       // keyword: "doctor",
     };
@@ -95,7 +100,6 @@ const Maps = () => {
     setMap(null);
   }, []);
 
-  // This is the equivalent to a script tag
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
@@ -111,6 +115,16 @@ const Maps = () => {
       </div>
     );
   }
+
+  const addToFavorites = async (marker, e) => {
+    e.preventDefault();
+    setFavorites([...favorites, marker]);
+    let payload = {
+      userId: user?.id,
+      marker,
+    };
+    await dispatch(addSave(payload));
+  };
 
   return (
     <>
@@ -148,9 +162,20 @@ const Maps = () => {
                       <div className={styles.closed}> Closed </div>
                     )}
                   </div>
+                  <button
+                    className={styles.favorites}
+                    onClick={(e) => addToFavorites(marker, e)}
+                  >
+                    <i className={`${styles.icon} fa-solid fa-bookmark`}></i>
+                  </button>
                 </div>
               );
             })}
+            {/* <Saved
+              className={styles.saved}
+              results={markers}
+              favorites={favorites}
+            /> */}
           </div>
         ) : (
           <div className={styles.noSearch}>
@@ -193,7 +218,6 @@ const Maps = () => {
                 />
                 {markers.length ? (
                   markers.map((marker, idx) => (
-                    // console.log(marker.position, "marker")
                     <Marker
                       key={idx}
                       position={marker.position}
