@@ -8,7 +8,7 @@ import styles from "./Saved.module.css";
 function Saved({ results, favorites }) {
   const dispatch = useDispatch();
   const saves = useSelector((state) => Object.values(state.saved));
-
+  const items = useSelector((state) => Object.values(state.items));
   const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function Saved({ results, favorites }) {
         <div className={styles.savedItem}>
           {saves?.map((save, idx) => (
             <div className={styles.remove} key={idx}>
-              {console.log(save.marker, "sdahosas")}
+              {/* {console.log(save.marker, "sdahosas")} */}
               {/* <div>
                 {save?.marker?.result?.photos ? (
                   <img
