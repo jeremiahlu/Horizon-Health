@@ -7,5 +7,5 @@ from app.models import Save
 class FavoritesForm(FlaskForm):
     user_id = IntegerField("user id")
     marker = StringField('marker')
-    name = StringField('name')
-    address = StringField('address')
+    # name = StringField('name')
+    # address = StringField('address')

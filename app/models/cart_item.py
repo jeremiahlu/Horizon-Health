@@ -17,24 +17,26 @@ class CartItem(db.Model):
 
   users_cart = db.relationship("Cart", back_populates = 'cart')
   cart_items = db.relationship("Item", back_populates = 'itemized_cart')
+
   order = db.relationship("Order", back_populates = 'cart_item')
 
-  # order = db.relationship(a"Order", back_populates = 'cart_item')
-
   def to_dict(self):
-    cart = self.users_cart
+    # cart = self.users_cart
+    # items = [cart_item.cart_items.item.to_dict() for cart_item in self.cart_items]
+    # print(self.cart_items, 'HITAT!U()$!$)!$)!@)#@!')
     return {
         'id': self.id,
         'cart_id': self.cart_id,
         'item_id': self.item_id,
+        # 'item': items,
         'item': self.cart_items.to_dict(),
         'quantity': self.quantity,
         'created_at': self.created_at,
-        'order_id': self.order_id,
-        'cart': {
-          'id': cart.id,
-          'user_id': cart.user_id,
-          'checked_out': cart.checked_out,
-          'created_at': cart.created_at
-        }
+        # 'order_id': self.order_id,
+        # 'cart': {
+        #   'id': cart.id,
+        #   'user_id': cart.user_id,
+        #   'checked_out': cart.checked_out,
+        #   'created_at': cart.created_at
+        # }
     }

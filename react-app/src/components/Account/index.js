@@ -11,8 +11,14 @@ const AccountSettings = () => {
   const dispatch = useDispatch();
   const loggedSession = useSelector((state) => state.session.user);
   const orders = useSelector((state) => Object.values(state.orders));
-  // console.log(orders, "ORDERS");
+  // const cartItemList = useSelector((state) =>
+  //   Object.values(state.order.cart_items)
+  // );
+  console.log(orders[0], "ORDERS");
   // console.log(loggedSession, "USER");
+
+  const [selectedTab, setSelectedTab] = useState("accountDetails");
+
   useEffect(() => {
     const myOrderList = async () => {
       await dispatch(myOrders(loggedSession.id));
@@ -32,117 +38,120 @@ const AccountSettings = () => {
             {loggedSession.first_name + " " + loggedSession.last_name}
           </div>
         </div>
-        <div className={styles.editProfile}> Account Details </div>
-        <div className={styles.editProfile}> Orders </div>
-        {/* <div className="dash-logo-div">
-          <Link className="dash-link" to="/dashboard">
-            <img
-              className="dash-logo"
-              src="https://assets.splitwise.com/assets/core/logo-wordmark-horizontal-white-short-c309b91b96261a8a993563bdadcf22a89f00ebb260f4f04fd814c2249a6e05d4.svg"
-            />
-          </Link>
-        </div> */}
-
-        {/* <div className="profileButton-div">
-          <Link className="as-dash-link" to="/dashboard">
-            Home
-          </Link>
-          <img
-            className="profile-picture"
-            src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-teal32-50px.png"
-            alt="profile-picture"
-          /> */}
-        {/* <Profile user={loggedSession} /> */}
-        {/* {          console.log(loggedSession, 'here') */}
-        {/* <i className="fa-solid fa-caret-down"></i> */}
-        {/* </div> */}
+        <div
+          className={`${styles.editProfile} ${
+            selectedTab === "accountDetails" && styles.selectedTab
+          }`}
+          onClick={() => setSelectedTab("accountDetails")}
+        >
+          {" "}
+          Account Details{" "}
+        </div>
+        <div
+          className={`${styles.editProfile} ${
+            selectedTab === "orders" && styles.selectedTab
+          }`}
+          onClick={() => setSelectedTab("orders")}
+        >
+          Orders{" "}
+        </div>
       </div>
 
-      <div className={styles.accountSettingsMain}>
-        <div className={styles.accountDetails}>Account Details</div>
-        {/* <div className={styles.imageDiv}>
-          Profile picture
-          <img
-            className={styles.profilePicture}
-            src={loggedSession.profile_picture}
-          ></img>
-          <div className={styles.addImage}>
-            {loggedSession.username}
-            <span className={styles.imageText}>
-            Change your profile picture
-            <button className={styles.chooseFile}>
-                <input className="as-file-input" type="file" multiple />
-              </button>
-            </span>
-          </div>
-        </div> */}
+      {selectedTab === "accountDetails" ? (
+        <div className={styles.accountSettingsMain}>
+          <div className={styles.accountDetails}>Account Details</div>
 
-        <div className={styles.userInfoList}>
-          <div className={styles.userInfo}>
-            <li className={styles.label}> Username</li>
-            <input
-              defaultValue={loggedSession.username}
-              className={styles.info}
-              type="text"
-              readOnly="readonly"
-            />
-          </div>
+          <div className={styles.userInfoList}>
+            <div className={styles.userInfo}>
+              <li className={styles.label}> Username</li>
+              <input
+                defaultValue={loggedSession.username}
+                className={styles.info}
+                type="text"
+                readOnly="readonly"
+              />
+            </div>
 
-          <div className={styles.userInfo}>
-            <li className={styles.label}> Name</li>
+            <div className={styles.userInfo}>
+              <li className={styles.label}> Name</li>
 
-            <input
-              defaultValue={
-                loggedSession.first_name + " " + loggedSession.last_name
-              }
-              className={styles.info}
-              type="text"
-              readOnly="readonly"
-            />
-          </div>
+              <input
+                defaultValue={
+                  loggedSession.first_name + " " + loggedSession.last_name
+                }
+                className={styles.info}
+                type="text"
+                readOnly="readonly"
+              />
+            </div>
 
-          <div className={styles.userInfo}>
-            <li className={styles.label}> Email</li>
-            <input
-              defaultValue={loggedSession.email}
-              className={styles.info}
-              type="text"
-              readOnly="readonly"
-            />
-          </div>
+            <div className={styles.userInfo}>
+              <li className={styles.label}> Email</li>
+              <input
+                defaultValue={loggedSession.email}
+                className={styles.info}
+                type="text"
+                readOnly="readonly"
+              />
+            </div>
 
-          <div className={styles.userInfo}>
-            <li className={styles.label}>Gender</li>
-            <input
-              defaultValue={loggedSession.gender}
-              className={styles.info}
-              type="text"
-              readOnly="readonly"
-            />
-          </div>
+            <div className={styles.userInfo}>
+              <li className={styles.label}>Gender</li>
+              <input
+                defaultValue={loggedSession.gender}
+                className={styles.info}
+                type="text"
+                readOnly="readonly"
+              />
+            </div>
 
-          <div className={styles.userInfo}>
-            <li className={styles.label}>Address</li>
-            <input
-              defaultValue={loggedSession.address}
-              className={styles.info}
-              type="text"
-              readOnly="readonly"
-            />
+            <div className={styles.userInfo}>
+              <li className={styles.label}>Address</li>
+              <input
+                defaultValue={loggedSession.address}
+                className={styles.info}
+                type="text"
+                readOnly="readonly"
+              />
+            </div>
           </div>
         </div>
-
-        {/* <div className={styles.ordersList}>
-          {orders.map((order, idx) => {
-            return (
-              <div className={styles.order} key={idx}>
-                {" "}
-                {order.total_price}
-              </div>
-            );
-          })}
-        </div> */}
-      </div>
+      ) : (
+        <div className={styles.accountOrdersMain}>
+          <div className={styles.yourOrders}>Your Orders</div>
+          <div className={styles.ordersList}>
+            {orders[0].map((order, idx) => {
+              return (
+                <div className={styles.order} key={idx}>
+                  <div className={styles.orderDetails}>
+                    <div className={styles.orderTop}>
+                      <div className={styles.orderNumber}>
+                        Order Number: {order.id}
+                      </div>
+                      <div className={styles.price}>
+                        Total Price: ${order?.total_price}
+                      </div>
+                    </div>
+                    <div>
+                      <div className={styles.purchased}>
+                        <div>
+                          {" "}
+                          Delivered to{" "}
+                          {`${order?.user.first_name} 
+                      ${order?.user.last_name}
+                      at
+                      ${order?.user.address}`}
+                        </div>
+                        Purchased on: {order?.created_at}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

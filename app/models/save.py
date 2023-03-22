@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy import func
+from sqlalchemy import func, PickleType
 
 class Save(db.Model):
 
@@ -10,8 +10,10 @@ class Save(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-  name = db.Column(db.String(255))
-  address = db.Column(db.String(255))
+  # name = db.Column(db.String(255))
+  # address = db.Column(db.String(255))
+  # marker = db.Column(db.String, nullable = True )
+  marker = db.Column(db.PickleType, nullable = True)
   # latitude = db.Column(db.Float)
   # longitude = db.Column(db.Float)
 
@@ -21,8 +23,9 @@ class Save(db.Model):
     return {
         'id': self.id,
         'user_id': self.user_id,
-        'name': self.name,
-        'address': self.address,
+        'marker': self.marker
+        # 'name': self.name,
+        # 'address': self.address,
         # 'latitude': self.latitude,
         # 'longitude': self.longitude
     }
