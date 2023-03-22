@@ -19,13 +19,15 @@ import usePlacesAutocomplete, {
 import styles from "./Maps.module.css";
 import Search from "./Maps";
 import Saved from "../Saved";
-import { addSave } from "../../store/saved";
+import { addSave, fetchSaved } from "../../store/saved";
 
 const libraries = ["places"];
 const Maps = () => {
   const dispatch = useDispatch();
   const google = window.google;
   const user = useSelector((state) => state.session.user);
+  const saved = useSelector((state) => Object.values(state.saved));
+  // console.log(saved, "saved");
   const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API;
   const placesKey = process.env.REACT_APP_PLACES_API;
 
@@ -100,6 +102,15 @@ const Maps = () => {
     setMap(null);
   }, []);
 
+  useEffect(() => {
+    const getSaved = async () => {
+      if (user) {
+        await dispatch(fetchSaved(user?.id));
+      }
+    };
+    getSaved();
+  }, [dispatch, user]);
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
@@ -115,7 +126,6 @@ const Maps = () => {
       </div>
     );
   }
-
   const addToFavorites = async (marker, e) => {
     e.preventDefault();
     setFavorites([...favorites, marker]);
@@ -123,6 +133,7 @@ const Maps = () => {
       userId: user?.id,
       marker,
     };
+    // console.log(typeof user.id, "URESRESR&*(#&%!!#*");
     await dispatch(addSave(payload));
   };
 
@@ -142,6 +153,7 @@ const Maps = () => {
         {markers.length > 0 ? (
           <div className={styles.marker}>
             {markers?.map((marker, idx) => {
+              console.log(marker, "makrearsa");
               return (
                 <div key={idx} className={styles.places}>
                   {/* <img className={styles.icon} src={marker.icon}></img> */}
@@ -156,7 +168,7 @@ const Maps = () => {
                     ) : (
                       <div> No ratings available </div>
                     )}
-                    {marker.open ? (
+                    {marker?.open ? (
                       <div className={styles.open}> Open </div>
                     ) : (
                       <div className={styles.closed}> Closed </div>
@@ -166,7 +178,17 @@ const Maps = () => {
                     className={styles.favorites}
                     onClick={(e) => addToFavorites(marker, e)}
                   >
-                    <i className={`${styles.icon} fa-solid fa-bookmark`}></i>
+                    {saved.find(
+                      (save) => save.marker.address == marker.address
+                    ) !== undefined ? (
+                      <i
+                        className={`${styles.savedIcon} fa-solid fa-bookmark`}
+                      ></i>
+                    ) : (
+                      <i
+                        className={`${styles.icon} fa-regular fa-bookmark`}
+                      ></i>
+                    )}
                   </button>
                 </div>
               );
@@ -240,6 +262,7 @@ const Maps = () => {
                   <div>No results</div>
                 )}
               </GoogleMap>
+              {/* <Saved /> */}
             </div>
           )}
         </div>

@@ -81,20 +81,32 @@ def clear_cart(cart_id):
   user_id = current_user.id
   cart_exist =  CartItem.query.filter_by(cart_id = user_id).all()
 
-  # print(cart_exist, 'cartEXIST!()$!')
-  # total_price = 0
-  # for item in range(len(cart_exist)):
-  # # for item in cart_exist:
-  #    total_price += item.quantity * item.cart_exist.price
-
-  # order = Order(user_id = user_id, total_price = total_price)
-  # for item in range(len(cart_exist)):
-  # # for item in cart_exist:
-  #    order.cart_exist.append(item)
-  # print(order, 'ORDER*!$!$!@$!$')
+  userId = current_user.id
+  myCart = CartItem.query.filter_by(cart_id = userId).all()
+  # print(userId, "USERID@!!!!!!!!!!")
+  print(myCart, "MYCART@!!!!!!!!!!")
+  
+  total_price = 0
+  for cart_item in myCart:
     
-  # db.session.add(order)
-  # db.session.commit()
+    total_price += cart_item.quantity * cart_item.cart_items.price
+
+  order = Order(user_id = userId, total_price = total_price)
+  db.session.add(order)
+  db.session.commit()
+
+  # print(order.cart_item, 'HITTETE&)!&!!!!!!!!)%%!%!')
+  # print(myCart, 'mYCARTT!!!!!!!!!!!!!!!&)!&!)%%!%!')
+
+  for cart_item in myCart:
+    #  print(cart_item.to_dict(), 'CART_ITEM%!%!%!%!%!%!%!%')
+     cart_item.order_id = order.id
+    #  order.items.append(cart_item)
+    #  print(cart_item, "CARTITEMITEMS%!%$!@@!$@!")
+     order.cart_item.append(cart_item)
+     db.session.commit()
+  # print(order.to_dict(), 'ORDERID!!!!!!!!!!')
+  print(order.cart_item, '2222HITTETE&)!&!!!!!!!!)%%!%!')
 
   for item in range(len(cart_exist)):
     db.session.delete(cart_exist[item])
@@ -112,21 +124,21 @@ def add_cart_item(cart_id, item_id):
   userId = current_user.id
   myCart = CartItem.query.filter_by(cart_id = userId).all()
   
-  total_price = 0
-  order = Order(user_id = userId, total_price = total_price)
+  # total_price = 0
+  # order = Order(user_id = userId, total_price = total_price)
      
   # print(myCart, 'MYCART')
-  for cart_item in myCart:
+  # for cart_item in myCart:
     
-    total_price += cart_item.quantity * cart_item.cart_items.price
+  #   total_price += cart_item.quantity * cart_item.cart_items.price
     # print (item, "%#$#!$QW")
 
     # carts = CartItem.query.filter(CartItem.cart_id == cart_id).first()
     # item = CartItem.query.filter(CartItem.cart_id == cart_id, CartItem.item_id == item_id).first()
     # print (item, "%#$#!$QW")
 
-  db.session.add(order)
-  db.session.commit()
+  # db.session.add(order)
+  # db.session.commit()
     
   form = CartItemForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
@@ -143,7 +155,7 @@ def add_cart_item(cart_id, item_id):
             cart_id = form.cart_id.data,
             item_id = form.item_id.data,
             quantity = 1,
-            order_id = order.id
+            # order_id = order.id
         )
       db.session.add(new_cartItem)
       db.session.commit()
@@ -156,6 +168,8 @@ def checkout(cart_id):
 
   userId = current_user.id
   myCart = CartItem.query.filter_by(cart_id = userId).all()
+  print(userId, "USERID@!!!!!!!!!!")
+  print(myCart, "MYCART@!!!!!!!!!!")
   
   total_price = 0
   for cart_item in myCart:
@@ -163,12 +177,12 @@ def checkout(cart_id):
     total_price += cart_item.quantity * cart_item.cart_items.price
 
   order = Order(user_id = userId, total_price = total_price)
+  db.session.add(order)
+  db.session.commit()
   # print(order.__dict__, '*******************%&%&&%&%&%&%&&%&%')  
   for cart_item in myCart:
      cart_item.order_id = order.id
      order.cart_item.append(cart_item)
-  db.session.add(order)
-  db.session.commit()
 
   return 'Order successfully placed'
 

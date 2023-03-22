@@ -71,14 +71,24 @@ const Sidebar = ({ cart }) => {
         </button>
 
         <button className={styles.button}>
-          <NavLink to="/" exact={true} className={styles.active}>
+          <NavLink
+            to="/"
+            exact={true}
+            activeClassName={styles.active}
+            className={styles.link}
+          >
             <i className={`${styles.icon} fa-sharp fa-solid fa-house`}></i>
             <div className={styles.iconText}> Home </div>
           </NavLink>
         </button>
 
         <button className={styles.button}>
-          <NavLink to="/account" exact={true} className={styles.active}>
+          <NavLink
+            to="/account"
+            exact={true}
+            activeClassName={styles.active}
+            className={styles.link}
+          >
             <i className={`${styles.icon} fa-solid fa-user`}></i>
             <div className={styles.iconText} style={{ animationDelay: "0.3s" }}>
               {" "}
@@ -88,7 +98,12 @@ const Sidebar = ({ cart }) => {
         </button>
 
         <button className={styles.button}>
-          <NavLink to="/maps" exact={true} className={styles.active}>
+          <NavLink
+            to="/maps"
+            exact={true}
+            activeClassName={styles.active}
+            className={styles.link}
+          >
             <i
               className={`${styles.icon} fa-sharp fa-solid fa-map-location-dot`}
             ></i>
@@ -100,7 +115,12 @@ const Sidebar = ({ cart }) => {
         </button>
 
         <button className={styles.button}>
-          <NavLink to="/items" exact={true} className={styles.active}>
+          <NavLink
+            to="/items"
+            exact={true}
+            activeClassName={styles.active}
+            className={styles.link}
+          >
             <i className={`${styles.icon} fa-sharp fa-solid fa-store`}></i>
             <div className={styles.iconText} style={{ animationDelay: "0.3s" }}>
               {" "}
@@ -113,7 +133,8 @@ const Sidebar = ({ cart }) => {
           <NavLink
             to={`/cart/${user.id}/items`}
             exact={true}
-            className={styles.active}
+            activeClassName={styles.active}
+            className={styles.link}
           >
             <i className={`${styles.icon} fa-sharp fa-solid fa-cart-shopping`}>
               {" "}
@@ -139,7 +160,8 @@ const Sidebar = ({ cart }) => {
           <NavLink
             to={`/user/${user.id}/saved/`}
             exact={true}
-            className={styles.active}
+            activeClassName={styles.active}
+            className={styles.link}
           >
             <i className={`${styles.icon} fa-solid fa-bookmark`}></i>
             <div className={styles.iconText} style={{ animationDelay: "0.3s" }}>

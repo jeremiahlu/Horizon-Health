@@ -1,3 +1,17 @@
+.link {
+  display: flex;
+  z-index: 100;
+  transition: 200ms cubic-bezier(0.14, -0.08, 0.74, 1.4);
+  box-shadow: 0px 82px 20px 0px rgba(128, 128, 128, 0.29);
+  font-style: none;
+  text-decoration: none;
+}
+
+.link:hover {
+  transition: 200ms 100ms cubic-bezier(0.14, -0.08, 0.74, 1.4);
+  transform: translateX(10px) translateY(-7px);
+}
+
 .active {
   display: flex;
   z-index: 100;
@@ -5,6 +19,14 @@
   box-shadow: 0px 82px 20px 0px rgba(128, 128, 128, 0.29);
   font-style: none;
   text-decoration: none;
+}
+
+.active > .icon {
+  color: rgba(239, 190, 68, 1);
+}
+
+.active > .iconText {
+  color: rgba(239, 190, 68, 1);
 }
 
 .active:hover {

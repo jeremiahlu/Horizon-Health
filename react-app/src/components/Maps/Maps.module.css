@@ -74,6 +74,7 @@
   z-index: 99;
   border: 1px solid white;
   height: 90vh;
+  min-width: 370px;
   width: 60%;
   padding: 15px;
   overflow: scroll;
@@ -125,6 +126,15 @@
 
 .open {
   color: green;
+}
+
+.savedIcon {
+  color: rgba(239, 190, 68, 0.7);
+}
+
+.icon,
+.savedIcon {
+  font-size: 18px;
 }
 
 .closed {
