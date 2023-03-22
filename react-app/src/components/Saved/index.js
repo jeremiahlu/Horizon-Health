@@ -11,16 +11,25 @@ function Saved({ results, favorites }) {
   const saves = useSelector((state) => Object.values(state.saved));
   const items = useSelector((state) => Object.values(state.items));
   const user = useSelector((state) => state.session.user);
+  const [deleted, setDeleted] = useState(false);
+
+  // useEffect(() => {
+  //   const getSaved = async () => {
+  //     if (user) {
+  //       await dispatch(fetchSaved(user?.id));
+  //     }
+  //   };
+  //   getSaved();
+  //   dispatch(fetchCart(user?.id));
+  // }, [dispatch, user]);
 
   useEffect(() => {
-    const getSaved = async () => {
-      if (user) {
-        await dispatch(fetchSaved(user?.id));
-      }
-    };
-    getSaved();
+    dispatch(fetchSaved(user?.id));
+  }, [dispatch, user, deleted]);
+
+  useEffect(() => {
     dispatch(fetchCart(user?.id));
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   return (
     <>
@@ -37,7 +46,7 @@ function Saved({ results, favorites }) {
 
               <div className={styles.leftDiv}>
                 <div>
-                  {save.marker.photos ? (
+                  {/* {save.marker.photos ? (
                     <div className={styles.photoDiv}>
                       <img
                         className={styles.photo}
@@ -55,7 +64,13 @@ function Saved({ results, favorites }) {
                         src="https://www.pngitem.com/pimgs/m/504-5040528_empty-profile-picture-png-transparent-png.png"
                       />
                     </div>
-                  )}
+                  )} */}
+                  <div className={styles.photoDiv}>
+                    <img
+                      className={styles.photo}
+                      src="https://www.pngitem.com/pimgs/m/504-5040528_empty-profile-picture-png-transparent-png.png"
+                    />
+                  </div>
                 </div>
                 <div className={styles.info}>
                   <div className={styles.title}>{save.marker.title}</div>
@@ -75,6 +90,7 @@ function Saved({ results, favorites }) {
                 onClick={async (e) => {
                   e.preventDefault();
                   await dispatch(removeSave(user.id, save.id));
+                  setDeleted(true);
                 }}
               >
                 <i className={`${styles.deleteSave} fa-solid fa-xmark`}></i>

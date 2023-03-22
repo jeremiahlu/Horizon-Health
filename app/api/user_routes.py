@@ -106,7 +106,7 @@ def add_to_favorites(id):
 @login_required
 def remove_from_favorites(id, save_id):
     saved = Save.query.filter(Save.user_id == id, Save.id == save_id).first()
-    print(saved, 'SDHAODHASO!*$*!$*$')
+    # print(saved, 'SDHAODHASO!*$*!$*$')
     # if (Save.user_id == current_user.id):
     #     db.session.delete(saved)
     #     db.session.commit()
@@ -114,30 +114,5 @@ def remove_from_favorites(id, save_id):
     # return 'Unauthorized'
     db.session.delete(saved)
     db.session.commit()
-    return f'Successfully deleted'
-# @user_routes.route('/<int:id>/saved/', methods= ["POST"])
-# def add_to_favorites(id):
-#     saved = Save.query.filter(Save.user_id == id).first()
-#     # print(id,'id@!$$@$@$')
-#     form = FavoritesForm()
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-
-#     if form.validate_on_submit():
-#         marker_str = form.marker.data
-#         marker_dict = json.loads(marker_str)
-#         print(marker_dict, 'HIT')
-#         marker = json.loads(marker_dict['title'])
-#         # print(type(marker), 'MARKER)@()!$!$!$')
-#             #   position = marker.get('position')
-#         new_favorite = Save(
-#             user_id = id,
-#             name = marker_dict.get('title', ''),
-#             address = marker_dict.get('address', '')
-#             #   latitude = position.get('lat', '')
-#             #   longitude = position.get('lng', '')
-#           )
-#         db.session.add(new_favorite)
-#         db.session.commit()
-        
-#         return new_favorite.to_dict()
-#     return "Bad Data"
+    # return f'Successfully deleted'
+    return jsonify({"message": "Successfully deleted"})
