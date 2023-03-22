@@ -34,6 +34,7 @@ function Saved({ results, favorites }) {
                 save?.marker.result.photos[0].html_attributions[0],
                 "sdahosas"
               )} */}
+
               <div className={styles.leftDiv}>
                 <div>
                   {save.marker.photos ? (
