@@ -8,13 +8,17 @@
 
 .remove {
   border-bottom: 1px solid #999;
-  cursor: pointer;
+  /* cursor: pointer; */
   padding: 10px;
   display: flex;
   justify-content: space-between;
   height: 80px;
   font-family: Arial, Helvetica, sans-serif;
   min-width: 570px;
+}
+
+.leftDiv {
+  display: flex;
 }
 
 @media (max-width: 810px) {
@@ -34,6 +38,7 @@
 
 .deleteSave {
   font-size: 21px;
+  cursor: pointer;
 }
 
 .deleteSave:hover {
@@ -45,11 +50,28 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-left: 10px;
 }
 
 .title {
   font-size: 23px;
   margin-bottom: 20px;
+}
+
+.photoDiv {
+  display: flex;
+}
+
+.photo {
+  height: 80px;
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.index {
+  height: 30px;
+  width: 30px;
+  margin: 3px;
 }
 
 .status {

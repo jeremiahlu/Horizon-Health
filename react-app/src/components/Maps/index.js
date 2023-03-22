@@ -55,7 +55,7 @@ const Maps = () => {
     // console.log(request, "REQUEST");
     service?.nearbySearch(request, (results, status) => {
       if (status === "OK") {
-        // console.log(results, "RESULTS");
+        console.log(results, "RESULTS");
         setMarkers(
           results?.map((result) => ({
             result,
@@ -66,6 +66,7 @@ const Maps = () => {
             user_ratings: result.user_ratings_total,
             address: result.vicinity,
             open: result.opening_hours,
+            photos: result.photos,
           }))
         );
       } else {
@@ -153,13 +154,34 @@ const Maps = () => {
         {markers.length > 0 ? (
           <div className={styles.marker}>
             {markers?.map((marker, idx) => {
-              console.log(marker, "makrearsa");
+              // console.log(marker, "makrearsa");
               return (
                 <div key={idx} className={styles.places}>
                   {/* <img className={styles.icon} src={marker.icon}></img> */}
+                  {marker.photos ? (
+                    <>
+                      <div className={styles.index}>{idx + 1}.</div>
+                      <img
+                        className={styles.photo}
+                        src={marker.photos[0].getUrl({
+                          maxWidth: 100,
+                          maxHeight: 100,
+                        })}
+                        alt="Place photo"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <div className={styles.index}>{idx + 1}.</div>
+                      <img
+                        className={styles.photo}
+                        src="https://www.pngitem.com/pimgs/m/504-5040528_empty-profile-picture-png-transparent-png.png"
+                      />
+                    </>
+                  )}
                   <div className={styles.storeDetails}>
                     <div className={styles.title}>
-                      <div className={styles.index}>{idx + 1}.</div>
+                      {/* <div className={styles.index}>{idx + 1}.</div> */}
                       {marker.title}
                     </div>
                     <div className={styles.address}>{marker.address}</div>

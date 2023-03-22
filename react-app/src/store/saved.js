@@ -20,11 +20,11 @@ const removeFromSaved = (result) => ({
 });
 
 export const fetchSaved = (user_id) => async (dispatch) => {
-  console.log(typeof user_id, "tsatad");
+  // console.log(typeof user_id, "tsatad");
   const res = await csrfFetch(`/api/users/${user_id}/saved/`);
   // console.log("HIT");
   const { saves } = await res.json();
-  console.log(saves, "SAVED");
+  // console.log(saves, "SAVED");
   if (res.ok) {
     const data = {};
     saves?.forEach((save) => (data[save.id] = save));
@@ -35,8 +35,8 @@ export const fetchSaved = (user_id) => async (dispatch) => {
 };
 
 export const addSave = (user_id) => async (dispatch) => {
-  console.log(user_id.userId, "USERID");
-  console.log(user_id.marker, "marker");
+  // console.log(user_id.userId, "USERID");
+  // console.log(user_id.marker, "marker");
   // console.log({ user_id, marker }, "JSON");
   const res = await csrfFetch(`/api/users/${user_id.userId}/saved`, {
     method: "POST",

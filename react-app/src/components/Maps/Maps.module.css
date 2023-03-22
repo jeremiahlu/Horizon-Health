@@ -118,6 +118,12 @@
 
 .index {
   padding-right: 8px;
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
 }
 
 .address {
@@ -198,4 +204,11 @@
 .icon {
   height: 20px;
   width: 20px;
+}
+
+.photo {
+  height: 100px;
+  width: 100px;
+  min-width: 100px;
+  margin-top: 10px;
 }
