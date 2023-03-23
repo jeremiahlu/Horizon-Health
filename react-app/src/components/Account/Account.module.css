@@ -3,6 +3,7 @@
   color: white;
   list-style: none;
   display: flex;
+  width: 100%;
   /* border: 1px solid red; */
   justify-content: center;
   /* align-content: center; */
@@ -23,6 +24,7 @@
   padding: 10px;
   min-width: 200px;
   height: 420px;
+  margin-right: 20px;
 }
 
 @media (max-width: 800px) {
@@ -92,15 +94,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-}
-
-.label {
-  padding-left: 25px;
+  margin-right: 15px;
+  /* width: 100%; */
 }
 
 .userInfo input {
   height: 30px;
-  width: 300px;
+  /* width: 300px; */
+  margin-left: 15px;
+  width: 80%;
   padding: 10px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.2);
@@ -130,6 +132,7 @@
 .info {
   border: 1px solid #aeaeae;
   padding: 10px;
+  /* width: 50%; */
 }
 
 .order {
@@ -137,9 +140,9 @@
   height: 100px;
   padding: 10px;
   min-width: 500px;
+  width: 100%;
   border-radius: 5px;
-  /* margin-left: 20px; */
-  margin: 8px 20px;
+  /* margin: 8px 20px; */
 }
 
 .purchased {
@@ -176,14 +179,16 @@
   /* margin-left: 250px; */
   /* justify-content: center; */
   /* align-items: center; */
-  width: 500px;
+  /* width: 500px; */
+  width: 50%;
 }
 
 .accountOrdersMain {
   display: flex;
   flex-direction: column;
   min-width: 500px;
-  width: 500px;
+  /* width: 500px; */
+  width: 50%;
 }
 
 .orderNumber {

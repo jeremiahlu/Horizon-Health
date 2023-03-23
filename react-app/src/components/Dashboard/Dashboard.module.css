@@ -198,7 +198,9 @@
 
 .cardsContainer {
   display: flex;
+  justify-content: space-evenly;
   margin-bottom: 100px;
+  width: 100%;
 }
 
 .slideImage {
