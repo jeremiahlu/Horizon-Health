@@ -82,16 +82,10 @@ const savedReducer = (state = inititalState, action) => {
       };
 
     case REMOVE_FROM_SAVED:
-      // return { ...state, ...action.result };
-      // console.log(action.result, "ACTION");
       newState = { ...state };
       delete newState[action.result.id];
-      // console.log(newState, "NEWSTATE");
       return newState;
-    // return {
-    //   ...state,
-    //   saved: state.saved.filter((res) => res.id !== action.result.id),
-    // };
+
     default:
       return state;
   }

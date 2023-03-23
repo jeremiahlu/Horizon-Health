@@ -91,6 +91,7 @@ function Saved({ results, favorites }) {
                   e.preventDefault();
                   await dispatch(removeSave(user.id, save.id));
                   setDeleted(true);
+                  await dispatch(fetchSaved(user?.id));
                 }}
               >
                 <i className={`${styles.deleteSave} fa-solid fa-xmark`}></i>
