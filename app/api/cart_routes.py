@@ -104,7 +104,7 @@ def clear_cart(cart_id):
     #  order.items.append(cart_item)
     #  print(cart_item, "CARTITEMITEMS%!%$!@@!$@!")
      order.cart_item.append(cart_item)
-     db.session.commit()
+  db.session.commit()
   # print(order.to_dict(), 'ORDERID!!!!!!!!!!')
   print(order.cart_item, '2222HITTETE&)!&!!!!!!!!)%%!%!')
 

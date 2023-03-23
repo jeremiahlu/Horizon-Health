@@ -196,13 +196,14 @@ const Maps = () => {
                       <div className={styles.closed}> Closed </div>
                     )}
                   </div>
+                  {console.log(saved, "fahfoasfa")}
+                  {console.log(marker, "4121142142141")}
                   <button
                     className={styles.favorites}
                     onClick={(e) => addToFavorites(marker, e)}
                   >
-                    {saved.find(
-                      (save) => save.marker.address == marker.address
-                    ) !== undefined ? (
+                    {saved.find((save) => save.marker.title == marker.title) !==
+                    undefined ? (
                       <i
                         className={`${styles.savedIcon} fa-solid fa-bookmark`}
                       ></i>

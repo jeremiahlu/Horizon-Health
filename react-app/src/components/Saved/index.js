@@ -39,10 +39,7 @@ function Saved({ results, favorites }) {
           {saves?.map((save, idx) => (
             <div className={styles.remove} key={idx}>
               {/* <div className={styles.info}> */}
-              {/* {console.log(
-                save?.marker.result.photos[0].html_attributions[0],
-                "sdahosas"
-              )} */}
+              {console.log(save?.marker, "sdahosas")}
 
               <div className={styles.leftDiv}>
                 <div>
