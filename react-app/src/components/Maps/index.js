@@ -19,7 +19,7 @@ import usePlacesAutocomplete, {
 import styles from "./Maps.module.css";
 import Search from "./Maps";
 import Saved from "../Saved";
-import { addSave, fetchSaved } from "../../store/saved";
+import { addSave, fetchSaved, removeSave } from "../../store/saved";
 
 const libraries = ["places"];
 const Maps = () => {
@@ -55,7 +55,7 @@ const Maps = () => {
     // console.log(request, "REQUEST");
     service?.nearbySearch(request, (results, status) => {
       if (status === "OK") {
-        console.log(results, "RESULTS");
+        // console.log(results, "RESULTS");
         setMarkers(
           results?.map((result) => ({
             result,
@@ -196,8 +196,7 @@ const Maps = () => {
                       <div className={styles.closed}> Closed </div>
                     )}
                   </div>
-                  {console.log(saved, "fahfoasfa")}
-                  {console.log(marker, "4121142142141")}
+
                   <button
                     className={styles.favorites}
                     onClick={(e) => addToFavorites(marker, e)}
